@@ -10,7 +10,7 @@ namespace ExamWatches.Models
     {
         public Watcher()
         {
-            Watch = new HashSet<Watch>();
+            Watches = new HashSet<Watch>();
         }
 
         [Key]
@@ -37,9 +37,9 @@ namespace ExamWatches.Models
         public short? WorkLocationId { get; set; }
 
         [ForeignKey(nameof(WorkLocationId))]
-        [InverseProperty("Watcher")]
+        [InverseProperty("Watchers")]
         public virtual WorkLocation WorkLocation { get; set; }
         [InverseProperty("Watcher")]
-        public virtual ICollection<Watch> Watch { get; set; }
+        public virtual ICollection<Watch> Watches { get; set; }
     }
 }

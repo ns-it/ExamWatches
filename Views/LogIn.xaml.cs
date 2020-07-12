@@ -31,11 +31,11 @@ namespace ExamWatches.Views
         {
             string name = username.Text;
             string pw = password.Text;
-            exam_watchesContext db = new exam_watchesContext();
+            ExamWatchesDBContext db = new ExamWatchesDBContext();
 
-            string s = db.User.Find(1).Username.ToString();
+            string s = db.Users.Find(1).Username.ToString();
 
-           int num= db.User.Where(x => x.Username == name && x.Password == pw).Count();
+           int num= db.Users.Where(x => x.Username == name && x.Password == pw).Count();
             if (num == 1)
             {
 

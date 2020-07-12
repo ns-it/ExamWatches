@@ -27,7 +27,7 @@ namespace ExamWatches.Models
         public short? WorkLocationId { get; set; }
 
         [ForeignKey(nameof(WorkLocationId))]
-        [InverseProperty("User")]
+        [InverseProperty("Users")]
         public virtual WorkLocation WorkLocation { get; set; }
     }
 }

@@ -10,11 +10,11 @@ namespace ExamWatches.Models
     {
         public WorkLocation()
         {
-            Exam = new HashSet<Exam>();
-            Period = new HashSet<Period>();
-            Room = new HashSet<Room>();
-            User = new HashSet<User>();
-            Watcher = new HashSet<Watcher>();
+            Exams = new HashSet<Exam>();
+            Periods = new HashSet<Period>();
+            Rooms = new HashSet<Room>();
+            Users = new HashSet<User>();
+            Watchers = new HashSet<Watcher>();
         }
 
         [Key]
@@ -31,14 +31,14 @@ namespace ExamWatches.Models
         public string Manager { get; set; }
 
         [InverseProperty("WorkLocation")]
-        public virtual ICollection<Exam> Exam { get; set; }
+        public virtual ICollection<Exam> Exams { get; set; }
         [InverseProperty("WorkLocation")]
-        public virtual ICollection<Period> Period { get; set; }
+        public virtual ICollection<Period> Periods { get; set; }
         [InverseProperty("WorkLocation")]
-        public virtual ICollection<Room> Room { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
         [InverseProperty("WorkLocation")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<User> Users { get; set; }
         [InverseProperty("WorkLocation")]
-        public virtual ICollection<Watcher> Watcher { get; set; }
+        public virtual ICollection<Watcher> Watchers { get; set; }
     }
 }

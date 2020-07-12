@@ -34,16 +34,16 @@ namespace ExamWatches.Models
         public int RoomId { get; set; }
 
         [ForeignKey(nameof(ExamId))]
-        [InverseProperty("Watch")]
+        [InverseProperty("Watches")]
         public virtual Exam Exam { get; set; }
         [ForeignKey(nameof(PeriodId))]
-        [InverseProperty("Watch")]
+        [InverseProperty("Watches")]
         public virtual Period Period { get; set; }
         [ForeignKey(nameof(RoomId))]
-        [InverseProperty("Watch")]
+        [InverseProperty("Watches")]
         public virtual Room Room { get; set; }
         [ForeignKey(nameof(WatcherId))]
-        [InverseProperty("Watch")]
+        [InverseProperty("Watches")]
         public virtual Watcher Watcher { get; set; }
     }
 }
