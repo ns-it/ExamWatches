@@ -1,5 +1,9 @@
-﻿using System;
+﻿//using ExamWatches.Models;
+using ExamWatches.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +24,40 @@ namespace ExamWatches.Views
         public LogIn()
         {
             InitializeComponent();
+        }
+
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            string name = username.Text;
+            string pw = password.Text;
+            exam_watchesContext db = new exam_watchesContext();
+
+            string s = db.User.Find(1).Username.ToString();
+
+           int num= db.User.Where(x => x.Username == name && x.Password == pw).Count();
+            if (num == 1)
+            {
+
+
+
+                MessageBox.Show("أهلا بك");
+                MainUI mainui = new MainUI();
+                mainui.Show();
+                this.Close();
+
+
+                    
+
+
+            }
+            else
+                MessageBox.Show("اسم المستخدم أو كلمة المرور غير صالحة");
+          //  db.Users.Select(x => x);
+
+
+
+
         }
     }
 }
