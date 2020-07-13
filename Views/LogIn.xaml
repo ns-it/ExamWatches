@@ -26,7 +26,7 @@
         <Button Content="تسجيل دخول" HorizontalAlignment="Left" Margin="304,325,0,0" VerticalAlignment="Top" FontSize="20" Width="162" Grid.ColumnSpan="2" Click="Button_Click_2"/>
         <StackPanel Grid.ColumnSpan="2" Margin="0,292,0,0"/>
         <TextBox x:Name="username" HorizontalAlignment="Left" Margin="289,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Grid.ColumnSpan="2" Height="33"/>
-        <TextBox x:Name="password" HorizontalAlignment="Left" Margin="289,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Grid.ColumnSpan="2" Height="33"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="289,226,0,0" VerticalAlignment="Top" Width="216" Grid.ColumnSpan="2" Height="33"/>
         <Label Content="اسم المستخدم" HorizontalAlignment="Left" Margin="129,154,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.637,-0.809" FontSize="20"/>
         <Label Content="كلمة المرور" HorizontalAlignment="Left" Margin="129,222,0,0" VerticalAlignment="Top" FontSize="20"/>
     </Grid>

@@ -4,9 +4,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
+        xmlns:Views="clr-namespace:ExamWatches.Views"
         mc:Ignorable="d"
-        Title="Intialization" Height="450" Width="800">
+        Title="Intialization" Height="450" Width="800" FlowDirection="RightToLeft">
     <Grid>
-        
+        <ToolBar Margin="350,167,70,175"/>
+        <TabControl>
+            <TabItem Header="التهيئة">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="351*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl TabStripPlacement="Left" Grid.ColumnSpan="3">
+                        <TabItem Header="الامتحان">
+                            <Grid Background="#FFE5E5E5">
+                                <Views:ExamInit/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="القاعات">
+                            <Grid Background="#FFE5E5E5">
+                                <Views:RoomsInit/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="المراقبين">
+                            <Grid Background="#FFE5E5E5">
+                                <Views:WatchersInit/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="توزيع المراقبات">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="65*"/>
+                        <ColumnDefinition Width="712*"/>
+                    </Grid.ColumnDefinitions>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>

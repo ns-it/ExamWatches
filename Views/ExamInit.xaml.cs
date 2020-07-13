@@ -15,7 +15,7 @@ namespace ExamWatches.Views
     /// <summary>
     /// Interaction logic for ExamInit.xaml
     /// </summary>
-    public partial class ExamInit : Window
+    public partial class ExamInit : UserControl
     {
         public ExamInit()
         {

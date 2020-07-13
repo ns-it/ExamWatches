@@ -15,7 +15,7 @@ namespace ExamWatches.Views
     /// <summary>
     /// Interaction logic for WatchersInit.xaml
     /// </summary>
-    public partial class WatchersInit : Window
+    public partial class WatchersInit : UserControl
     {
         public WatchersInit()
         {

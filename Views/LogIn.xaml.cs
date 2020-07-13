@@ -26,11 +26,10 @@ namespace ExamWatches.Views
             InitializeComponent();
         }
 
-
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             string name = username.Text;
-            string pw = password.Text;
+            string pw = password.Password;
             ExamWatchesDBContext db = new ExamWatchesDBContext();
 
             string s = db.Users.Find(1).Username.ToString();
@@ -38,26 +37,14 @@ namespace ExamWatches.Views
            int num= db.Users.Where(x => x.Username == name && x.Password == pw).Count();
             if (num == 1)
             {
-
-
-
                 MessageBox.Show("أهلا بك");
                 MainUI mainui = new MainUI();
                 mainui.Show();
                 this.Close();
-
-
-                    
-
-
             }
             else
                 MessageBox.Show("اسم المستخدم أو كلمة المرور غير صالحة");
           //  db.Users.Select(x => x);
-
-
-
-
         }
     }
 }
