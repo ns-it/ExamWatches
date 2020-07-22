@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace ExamWatches.Views
 {
     /// <summary>
-    /// Interaction logic for Schedualin_2.xaml
+    /// Interaction logic for Scheduling2.xaml
     /// </summary>
-    public partial class Schedualin_2 : Window
+    public partial class Scheduling2 : UserControl
     {
-        public Schedualin_2()
+        public Scheduling2()
         {
             InitializeComponent();
         }
