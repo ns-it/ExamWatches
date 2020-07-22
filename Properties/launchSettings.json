@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ExamWatches": {
+      "commandName": "Project",
+      "sqlDebugging": false,
+      "nativeDebugging": false
+    }
+  }
+}

@@ -19,12 +19,19 @@ namespace ExamWatches.Views
     /// <summary>
     /// Interaction logic for LogIn.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial  class LogIn : Window
     {
+        
+        public  static int user_id;
+        User login_user = new User();
+        
+
         public LogIn()
         {
             InitializeComponent();
+            user_id = 0;
         }
+       
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -32,11 +39,17 @@ namespace ExamWatches.Views
             string pw = password.Password;
             ExamWatchesDBContext db = new ExamWatchesDBContext();
 
-            string s = db.Users.Find(1).Username.ToString();
+           
 
            int num= db.Users.Where(x => x.Username == name && x.Password == pw).Count();
+
             if (num == 1)
             {
+                login_user =db.Users.Where(x => x.Username == name && x.Password == pw).FirstOrDefault();
+         
+            App.Current.Properties["user_id"] =  login_user.Id;
+
+
                 MessageBox.Show("أهلا بك");
                 MainUI mainui = new MainUI();
                 mainui.Show();

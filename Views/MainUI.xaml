@@ -23,7 +23,7 @@
                                 <Views:ExamInit/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="القاعات">
+                        <TabItem Header="القاعات" Height="24" Margin="-2,0,0,-2" VerticalAlignment="Bottom">
                             <Grid Background="#FFE5E5E5">
                                 <Views:RoomsInit/>
                             </Grid>

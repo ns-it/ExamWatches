@@ -15,7 +15,7 @@ namespace ExamWatches.Views
     /// <summary>
     /// Interaction logic for Schedualing_1.xaml
     /// </summary>
-    public partial class Schedualing_1 : Window
+    public partial class Schedualing_1 : UserControl
     {
         public Schedualing_1()
         {
