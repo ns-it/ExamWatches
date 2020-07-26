@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
         mc:Ignorable="d"
-        Height="450" Width="800">
-    <Grid>
-        
+       Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600"
+             FlowDirection="RightToLeft">
+    <Grid Margin="20,20,20,20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1">تحديد أيام الامتحان</TextBlock>
+        <Calendar x:Name="ExamDays" Grid.Row="1" Grid.Column="0"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel  Orientation="Horizontal">
+                <Label Grid.Row="1" Grid.Column="1" Content="عدد الفترات: "/>
+                <TextBox Text="2" Width="150" Height="20" VerticalAlignment="Top"></TextBox>
+                <Button x:Name="apply" Content="تطبيق"></Button>
+                
+            </StackPanel>
+            <DataGrid x:Name="Periods" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="200">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="رقم الفترة" Width="*"/>
+                    <DataGridTextColumn Header="مدة الفترة" Width="*"/>
+                    <DataGridTextColumn Header="وقت البدء" Width="1.5*"/>
+                    <DataGridTextColumn Header="وقت الانتهاء" Width="1.5*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    
+        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
+            <Button x:Name="Next" Content="التالي" Click="Next_Click" />
+        </StackPanel>
     </Grid>
 </UserControl>

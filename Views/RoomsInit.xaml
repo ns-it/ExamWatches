@@ -1,12 +1,40 @@
-﻿<UserControl x:Class="ExamWatches.Views.RoomsInit"
+﻿<UserControl
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
+        xmlns:Models="clr-namespace:ExamWatches.Models"
+    xmlns:ViewModels="clr-namespace:ExamWatches.ViewModels" 
+    x:Class="ExamWatches.Views.RoomsInit"
         mc:Ignorable="d"
-         Height="450" Width="800">
+         Height="400" Width="600" FlowDirection="RightToLeft">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <!--<Grid.DataContext>
+            <ViewModels:RoomsViewModel/>
+        </Grid.DataContext>-->
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="إضافة" Height="20" HorizontalAlignment="Right"></Button>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" x:Name="RoomsGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="اسم القاعة" Binding="{Binding RoomsList.Name}" Width="2*"/>
+                <DataGridTextColumn Header="حجمها" Binding="{Binding RoomsList.Type}" Width="*"/>
+                <DataGridTextColumn Header="سعتها" Binding="{Binding RoomsList.Capacity}" Width="*"/>
+                <!--<DataGridTemplateColumn>
+                    
+                </DataGridTemplateColumn>-->
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </UserControl>

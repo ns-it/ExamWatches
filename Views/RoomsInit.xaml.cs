@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ExamWatches.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +22,12 @@ namespace ExamWatches.Views
         public RoomsInit()
         {
             InitializeComponent();
+
+            using (ExamWatchesDBContext db = new ExamWatchesDBContext())
+            {
+                RoomsGrid.ItemsSource = db.Rooms.ToList();
+            }
+
         }
     }
 }

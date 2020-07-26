@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Label Content="عرض الموظفين من كلية"/>
+            <ListBox>
+                <ListBoxItem Content="كلية الآداب"/>
+                <ListBoxItem Content="كلية الحقوق"/>
+                <ListBoxItem Content="كلية العلوم"/>
+                <ListBoxItem Content="...."/>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label Content="عرض القاعات من كلية"/>
+            <ListBox>
+                <ListBoxItem Content="كلية الآداب"/>
+                <ListBoxItem Content="كلية الحقوق"/>
+                <ListBoxItem Content="كلية العلوم"/>
+                <ListBoxItem Content="...."/>
+            </ListBox>
+        </StackPanel>
+
+
+        <DataGrid x:Name="Employees" Grid.Row="0" Grid.Column="1" Margin="20,20,20,20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="اسم الموظف" Width="*"/>
+                <DataGridTextColumn Header="الفئة الوظيفية"  Width="*"/>
+                <DataGridCheckBoxColumn Header=""  Width=".5*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="Rooms" Grid.Row="1" Grid.Column="1" Margin="20,20,20,20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="اسم القاعة"  Width="*"/>
+                <DataGridTextColumn Header="نوع القاعة"  Width="*"/>
+                <DataGridTextColumn Header="السعة"  Width="*"/>
+                <DataGridCheckBoxColumn Header=""  Width=".5*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="Next" Content="التالي" Click="Next_Click" Grid.Column="1" Grid.Row="2" Width="150" HorizontalAlignment="Right"/>
+
     </Grid>
 </UserControl>

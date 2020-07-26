@@ -6,47 +6,62 @@
         xmlns:local="clr-namespace:ExamWatches.Views"
         xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" x:Class="ExamWatches.Views.ExamInit"
         mc:Ignorable="d"
-        Height="450" Width="800" FlowDirection="RightToLeft">
-    <Grid>
+        Height="auto" Width="auto" d:DesignHeight="600" d:DesignWidth="800" FlowDirection="RightToLeft" Margin="10,10,19,10">
+    <Grid                                                                                                                                                                                                                                    >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Content="الكلية" HorizontalAlignment="Left" Margin="31,75,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <Label Content="اسم العميد" HorizontalAlignment="Left" Margin="31,125,0,100" Grid.Row="6" Grid.ColumnSpan="4"/>
-        <Label Content="رئيس الدائرة" HorizontalAlignment="Left" Margin="31,181,0,0" Grid.Row="6" VerticalAlignment="Top" RenderTransformOrigin="0.807,-1.765" Grid.ColumnSpan="4"/>
-        <Label Content="الفصل الدراسي" HorizontalAlignment="Left" Margin="31,225,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <Label Content="العام الدراسي" HorizontalAlignment="Left" Margin="36,275,0,0" Grid.Row="6" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.27"/>
-        <Label Content="عدد أيام الامتحان" HorizontalAlignment="Left" Margin="27,315,0,0" Grid.Row="6" VerticalAlignment="Top" Grid.ColumnSpan="4"/>
-        <ComboBox x:Name="collageList" Grid.Column="3" HorizontalAlignment="Left" Margin="87,88,0,0" Grid.Row="6" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="dean_name" Grid.Column="3" HorizontalAlignment="Left" Margin="87,136,0,0" Grid.Row="6"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="manager_name" Grid.Column="3" HorizontalAlignment="Left" Margin="87,185,0,0" Grid.Row="6"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="year" Grid.Column="3" HorizontalAlignment="Left" Margin="87,279,0,0" Grid.Row="6" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="49"/>
-        <Label Content="من" Grid.Column="3" HorizontalAlignment="Left" Margin="194,311,0,48" Grid.Row="6" RenderTransformOrigin="-0.25,0.203"/>
-        <DatePicker x:Name="startDate" Grid.Column="3" HorizontalAlignment="Center" Margin="0,317,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <Label Content="إلى" Grid.Column="3" HorizontalAlignment="Left" Margin="421,315,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <DatePicker x:Name="endDate" Grid.Column="3" HorizontalAlignment="Left" Margin="484,317,0,0" Grid.Row="6" VerticalAlignment="Top"/>
+        <Grid.Resources>
+            <Style TargetType="Border" >
+                <Setter Property="Padding" Value="5,5,5,5" />
+            </Style>
+        </Grid.Resources>
 
+        <Label Content="الكلية" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right"/>
+        <Label Content="اسم العميد" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right"/>
+        <Label Content="رئيس الدائرة" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
+        <Label Content="الفصل الدراسي" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right"/>
+        <Label Content="العام الدراسي" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right"/>
+        <Label Content="عدد أيام الامتحان" Grid.Row="5" Grid.Column="0" HorizontalContentAlignment="Right"/>
+        <ComboBox x:Name="collageList" Grid.Row="0" Grid.Column="1"  IsEnabled="False" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+        <TextBox x:Name="dean_name" Grid.Row="1" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+        <TextBox x:Name="manager_name" Grid.Row="2" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+        <TextBox x:Name="year" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,5,5,5"/>
+        <StackPanel Orientation="Horizontal"  Grid.Row="5" Grid.Column="2">
+            <Label Content="من"/>
+            <DatePicker x:Name="startDate"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Grid.Row="5" Grid.Column="3">
+            <Label Content="إلى"/>
+            <DatePicker x:Name="endDate"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+            <TextBox x:Name="days" x:FieldModifier="private" Text="0" Width="20" TextChanged="txtNum_TextChanged" />
+            <StackPanel>
+                <Button x:Name="cmdUp" x:FieldModifier="private"  Content="˄" Width="20" Click="cmdUp_Click" FontSize="7" />
+                <Button x:Name="cmdDown" x:FieldModifier="private"  Content="˅" Width="20" Click="cmdDown_Click" FontSize="7"  />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+            <RadioButton x:Name="first" Content="الأول" />
+            <RadioButton x:Name="second" Content="الثاني"  />
+            <RadioButton x:Name="third" Content="الثالث" Margin="5,5,5,5"/>
 
-        <TextBox x:Name="days" x:FieldModifier="private" Margin="85,317,532,77" Width="50" Text="0" TextChanged="txtNum_TextChanged" RenderTransformOrigin="0.48,0.701" Grid.Column="3" Grid.Row="6" />
-        <Button x:Name="cmdUp" x:FieldModifier="private" Margin="134,316,513,77" Content="˄" Width="20" Click="cmdUp_Click" Grid.Column="3" Grid.Row="6" />
-        <Button x:Name="cmdDown" x:FieldModifier="private" Margin="154,316,493,77"  Content="˅" Width="20" Click="cmdDown_Click" Grid.Column="3" Grid.Row="6" />
-        <CheckBox x:Name="first" Content="الأول" Grid.Column="3" HorizontalAlignment="Left" Margin="87,236,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <CheckBox x:Name="second" Content="الثاني" Grid.Column="3" HorizontalAlignment="Left" Margin="159,236,0,0" Grid.Row="6" VerticalAlignment="Top" RenderTransformOrigin="0.179,0.132"/>
-        <Button x:Name="next" Content="التالي (تهيئة القاعات)" Grid.Column="3" HorizontalAlignment="Left" Margin="484,363,0,0" Grid.Row="6" VerticalAlignment="Top" Height="37" Click="Button_Click" Width="102"/>
-        <CheckBox Content="الثالث" Grid.Column="3" HorizontalAlignment="Left" Margin="237,236,0,0" Grid.Row="6" VerticalAlignment="Top"/>
+        </StackPanel>
 
+        <Button x:Name="next" Content="التالي" Grid.Column="3" Grid.Row="6" Click="Button_Click" Height="40" Width="100"/>
 
     </Grid>
 </UserControl>

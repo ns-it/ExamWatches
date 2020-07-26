@@ -21,5 +21,11 @@ namespace ExamWatches.Views
         {
             InitializeComponent();
         }
+
+        private void OpenWatcherScheduling_Click(object sender, RoutedEventArgs e)
+        {
+            SchedulingFinal schedulingFinal = new SchedulingFinal();
+            this.Content = schedulingFinal.Content;
+        }
     }
 }

@@ -21,5 +21,17 @@ namespace ExamWatches.Views
         {
             InitializeComponent();
         }
+
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            SchedulingFinal schedulingFinal = new SchedulingFinal();
+            this.Content = schedulingFinal.Content;
+        }
+
+        private void Previous_Click(object sender, RoutedEventArgs e)
+        {
+            Scheduling2 scheduling2 = new Scheduling2();
+            this.Content = scheduling2.Content;
+        }
     }
 }

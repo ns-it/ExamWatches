@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
         mc:Ignorable="d"
-       Height="450" Width="800">
-    <Grid>
+       Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -14,11 +14,48 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition Height="5*"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+        <ListView x:Name="AllWatchers" Grid.Row="1" Grid.Column="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="كافة الأسماء"/>
+                </GridView>
+            </ListView.View>
+            
+        </ListView>
+        <ListView x:Name="BossWatchers" Grid.Row="1" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="رؤساء القاعة"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="SecretaryWathers" Grid.Row="1" Grid.Column="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="أمناء السر"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="OrdinaryWatchers" Grid.Row="1" Grid.Column="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="مراقبون"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" >
+            <Button x:Name="moveLeft" Content="&lt;&lt;" />
+            <Button x:Name="moveRight" Content="&gt;&gt;" />
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
+            <Button x:Name="Next" Content="التالي" Click="Next_Click" />
+        </StackPanel>
         
         
     </Grid>

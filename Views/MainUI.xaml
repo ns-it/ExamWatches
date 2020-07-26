@@ -11,11 +11,6 @@
         <TabControl>
             <TabItem Header="التهيئة">
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="6*"/>
-                        <ColumnDefinition Width="40*"/>
-                        <ColumnDefinition Width="351*"/>
-                    </Grid.ColumnDefinitions>
                     <TabControl TabStripPlacement="Left" Grid.ColumnSpan="3">
                         <TabItem Header="الامتحان">
                             <Grid Background="#FFE5E5E5">
@@ -36,12 +31,8 @@
                 </Grid>
             </TabItem>
             <TabItem Header="توزيع المراقبات">
+
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="65*"/>
-                        <ColumnDefinition Width="712*"/>
-                    </Grid.ColumnDefinitions>
                     <local:Scheduling1/>
                 </Grid>
             </TabItem>
