@@ -29,9 +29,10 @@
                 <DataGridTextColumn Header="المراقبون" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <Button x:Name="Print"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Content="طباعة"></Button>
+        <!--<StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <Button x:Name="Print"  VerticalAlignment="Center" Content="طباعة"></Button>
             <Button x:Name="OpenWatcherScheduling"  Content="عرض المراقبات الخاصة بمراقب معين" Click="OpenWatcherScheduling_Click"></Button>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>

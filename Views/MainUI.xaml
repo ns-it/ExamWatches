@@ -3,9 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ExamWatches.Views"
+        xmlns:views="clr-namespace:ExamWatches.Views"
+        xmlns:viewmodels="clr-namespace:ExamWatches.ViewModels"
         mc:Ignorable="d"
-        Title="MainUI" Height="450" Width="800" FlowDirection="RightToLeft">
+        Title="MainUI" Height="450" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen">
+    <!--<Window.Resources>
+        <DataTemplate x:Name="Scheduling1ViewTemplate" DataType="{x:Type viewmodels:Scheduling1ViewModel}">
+            <views:Scheduling1 DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="Scheduling2ViewTemplate" DataType="{x:Type viewmodels:Scheduling2ViewModel}">
+            <views:Scheduling2 DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="Scheduling3ViewTemplate" DataType="{x:Type viewmodels:Scheduling3ViewModel}">
+            <views:Scheduling3 DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="SchedulingFinalViewTemplate" DataType="{x:Type viewmodels:SchedulingFinalViewModel}">
+            <views:SchedulingFinal DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="WatcherSchedulingViewTemplate" DataType="{x:Type viewmodels:WatcherSchedulingViewModel}">
+            <views:WatcherScheduling DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>-->
     <Grid>
         <ToolBar Margin="350,167,70,175"/>
         <TabControl>
@@ -14,26 +32,40 @@
                     <TabControl TabStripPlacement="Left" Grid.ColumnSpan="3">
                         <TabItem Header="الامتحان">
                             <Grid Background="#FFE5E5E5">
-                                <local:ExamInit/>
+                                <views:ExamInit/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="القاعات">
                             <Grid Background="#FFE5E5E5">
-                                <local:RoomsInit/>
+                                <views:RoomsInit/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="المراقبين">
                             <Grid Background="#FFE5E5E5">
-                                <local:WatchersInit/>
+                                <views:WatchersInit/>
                             </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="توزيع المراقبات">
-
+            <TabItem Header="توزيع المراقبات" x:Name="SchedulingTab">
+     
                 <Grid Background="#FFE5E5E5">
-                    <local:Scheduling1/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Content="1" x:Name="ShowScheduling1" Click="ShowScheduling1_Click"/>
+                        <Button Content="2" x:Name="ShowScheduling2" Click="ShowScheduling2_Click"/>
+                        <Button Content="3" x:Name="ShowScheduling3" Click="ShowScheduling3_Click"/>
+                        <Button Content="4" x:Name="ShowSchedulingFinal" Click="ShowSchedulingFinal_Click"/>
+                        <Button Content="5" x:Name="ShowWatcherScheduling" Click="ShowWatcherScheduling_Click"/>
+                    </StackPanel>
+                    <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding}"/>
                 </Grid>
             </TabItem>
         </TabControl>

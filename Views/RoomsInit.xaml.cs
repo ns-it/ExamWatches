@@ -23,10 +23,10 @@ namespace ExamWatches.Views
         {
             InitializeComponent();
 
-            using (ExamWatchesDBContext db = new ExamWatchesDBContext())
-            {
-                RoomsGrid.ItemsSource = db.Rooms.ToList();
-            }
+            //using (ExamWatchesDBContext db = new ExamWatchesDBContext())
+            //{
+            //    RoomsGrid.ItemsSource = db.Rooms.ToList();
+            //}
 
         }
     }

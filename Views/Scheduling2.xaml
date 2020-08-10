@@ -52,10 +52,10 @@
             <Button x:Name="moveLeft" Content="&lt;&lt;" />
             <Button x:Name="moveRight" Content="&gt;&gt;" />
         </StackPanel>
-        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
+        <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
             <Button x:Name="Next" Content="التالي" Click="Next_Click" />
-        </StackPanel>
+        </StackPanel>-->
         
         
     </Grid>

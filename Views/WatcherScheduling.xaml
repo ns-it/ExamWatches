@@ -33,10 +33,12 @@
                     <DataGridCheckBoxColumn Header="التوقيع" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button x:Name="Print"  VerticalAlignment="Center" Content="طباعة" Grid.Column="2" Grid.Row="2"></Button>
+
+            <!--<StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                 <Button x:Name="Print"  VerticalAlignment="Center" Content="طباعة"></Button>
                 <Button x:Name="OpenWatchesSchedule"  Content="عرض جدول المراقبات" Click="OpenWatcherScheduling_Click"></Button>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
     </Grid>
 </UserControl>

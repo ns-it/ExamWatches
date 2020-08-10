@@ -18,18 +18,18 @@
             <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <!--<Grid.DataContext>
-            <ViewModels:RoomsViewModel/>
-        </Grid.DataContext>-->
+        <Grid.DataContext>
+            <ViewModels:RoomsInitViewModel/>
+        </Grid.DataContext>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Button Content="إضافة" Height="20" HorizontalAlignment="Right"></Button>
         </StackPanel>
 
-        <DataGrid Grid.Row="1" x:Name="RoomsGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="auto">
+        <DataGrid Grid.Row="1" x:Name="RoomsGrid" ItemsSource="{Binding RoomsList}" AutoGenerateColumns="False" IsReadOnly="True" Width="auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="اسم القاعة" Binding="{Binding RoomsList.Name}" Width="2*"/>
-                <DataGridTextColumn Header="حجمها" Binding="{Binding RoomsList.Type}" Width="*"/>
-                <DataGridTextColumn Header="سعتها" Binding="{Binding RoomsList.Capacity}" Width="*"/>
+                <DataGridTextColumn Header="اسم القاعة" Binding="{Binding Name}" Width="2*"/>
+                <DataGridTextColumn Header="حجمها" Binding="{Binding Type}" Width="*"/>
+                <DataGridTextColumn Header="سعتها" Binding="{Binding Capacity}" Width="*"/>
                 <!--<DataGridTemplateColumn>
                     
                 </DataGridTemplateColumn>-->

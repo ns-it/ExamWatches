@@ -1,11 +1,12 @@
-﻿<Window x:Class="ExamWatches.Views.LogIn" FlowDirection="RightToLeft"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
+        x:Class="ExamWatches.Views.LogIn" FlowDirection="RightToLeft"
         mc:Ignorable="d"
-        Title="LogIn" Height="450" Width="800">
+        Title="LogIn" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="201*"/>

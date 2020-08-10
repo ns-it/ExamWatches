@@ -23,13 +23,17 @@ namespace ExamWatches.Views
     {
         
         public  static int user_id;
-        User login_user = new User();
-        
+        User login_user;
+        ExamWatchesDBContext db;
+        MainUI mainui;
+
 
         public LogIn()
         {
             InitializeComponent();
             user_id = 0;
+            login_user = new User();
+            db = new ExamWatchesDBContext();
         }
        
 
@@ -37,7 +41,7 @@ namespace ExamWatches.Views
         {
             string name = username.Text;
             string pw = password.Password;
-            ExamWatchesDBContext db = new ExamWatchesDBContext();
+            
 
            
 
@@ -51,7 +55,7 @@ namespace ExamWatches.Views
 
 
                 MessageBox.Show("أهلا بك");
-                MainUI mainui = new MainUI();
+                mainui = new MainUI();
                 mainui.Show();
                 this.Close();
             }
