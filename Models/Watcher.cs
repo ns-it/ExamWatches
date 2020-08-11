@@ -11,6 +11,7 @@ namespace ExamWatches.Models
         public Watcher()
         {
             Watches = new HashSet<Watch>();
+           
         }
 
         [Key]
@@ -24,7 +25,11 @@ namespace ExamWatches.Models
         public string MiddleName { get; set; }
         [Column("last_name")]
         [StringLength(50)]
+
         public string LastName { get; set; }
+        [Column("full_name")]
+        [StringLength(150)]
+        public string FullName { get; set; }
         [Column("job")]
         [StringLength(50)]
         public string Job { get; set; }
@@ -36,10 +41,17 @@ namespace ExamWatches.Models
         [Column("work_location_id")]
         public short? WorkLocationId { get; set; }
 
+
         [ForeignKey(nameof(WorkLocationId))]
         [InverseProperty("Watchers")]
         public virtual WorkLocation WorkLocation { get; set; }
         [InverseProperty("Watcher")]
         public virtual ICollection<Watch> Watches { get; set; }
+
+
+   
+  
+
+
     }
 }
