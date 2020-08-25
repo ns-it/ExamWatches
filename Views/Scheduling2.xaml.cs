@@ -20,6 +20,8 @@ namespace ExamWatches.Views
         public Scheduling2()
         {
             InitializeComponent();
+            //   Scheduling1.SelectedWatcher
+            AllWatchers.ItemsSource = Scheduling1.SelectedWatcher;
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -32,6 +34,11 @@ namespace ExamWatches.Views
         {
             Scheduling1 scheduling1 = new Scheduling1();
             this.Content = scheduling1.Content;
+        }
+
+        private void AllWatchers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

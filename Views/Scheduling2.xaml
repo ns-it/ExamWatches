@@ -22,10 +22,10 @@
         <ListView x:Name="AllWatchers" Grid.Row="1" Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="كافة الأسماء"/>
+                    <GridViewColumn Header="كافة الأسماء" DisplayMemberBinding="{Binding FullName}"/>
                 </GridView>
             </ListView.View>
-            
+
         </ListView>
         <ListView x:Name="BossWatchers" Grid.Row="1" Grid.Column="1">
             <ListView.View>
@@ -56,7 +56,7 @@
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
             <Button x:Name="Next" Content="التالي" Click="Next_Click" />
         </StackPanel>-->
-        
-        
+
+
     </Grid>
 </UserControl>

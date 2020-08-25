@@ -21,12 +21,12 @@ namespace ExamWatches.Views
     /// Interaction logic for ExamInit.xaml
     /// </summary>
     public partial class ExamInit : UserControl
-       
+
     {
         // متحول خاص بعدد أيام الامتحان
         private int _numValue = 0;
-         
-
+        int semNum;
+        string yearNum;
         // متحول يحتفظ برقم المستخدم الذي قام بتسجيل الدخول
         int user_id = Convert.ToInt32(App.Current.Properties["user_id"]);
         // غرض للتعامل مع القاعدة
@@ -36,7 +36,7 @@ namespace ExamWatches.Views
         // غرض من الصف الخاص بالامتحان
         Exam exam = new Exam();
 
-        
+
 
         public int NumValue
         {
@@ -47,7 +47,7 @@ namespace ExamWatches.Views
                 days.Text = value.ToString();
             }
         }
-     
+
         public ExamInit()
         {
             InitializeComponent();
@@ -58,11 +58,11 @@ namespace ExamWatches.Views
 
 
         }
-       // تهيئة القائمة الخاصة بأسماء الكليات
+        // تهيئة القائمة الخاصة بأسماء الكليات
         public void add_collage_list()
         {   // ارجاع قائمة بأسماء الكليات
             var list = db.WorkLocations.ToList();
-            
+
             foreach (var item in list)
             {
 
@@ -73,11 +73,11 @@ namespace ExamWatches.Views
         // تغيير اسم العميد ورئيس الدائرة تبعا لاسم الكلية
         private void collageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-           string collage_name= collageList.Text.ToString();
+
+            string collage_name = collageList.Text.ToString();
             work_locationl = db.WorkLocations.Where(x => x.Name == collage_name).FirstOrDefault();
-           dean_name.Text = work_locationl.Dean;
-           manager_name.Text = work_locationl.Manager;
+            dean_name.Text = work_locationl.Dean;
+            manager_name.Text = work_locationl.Manager;
 
         }
 
@@ -102,7 +102,7 @@ namespace ExamWatches.Views
 
 
         //}
-         // عداد لأيام الامتحان
+        // عداد لأيام الامتحان
         private void cmdUp_Click(object sender, RoutedEventArgs e)
         {
             NumValue++;
@@ -139,7 +139,8 @@ namespace ExamWatches.Views
             {
                 exam.Semester = 2;
             }
-            else {
+            else
+            {
                 exam.Semester = 3;
             }
 
@@ -154,7 +155,47 @@ namespace ExamWatches.Views
             db.SaveChanges();
         }
 
-      
+
+
+
+
+        private void years_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (first.IsChecked == true)
+            {
+                semNum = 1;
+
+            }
+            else if (second.IsChecked == true)
+            {
+                semNum = 2;
+            }
+            else
+            {
+                semNum = 3;
+            }
+            Exam ex = new Exam();
+            yearNum = year.Text;
+            //  MessageBox.Show(yearNum);
+            int count = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum).Count();
+            if (count == 1)
+            {
+                SaveButton.IsEnabled = false;
+                ex = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum).FirstOrDefault();
+                days.Text = ex.DaysNumber.ToString();
+                startDate.Text = ex.StartTime.ToString();
+                endDate.Text = ex.EndTime.ToString();
+
+
+            }
+            else
+            {
+
+                MessageBox.Show("insert new data and click save");
+                SaveButton.IsEnabled = true;
+
+            }
+        }
     }
 
 }

@@ -16,44 +16,38 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+        <StackPanel Grid.Row="0" Grid.Column="0" Height="200" VerticalAlignment="Bottom">
             <Label Content="عرض الموظفين من كلية"/>
-            <ListBox>
-                <ListBoxItem Content="كلية الآداب"/>
-                <ListBoxItem Content="كلية الحقوق"/>
-                <ListBoxItem Content="كلية العلوم"/>
-                <ListBoxItem Content="...."/>
+            <ListBox x:Name="employeelist" SelectionChanged="employeelist_SelectionChanged"  >
+
+
             </ListBox>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Label Content="عرض القاعات من كلية"/>
-            <ListBox>
-                <ListBoxItem Content="كلية الآداب"/>
-                <ListBoxItem Content="كلية الحقوق"/>
-                <ListBoxItem Content="كلية العلوم"/>
-                <ListBoxItem Content="...."/>
+            <ListBox x:Name="roomlist" SelectionChanged="roomlist_SelectionChanged">
+
             </ListBox>
         </StackPanel>
 
 
-        <DataGrid x:Name="Employees" Grid.Row="0" Grid.Column="1" Margin="20,20,20,20">
+        <DataGrid x:Name="Employees" CanUserAddRows="False"  Grid.Row="0" Grid.Column="1"  Margin="20,20,91,20" AutoGenerateColumns="False" EnableRowVirtualization="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="اسم الموظف" Width="*"/>
-                <DataGridTextColumn Header="الفئة الوظيفية"  Width="*"/>
-                <DataGridCheckBoxColumn Header=""  Width=".5*"/>
+                <DataGridTextColumn x:Name="empName" Header="اسم الموظف" Width="*" Binding="{Binding FullName}"/>
+                <DataGridTextColumn x:Name="empClass" Header="الفئة الوظيفية"  Width="*" Binding="{Binding Class}"/>
+                <DataGridCheckBoxColumn x:Name="empIsChecked" Header="حدد"  Width=".5*" Binding="{Binding IsSelected}"  />
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="Rooms" Grid.Row="1" Grid.Column="1" Margin="20,20,20,20">
+        <DataGrid x:Name="RoomsGrid" Grid.Row="1" Grid.Column="1" Margin="20,20,20,20" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="اسم القاعة"  Width="*"/>
-                <DataGridTextColumn Header="نوع القاعة"  Width="*"/>
-                <DataGridTextColumn Header="السعة"  Width="*"/>
+                <DataGridTextColumn Header="اسم القاعة"  Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="نوع القاعة"  Width="*" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="السعة"  Width="*" Binding="{Binding Capacity}"/>
                 <DataGridCheckBoxColumn Header=""  Width=".5*"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button x:Name="Next" Content="التالي" Click="Next_Click" Grid.Column="1" Grid.Row="2" Width="150" HorizontalAlignment="Right"/>
+        <Button Content="اضافة المحدد " Grid.Column="1" HorizontalAlignment="Left" Margin="364,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.788,0.348" Width="86" Height="21" Click="Button_Click"/>
 
     </Grid>
 </UserControl>
