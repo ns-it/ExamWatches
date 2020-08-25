@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="1">تحديد أيام الامتحان</TextBlock>
-        <Calendar x:Name="ExamDays" Grid.Row="1" Grid.Column="0"/>
+        <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" Grid.Row="1" Grid.Column="0"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <StackPanel  Orientation="Horizontal">

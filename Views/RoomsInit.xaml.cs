@@ -1,4 +1,5 @@
 ﻿using ExamWatches.Models;
+using ExamWatches.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,12 @@ namespace ExamWatches.Views
             //    RoomsGrid.ItemsSource = db.Rooms.ToList();
             //}
 
+        }
+
+        private void RoomsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            RoomsInitVM.SelectedItemChangedAction(null);
         }
     }
 }

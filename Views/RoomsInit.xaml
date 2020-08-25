@@ -8,32 +8,98 @@
     xmlns:ViewModels="clr-namespace:ExamWatches.ViewModels" 
     x:Class="ExamWatches.Views.RoomsInit"
         mc:Ignorable="d"
-         Height="400" Width="600" FlowDirection="RightToLeft">
+Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft">
+    
+    <UserControl.DataContext>
+        <ViewModels:RoomsInitViewModel x:Name="RoomsInitVM"/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Grid.DataContext>
-            <ViewModels:RoomsInitViewModel/>
-        </Grid.DataContext>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Content="إضافة" Height="20" HorizontalAlignment="Right"></Button>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">
+                        <Run Text=" القاعات المتاحة في: "/>
+            <Run Text="{Binding CollegeName}"/>
+        </TextBlock>
+        <Label Content="اسم القاعة" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Margin="1,0,1,0"/>
+        <TextBox x:Name="roomName" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
+                 Text="{Binding CurrentRoom.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+        <Label Content="نوع القاعة" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto"/>
+        <ComboBox x:Name="roomType" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" ItemsSource="{Binding Types}"
+                  SelectedValue="{Binding CurrentRoom.Type, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  IsEnabled="{Binding IsEditModeOn}"/>
+        
+        <Label Content="سعتها" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Width="Auto"/>
+        <TextBox x:Name="roomCapacity" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"
+                 Text="{Binding CurrentRoom.Capacity, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button x:Name="DeleteButton" Content="حذف" Style="{StaticResource Delete}"
+                    IsEnabled="{Binding ElementName=RoomsGrid,Path=SelectedItems.Count}"
+                    Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=RoomsGrid,Path=SelectedItem}"
+                    />
+            <Button x:Name="EditButton" Content="تعديل" Style="{StaticResource Edit}"
+                    IsEnabled="{Binding ElementName=RoomsGrid,Path=SelectedItems.Count}"
+                    Command="{Binding StartEditCommand,UpdateSourceTrigger=PropertyChanged}" CommandParameter="Edit" />
+
+            <Button x:Name="AddButton" Content="إضافة" Style="{StaticResource Add}"
+                    IsEnabled="{Binding IsEditModeOff,UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding StartEditCommand,UpdateSourceTrigger=PropertyChanged}" CommandParameter="Add"
+                    />
+            <Button x:Name="SaveButton" Content="حفظ التعديلات"
+                    IsEnabled="{Binding IsEditModeOn,UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding SaveCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=RoomsGrid,Path=SelectedItem}"
+                    />
+
+            <Button x:Name="CancelButton" Content="إلغاء الأمر"
+                    IsEnabled="{Binding IsEditModeOn,UpdateSourceTrigger=PropertyChanged}" 
+                    Command="{Binding CancelCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=RoomsGrid,Path=SelectedItem}"
+                    />
+
         </StackPanel>
 
-        <DataGrid Grid.Row="1" x:Name="RoomsGrid" ItemsSource="{Binding RoomsList}" AutoGenerateColumns="False" IsReadOnly="True" Width="auto">
+        <DataGrid Grid.Row="5" Grid.ColumnSpan="2" x:Name="RoomsGrid" ItemsSource="{Binding RoomsList}" SelectedItem="{Binding SelectedRoom}" AutoGenerateColumns="False" Width="auto" SelectionChanged="RoomsGrid_SelectionChanged" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="اسم القاعة" Binding="{Binding Name}" Width="2*"/>
                 <DataGridTextColumn Header="حجمها" Binding="{Binding Type}" Width="*"/>
                 <DataGridTextColumn Header="سعتها" Binding="{Binding Capacity}" Width="*"/>
-                <!--<DataGridTemplateColumn>
-                    
-                </DataGridTemplateColumn>-->
+                <DataGridTemplateColumn Header ="إجراء" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5,0,5,0" DataContext="RoomsInitVM">
+                                <Button x:Name="InlineEdit" Content="✏" Style="{StaticResource Edit}"
+                                         Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.StartEditCommand }" CommandParameter="Edit" />
+
+                                <Button x:Name="InlineDelete" Content="🗑" Style="{StaticResource Delete}"
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.DeleteCommand}" CommandParameter="{Binding ElementName=RoomsGrid,Path=SelectedItem}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
+
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" 
+        CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+
+
         </DataGrid>
 
     </Grid>

@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:ExamWatches.Views"
         xmlns:viewmodels="clr-namespace:ExamWatches.ViewModels"
         mc:Ignorable="d"
-        Title="MainUI" Height="450" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen">
+        Title="برنامج المراقبات الامتحانية - الواجهة الرئيسية" Height="450" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen">
     <!--<Window.Resources>
         <DataTemplate x:Name="Scheduling1ViewTemplate" DataType="{x:Type viewmodels:Scheduling1ViewModel}">
             <views:Scheduling1 DataContext="{Binding}"/>
@@ -25,7 +25,10 @@
         </DataTemplate>
     </Window.Resources>-->
     <Grid>
-        <ToolBar Margin="350,167,70,175"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
         <TabControl>
             <TabItem Header="التهيئة">
                 <Grid Background="#FFE5E5E5">
@@ -68,7 +71,14 @@
                     <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding}"/>
                 </Grid>
             </TabItem>
+         
         </TabControl>
-
+        <StatusBar Grid.Row="1" Height="auto">
+            <StatusBarItem x:Name="UserName"/>
+            <Separator/>
+            <StatusBarItem>
+                <Hyperlink x:Name="ChangeUser" Click="ChangeUser_Click">تبديل المستخدم</Hyperlink>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

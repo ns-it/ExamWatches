@@ -22,7 +22,7 @@ namespace ExamWatches.Views
     public partial  class LogIn : Window
     {
         
-        public  static int user_id;
+        public static int user_id =0;
         User login_user;
         ExamWatchesDBContext db;
         MainUI mainui;
@@ -31,14 +31,16 @@ namespace ExamWatches.Views
         public LogIn()
         {
             InitializeComponent();
-            user_id = 0;
-            login_user = new User();
-            db = new ExamWatchesDBContext();
+
         }
        
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+
+            login_user = new User();
+            db = new ExamWatchesDBContext();
+
             string name = username.Text;
             string pw = password.Password;
             
@@ -53,9 +55,9 @@ namespace ExamWatches.Views
          
             App.Current.Properties["user_id"] =  login_user.Id;
 
-
-                MessageBox.Show("أهلا بك");
-                mainui = new MainUI();
+                user_id = login_user.Id;
+                MessageBox.Show("أهلا بك " + login_user.FirstName);
+                mainui = new MainUI(user_id);
                 mainui.Show();
                 this.Close();
             }
@@ -63,5 +65,12 @@ namespace ExamWatches.Views
                 MessageBox.Show("اسم المستخدم أو كلمة المرور غير صالحة");
           //  db.Users.Select(x => x);
         }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+
     }
 }
