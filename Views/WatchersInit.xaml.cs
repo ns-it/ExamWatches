@@ -21,5 +21,10 @@ namespace ExamWatches.Views
         {
             InitializeComponent();
         }
+
+        private void ItemsList_CollectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WatchersInitVM.SelectedItemChangedAction(null);
+        }
     }
 }

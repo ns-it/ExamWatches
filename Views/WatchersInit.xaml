@@ -1,12 +1,161 @@
-﻿<UserControl x:Class="ExamWatches.Views.WatchersInit"
+﻿<UserControl
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
+        xmlns:Models="clr-namespace:ExamWatches.Models"
+    xmlns:ViewModels="clr-namespace:ExamWatches.ViewModels" 
+    x:Class="ExamWatches.Views.WatchersInit"
         mc:Ignorable="d"
-        Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft">
+Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft">
+
+    <UserControl.DataContext>
+        <ViewModels:WatchersInitViewModel x:Name="WatchersInitVM"/>
+    </UserControl.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">
+                        <Run Text=" المراقبون الموجودون في: "/>
+            <Run Text="{Binding CollegeName}"/>
+        </TextBlock>
+        <Label Content="الاسم" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"/>
+        <TextBox x:Name="watcherFirstName"
+                 Grid.Row="1" Grid.Column="1"
+                 Text="{Binding CurrentItem.FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+        <Label Content="اسم الأب" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
+        <TextBox x:Name="watcherMiddleName" 
+                  Grid.Row="1" Grid.Column="3"
+                 Text="{Binding CurrentItem.MiddleName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+        <Label Content="الكنية" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right"/>
+        <TextBox x:Name="watcherLastName"
+                 Grid.Row="1" Grid.Column="5"
+                 Text="{Binding CurrentItem.LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+        <!--<TextBox x:Name="watcherName" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
+                 Text="{Binding CurrentItem.FullName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>-->
+        <!--<StackPanel HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <TextBox x:Name="watcherFirstName"
+                 Text="{Binding CurrentItem.FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+            <TextBox x:Name="watcherMiddleName" 
+                 Text="{Binding CurrentItem.MiddleName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+            <TextBox x:Name="watcherLastName"
+                 Text="{Binding CurrentItem.LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+        </StackPanel>-->
+
+        <!--<UniformGrid Columns="3" Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="watcherFirstName"
+                 Text="{Binding CurrentItem.FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+            <TextBox x:Name="watcherMiddleName" 
+                 Text="{Binding CurrentItem.MiddleName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+            <TextBox x:Name="watcherLastName"
+                 Text="{Binding CurrentItem.LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+        </UniformGrid>-->
+
+        <Label Content="العمل" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Margin="1,0,1,0"/>
+        <TextBox x:Name="watcherJob" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" VerticalAlignment="Center"
+                 Text="{Binding CurrentItem.Job, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+
+        <Label Content="الفئة" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Margin="1,0,1,0"/>
+        <!--<TextBox x:Name="watcherClass" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" VerticalAlignment="Center"
+                 Text="{Binding CurrentItem.Class, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>-->
+        <ComboBox x:Name="watcherClass" 
+                  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" VerticalAlignment="Center" 
+                  ItemsSource="{Binding Classes}"
+                  SelectedValue="{Binding CurrentItem.Class, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  IsEnabled="{Binding IsEditModeOn}"/>
         
+        <Label Content="الشهادة" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Margin="1,0,1,0"/>
+        <TextBox x:Name="watcherCertificate" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" VerticalAlignment="Center"
+                 Text="{Binding CurrentItem.Certificate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>
+
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="6" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button x:Name="DeleteButton" Content="حذف" Style="{StaticResource Delete}"
+                    IsEnabled="{Binding ElementName=WatchersGrid,Path=SelectedItems.Count}"
+                    Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=WatchersGrid,Path=SelectedItem}"
+                    />
+            <Button x:Name="EditButton" Content="تعديل" Style="{StaticResource Edit}"
+                    IsEnabled="{Binding ElementName=WatchersGrid,Path=SelectedItems.Count}"
+                    Command="{Binding StartEditCommand,UpdateSourceTrigger=PropertyChanged}" CommandParameter="Edit" />
+
+            <Button x:Name="AddButton" Content="إضافة" Style="{StaticResource Add}"
+                    IsEnabled="{Binding IsEditModeOff,UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding StartEditCommand,UpdateSourceTrigger=PropertyChanged}" CommandParameter="Add"
+                    />
+            <Button x:Name="SaveButton" Content="حفظ التعديلات"
+                    IsEnabled="{Binding IsEditModeOn,UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding SaveCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=WatchersGrid,Path=SelectedItem}"
+                    />
+
+            <Button x:Name="CancelButton" Content="إلغاء الأمر"
+                    IsEnabled="{Binding IsEditModeOn,UpdateSourceTrigger=PropertyChanged}" 
+                    Command="{Binding CancelCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=WatchersGrid,Path=SelectedItem}"
+                    />
+
+        </StackPanel>
+
+        <DataGrid Grid.Row="6" Grid.ColumnSpan="6" x:Name="WatchersGrid" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" Width="auto" SelectionChanged="ItemsList_CollectionChanged" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="اسم المراقب" Binding="{Binding FullName}" Width="2*"/>
+                <DataGridTextColumn Header="عمله" Binding="{Binding Job}" Width="*"/>
+                <DataGridTextColumn Header="فئته" Binding="{Binding Class}" Width="*"/>
+                <DataGridTextColumn Header="شهادته" Binding="{Binding Certificate}" Width="*"/>
+                <DataGridTemplateColumn Header ="إجراء" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5,0,5,0" DataContext="WatchersInitVM">
+                                <Button x:Name="InlineEdit" Content="✏" Style="{StaticResource Edit}"
+                                         Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.StartEditCommand }" CommandParameter="Edit" />
+
+                                <Button x:Name="InlineDelete" Content="🗑" Style="{StaticResource Delete}"
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.DeleteCommand}" CommandParameter="{Binding ElementName=WatchersGrid,Path=SelectedItem}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" 
+        CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+
+
+        </DataGrid>
+
     </Grid>
 </UserControl>

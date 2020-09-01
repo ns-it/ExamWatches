@@ -31,9 +31,8 @@ namespace ExamWatches.Views
 
         }
 
-        private void RoomsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ItemsList_CollectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             RoomsInitVM.SelectedItemChangedAction(null);
         }
     }

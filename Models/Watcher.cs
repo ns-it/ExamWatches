@@ -29,7 +29,7 @@ namespace ExamWatches.Models
         public string LastName { get; set; }
         [Column("full_name")]
         [StringLength(150)]
-        public string FullName { get; set; }
+        public string FullName { get; }
         [Column("job")]
         [StringLength(50)]
         public string Job { get; set; }

@@ -32,18 +32,19 @@ Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirectio
                         <Run Text=" القاعات المتاحة في: "/>
             <Run Text="{Binding CollegeName}"/>
         </TextBlock>
+        
         <Label Content="اسم القاعة" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Margin="1,0,1,0"/>
         <TextBox x:Name="roomName" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
-                 Text="{Binding CurrentRoom.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding CurrentItem.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>
         <Label Content="نوع القاعة" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto"/>
         <ComboBox x:Name="roomType" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" ItemsSource="{Binding Types}"
-                  SelectedValue="{Binding CurrentRoom.Type, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedValue="{Binding CurrentItem.Type, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                   IsEnabled="{Binding IsEditModeOn}"/>
         
         <Label Content="سعتها" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Width="Auto"/>
         <TextBox x:Name="roomCapacity" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"
-                 Text="{Binding CurrentRoom.Capacity, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding CurrentItem.Capacity, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>
 
 
@@ -72,7 +73,7 @@ Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirectio
 
         </StackPanel>
 
-        <DataGrid Grid.Row="5" Grid.ColumnSpan="2" x:Name="RoomsGrid" ItemsSource="{Binding RoomsList}" SelectedItem="{Binding SelectedRoom}" AutoGenerateColumns="False" Width="auto" SelectionChanged="RoomsGrid_SelectionChanged" CanUserAddRows="False" IsReadOnly="True">
+        <DataGrid Grid.Row="5" Grid.ColumnSpan="2" x:Name="RoomsGrid" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" Width="auto" SelectionChanged="ItemsList_CollectionChanged" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="اسم القاعة" Binding="{Binding Name}" Width="2*"/>
                 <DataGridTextColumn Header="حجمها" Binding="{Binding Type}" Width="*"/>

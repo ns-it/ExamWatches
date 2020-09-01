@@ -17,19 +17,8 @@ namespace ExamWatches.ViewModels
     //public class RoomsInitViewModel : INotifyPropertyChanged
     public class RoomsInitViewModel : ObservableObject, INotifyCollectionChanged
     {
-        public ObservableCollection<RoomViewModel> RoomsList { get; set; }
-        //
-
-        WorkLocation location;
-        User user;
-
         public ExamWatchesDBContext db;
-
-        private RoomViewModel _currentRoom;
-        private RoomViewModel _selectedRoom;
-
-        private bool isEditModeOn;
-        private bool isEditModeOff;
+        public ObservableCollection<RoomViewModel> ItemsList { get; set; }
 
         public RelayCommand SelectedItemChangedCommand { get; private set; }
         public RelayCommand SaveCommand { get; private set; }
@@ -37,13 +26,23 @@ namespace ExamWatches.ViewModels
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
 
+        private RoomViewModel _currentItem;
+        private RoomViewModel _selectedItem;
 
-        //public List<RoomViewModel> RoomsList { get; set; }
-        public List<Room> Rooms { get; set; }
-        public string CollegeName { get; set; }
+        public RoomViewModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChanged("SelectedRoom"); }
+        }
 
-        public List<string> Types { get; set; }
+        public RoomViewModel CurrentItem
+        {
+            get { return _currentItem; }
+            set { _currentItem = value; OnPropertyChanged("CurrentRoom"); }
+        }
 
+        private bool isEditModeOn;
+        private bool isEditModeOff;
 
         public bool IsEditModeOn
         {
@@ -55,17 +54,16 @@ namespace ExamWatches.ViewModels
             get { return isEditModeOff; }
             set { isEditModeOff = value; OnPropertyChanged("IsEditModeOff"); }
         }
-        public RoomViewModel SelectedRoom
-        {
-            get { return _selectedRoom; }
-            set { _selectedRoom = value; OnPropertyChanged("SelectedRoom"); }
-        }
 
-        public RoomViewModel CurrentRoom
-        {
-            get { return _currentRoom; }
-            set { _currentRoom = value; OnPropertyChanged("CurrentRoom"); }
-        }
+
+        //public List<RoomViewModel> RoomsList { get; set; }
+        public List<Room> Rooms { get; set; }
+        public List<string> Types { get; set; }
+        public WorkLocation UserWorkLocation { get; set; }
+        public User CurrentUser { get; set; }
+        public string CollegeName { get; set; }
+
+
 
         //private ObservableCollection<Room> _roomsList;
 
@@ -78,6 +76,10 @@ namespace ExamWatches.ViewModels
         //}
 
 
+
+
+
+
         public RoomsInitViewModel()
         {
             IsEditModeOn = false;
@@ -86,27 +88,26 @@ namespace ExamWatches.ViewModels
             db = new ExamWatchesDBContext();
 
             int userid = Int32.Parse(App.Current.Properties["user_id"].ToString());
-            user = db.Users.Find(userid);
-            location = db.WorkLocations.Find(user.WorkLocationId);
-            CollegeName = user.WorkLocation.Name;
-            CurrentRoom = new RoomViewModel();
+            CurrentUser = db.Users.Find(userid);
+            UserWorkLocation = db.WorkLocations.Find(CurrentUser.WorkLocationId);
+            CollegeName = CurrentUser.WorkLocation.Name;
+            CurrentItem = new RoomViewModel();
 
             //CollegeName = db.WorkLocations.Find();
             //db.Rooms.Load();
             //RoomsList = db.Rooms.Local.ToObservableCollection();
 
-            Rooms = db.Rooms.Where(s => s.WorkLocationId.Equals(user.WorkLocationId)).ToList();
-            RoomsList = new ObservableCollection<RoomViewModel>();
+            Rooms = db.Rooms.Where(s => s.WorkLocationId.Equals(CurrentUser.WorkLocationId)).ToList();
+            ItemsList = new ObservableCollection<RoomViewModel>();
             foreach (Room r in Rooms)
             {
-                RoomsList.Add(new RoomViewModel(r));
+                ItemsList.Add(new RoomViewModel(r));
             }
 
-            RoomsList.CollectionChanged += RoomsList_CollectionChanged;
+            ItemsList.CollectionChanged += ItemsList_CollectionChanged;
 
 
-            Types = new List<string>();
-            Types.AddRange(new List<string>() { "صغيرة", "متوسطة", "كبيرة", "مدرج" });
+            Types = new List<string>() { "صغيرة", "متوسطة", "كبيرة", "مدرج" };
 
             SelectedItemChangedCommand = new RelayCommand(SelectedItemChangedAction);
             SaveCommand = new RelayCommand(SaveAction, null);
@@ -120,11 +121,11 @@ namespace ExamWatches.ViewModels
         {
 
             //Edit Action
-            if (!CurrentRoom.Id.Equals(0))
+            if (!CurrentItem.Id.Equals(0))
             {
-                SelectedRoom.Name = CurrentRoom.Name;
-                SelectedRoom.Type = CurrentRoom.Type;
-                SelectedRoom.Capacity = CurrentRoom.Capacity;
+                SelectedItem.Name = CurrentItem.Name;
+                SelectedItem.Type = CurrentItem.Type;
+                SelectedItem.Capacity = CurrentItem.Capacity;
 
                 db.SaveChanges();
             }
@@ -133,18 +134,18 @@ namespace ExamWatches.ViewModels
                 //Room r = db.Rooms.Add(new Room() { Name = CurrentRoom.Name, Capacity = CurrentRoom.Capacity , Type = CurrentRoom.Room.Type, WorkLocationId = location.Id}).Entity;
                 RoomViewModel room = new RoomViewModel()
                 {
-                    Name = CurrentRoom.Name,
-                    Capacity = CurrentRoom.Capacity,
-                    Type = CurrentRoom.Type,
-                    WorkLocationId = location.Id
+                    Name = CurrentItem.Name,
+                    Capacity = CurrentItem.Capacity,
+                    Type = CurrentItem.Type,
+                    WorkLocationId = UserWorkLocation.Id
                 };
-                RoomsList.Add(room);
-                db.Rooms.Add(room.Room);
+                ItemsList.Add(room);
+                db.Rooms.Add(room.Model);
                 db.SaveChanges();
 
                 //StudentsListView.Refresh();
 
-                SelectedRoom = null;
+                SelectedItem = null;
             }
 
             IsEditModeOff = true;
@@ -159,10 +160,10 @@ namespace ExamWatches.ViewModels
 
             if (button.ToString().Equals("Add"))
             {
-                CurrentRoom.Id = 0;
-                CurrentRoom.Name = "";
-                CurrentRoom.Type = "";
-                CurrentRoom.Capacity = 0;
+                CurrentItem.Id = 0;
+                CurrentItem.Name = "";
+                CurrentItem.Type = "";
+                CurrentItem.Capacity = 0;
             }
             IsEditModeOff = false;
             IsEditModeOn = true;
@@ -174,12 +175,12 @@ namespace ExamWatches.ViewModels
             IsEditModeOff = true;
             IsEditModeOn = false;
 
-            if (SelectedRoom != null)
+            if (SelectedItem != null)
             {
-                CurrentRoom.Id = SelectedRoom.Id;
-                CurrentRoom.Name = SelectedRoom.Name;
-                CurrentRoom.Type = SelectedRoom.Type;
-                CurrentRoom.Capacity = SelectedRoom.Capacity;
+                CurrentItem.Id = SelectedItem.Id;
+                CurrentItem.Name = SelectedItem.Name;
+                CurrentItem.Type = SelectedItem.Type;
+                CurrentItem.Capacity = SelectedItem.Capacity;
             }
         }
 
@@ -200,13 +201,13 @@ namespace ExamWatches.ViewModels
             confirmation.ShowDialog();
             if (confirmation.DialogResult == true)
             {
-                db.Rooms.Remove(SelectedRoom.Room);
-                RoomsList.Remove(SelectedRoom);
+                db.Rooms.Remove(SelectedItem.Model);
+                ItemsList.Remove(SelectedItem);
                 db.SaveChanges();
-                SelectedRoom = null;
+                SelectedItem = null;
             }
 
-          
+
 
         }
 
@@ -214,20 +215,20 @@ namespace ExamWatches.ViewModels
 
         public void SelectedItemChangedAction(object o)
         {
-            if (SelectedRoom != null)
+            if (SelectedItem != null)
             {
-                CurrentRoom.Id = SelectedRoom.Id;
-                CurrentRoom.Name = SelectedRoom.Name;
-                CurrentRoom.Type = SelectedRoom.Type;
-                CurrentRoom.Capacity = SelectedRoom.Capacity;
+                CurrentItem.Id = SelectedItem.Id;
+                CurrentItem.Name = SelectedItem.Name;
+                CurrentItem.Type = SelectedItem.Type;
+                CurrentItem.Capacity = SelectedItem.Capacity;
             }
 
             else
             {
-                CurrentRoom.Id = 0;
-                CurrentRoom.Name = "";
-                CurrentRoom.Type = null;
-                CurrentRoom.Capacity = 0;
+                CurrentItem.Id = 0;
+                CurrentItem.Name = "";
+                CurrentItem.Type = null;
+                CurrentItem.Capacity = 0;
             }
 
         }
@@ -237,27 +238,21 @@ namespace ExamWatches.ViewModels
         {
             add
             {
-                ((INotifyCollectionChanged)RoomsList).CollectionChanged += value;
+                ((INotifyCollectionChanged)ItemsList).CollectionChanged += value;
             }
 
             remove
             {
-                ((INotifyCollectionChanged)RoomsList).CollectionChanged -= value;
+                ((INotifyCollectionChanged)ItemsList).CollectionChanged -= value;
             }
         }
-        private void RoomsList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ItemsList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
 
-            MessageBox.Show("StudentsList_CollectionChanged");
+            MessageBox.Show("ItemsList_CollectionChanged");
         }
 
-        //protected void OnPropertyChanaged(string name)
-        //{
-        //    if(PropertyChanged != null)
-        //    {
-        //        PropertyChanged(this, new PropertyChangedEventArgs(name));
-        //    }
-        //}
+
 
     }
 }
