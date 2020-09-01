@@ -50,7 +50,7 @@
         <RadioButton x:Name="third" Content="الثالث" Grid.Row="4" Grid.Column="6" VerticalAlignment="Center"/>
 
         <Label Content="العام الدراسي" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right"/>
-        <ComboBox x:Name="year" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Stretch">
+        <ComboBox x:Name="year" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" DropDownClosed="year_DropDownClosed">
             <ComboBoxItem>2019-2020</ComboBoxItem>
             <ComboBoxItem>2020-2021</ComboBoxItem>
             <ComboBoxItem>2021-2022</ComboBoxItem>
@@ -87,6 +87,7 @@
         </Grid>
 
         <Button x:Name="SaveButton" Grid.Row="7"  Grid.Column="6" Click="Button_Click" Content="حفظ" Margin="0,10,0,0"/>
+        <Button x:Name="UpdataButton" Grid.Row="7"  Grid.Column="4" Content="تعديل" Margin="20,0,0,0" />
 
 
 

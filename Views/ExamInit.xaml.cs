@@ -34,7 +34,7 @@ namespace ExamWatches.Views
         //غرض من الصف الخاص بمكان العمل
         WorkLocation work_locationl = new WorkLocation();
         // غرض من الصف الخاص بالامتحان
-        Exam exam = new Exam();
+
 
 
 
@@ -128,7 +128,7 @@ namespace ExamWatches.Views
         // زر الانتقال للصفحة التالية يتم فيه توليد غرض من الصف امتحان وحفظه في القاعدة
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Exam exam = new Exam();
 
             if (first.IsChecked == true)
             {
@@ -159,7 +159,12 @@ namespace ExamWatches.Views
 
 
 
-        private void years_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+
+
+
+        private void year_DropDownClosed(object sender, EventArgs e)
         {
             if (first.IsChecked == true)
             {
@@ -174,17 +179,20 @@ namespace ExamWatches.Views
             {
                 semNum = 3;
             }
-            Exam ex = new Exam();
-            yearNum = year.Text;
-            //  MessageBox.Show(yearNum);
-            int count = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum).Count();
+
+            ComboBox comboBox = sender as ComboBox;
+
+            yearNum = comboBox.Text.ToString();
+            // yearNum = year.Text;
+            Exam exam = new Exam();
+            int count = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum && x.WorkLocationId == user_id).Count();
             if (count == 1)
             {
                 SaveButton.IsEnabled = false;
-                ex = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum).FirstOrDefault();
-                days.Text = ex.DaysNumber.ToString();
-                startDate.Text = ex.StartTime.ToString();
-                endDate.Text = ex.EndTime.ToString();
+                exam = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum && x.WorkLocationId == user_id).FirstOrDefault();
+                days.Text = exam.DaysNumber.ToString();
+                startDate.Text = exam.StartTime.ToString();
+                endDate.Text = exam.EndTime.ToString();
 
 
             }
@@ -193,9 +201,14 @@ namespace ExamWatches.Views
 
                 MessageBox.Show("insert new data and click save");
                 SaveButton.IsEnabled = true;
+                days.Text = null;
+                startDate.Text = null;
+                endDate.Text = null;
 
             }
         }
-    }
 
+
+
+    }
 }
