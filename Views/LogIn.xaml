@@ -6,36 +6,47 @@
         xmlns:local="clr-namespace:ExamWatches.Views"
         x:Class="ExamWatches.Views.LogIn" FlowDirection="RightToLeft"
         mc:Ignorable="d"
-        Title="برنامج المراقبات الامتحانية - تسجيل الدخول" Height="400" Width="500" WindowStartupLocation="CenterScreen">
+        Title="برنامج المراقبات الامتحانية - تسجيل الدخول" Height="400" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
     <Window.Resources>
     </Window.Resources>
     <Grid FocusManager.FocusedElement="{Binding ElementName=username}">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFE3E5EA" Offset="1"/>
+                <GradientStop Color="White" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1.5*"/>
-            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition> 
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="0"  Grid.Column="1" Style="{StaticResource TitleBlock }" Margin="12">تسجيل الدخول</TextBlock>
-<!--<Separator Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom"/>-->
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="0"  Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource TitleBlock }" Margin="12">تسجيل الدخول</TextBlock>
+        <!--<Separator Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom"/>-->
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="اسم المستخدم" Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom" />
             <TextBox x:Name="username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TabIndex="1"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="كلمة المرور" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" />
             <PasswordBox x:Name="password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" TabIndex="2"/>
         </StackPanel>
         <!--<Separator Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"/>-->
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="12">
-            <Button x:Name="Confirm" Content="تأكيد" IsDefault="True" Click="Button_Click_2" Style="{StaticResource LargeButton}" TabIndex="3"/>
-            <Button x:Name="Cancel" Content="إلغاء" IsCancel="True" Style="{StaticResource LargeButton}" Click="Cancel_Click" TabIndex="4"/>
-        </StackPanel>
+
+        <Button x:Name="Confirm" Content="تأكيد"
+                    Grid.Row="3" Grid.Column="1"
+                    IsDefault="True" Click="Button_Click_2" Style="{StaticResource RoundButton}" TabIndex="3" VerticalAlignment="Top"/>
+        <Button x:Name="Cancel" Content="إلغاء"
+                    Grid.Row="3" Grid.Column="2"
+                    IsCancel="True" Style="{StaticResource RoundButton}" Click="Cancel_Click" TabIndex="4" VerticalAlignment="Top"/>
+
 
 
 

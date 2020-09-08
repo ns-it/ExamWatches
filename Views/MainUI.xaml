@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:ExamWatches.Views"
         xmlns:viewmodels="clr-namespace:ExamWatches.ViewModels"
         mc:Ignorable="d"
-        Title="برنامج المراقبات الامتحانية - الواجهة الرئيسية" Height="450" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen">
+        Title="برنامج المراقبات الامتحانية - الواجهة الرئيسية" Height="450" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <!--<Window.Resources>
         <DataTemplate x:Name="Scheduling1ViewTemplate" DataType="{x:Type viewmodels:Scheduling1ViewModel}">
             <views:Scheduling1 DataContext="{Binding}"/>
@@ -29,22 +29,22 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TabControl>
+        <TabControl Grid.ColumnSpan="2">
             <TabItem Header="التهيئة">
-                <Grid Background="#FFE5E5E5">
-                    <TabControl TabStripPlacement="Left" Grid.ColumnSpan="3">
+                <Grid>
+                    <TabControl TabStripPlacement="Left">
                         <TabItem Header="الامتحان">
-                            <Grid Background="#FFE5E5E5">
+                            <Grid>
                                 <views:ExamInit/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="القاعات">
-                            <Grid Background="#FFE5E5E5">
+                            <Grid>
                                 <views:RoomsInit/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="المراقبين">
-                            <Grid Background="#FFE5E5E5">
+                            <Grid>
                                 <views:WatchersInit/>
                             </Grid>
                         </TabItem>
@@ -52,28 +52,28 @@
                 </Grid>
             </TabItem>
             <TabItem Header="توزيع المراقبات" x:Name="SchedulingTab">
-     
-                <Grid Background="#FFE5E5E5">
+
+                <Grid >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Content="1" x:Name="ShowScheduling1" Click="ShowScheduling1_Click"/>
                         <Button Content="2" x:Name="ShowScheduling2" Click="ShowScheduling2_Click"/>
                         <Button Content="3" x:Name="ShowScheduling3" Click="ShowScheduling3_Click"/>
                         <Button Content="4" x:Name="ShowSchedulingFinal" Click="ShowSchedulingFinal_Click"/>
                         <Button Content="5" x:Name="ShowWatcherScheduling" Click="ShowWatcherScheduling_Click"/>
                     </StackPanel>
-                    <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding}"/>
+                    <ContentControl Grid.Row="1" Content="{Binding}" />
                 </Grid>
             </TabItem>
-         
+
         </TabControl>
-        <StatusBar Grid.Row="1" Height="auto">
+        <StatusBar Height="auto" Grid.Row="1">
             <StatusBarItem x:Name="UserName"/>
             <Separator/>
             <StatusBarItem>

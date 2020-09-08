@@ -9,7 +9,7 @@
              FlowDirection="RightToLeft">
     <Grid Margin="20,20,20,20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -17,9 +17,11 @@
             <RowDefinition Height="4*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock>تحديد أيام الامتحان</TextBlock>
+            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" />
+        </StackPanel>
 
-        <TextBlock Grid.Row="1">تحديد أيام الامتحان</TextBlock>
-        <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" Grid.Row="1" Grid.Column="0"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <StackPanel  Orientation="Horizontal">

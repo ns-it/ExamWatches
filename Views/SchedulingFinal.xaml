@@ -18,8 +18,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <DatePicker Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
-        <Label Grid.Row="0" Grid.Column="1" Content="عدد الفترات: " VerticalAlignment="Center"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="2" Width="150" Height="20" VerticalAlignment="Center"></TextBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
+            <Label Content="عدد الفترات: " VerticalAlignment="Center"/>
+            <TextBox  Text="2" Width="150" Height="20" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
         <TextBlock x:Name="Period" Grid.Column="2" Grid.Row="0" Text="التوقيت: 9:00-10:30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
         <DataGrid x:Name="WatchesSchedule" Grid.Row="1" Grid.ColumnSpan="3">
             <DataGrid.Columns>
