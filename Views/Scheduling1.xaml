@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft">
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
@@ -31,23 +32,89 @@
         </StackPanel>
 
 
-        <DataGrid x:Name="Employees" CanUserAddRows="False"  Grid.Row="0" Grid.Column="1"  Margin="20,20,91,20" AutoGenerateColumns="False" EnableRowVirtualization="False">
-            <DataGrid.Columns>
+
+        <DataGrid x:Name="Employees" CanUserAddRows="False"  Grid.Row="0" Grid.Column="1"  Margin="20,40,20,0" AutoGenerateColumns="False" EnableRowVirtualization="False" Background="#FFF0F0F0">
+            <DataGrid.Columns >
+
                 <DataGridTextColumn x:Name="empName" Header="اسم الموظف" Width="*" Binding="{Binding FullName}"/>
                 <DataGridTextColumn x:Name="empClass" Header="الفئة الوظيفية"  Width="*" Binding="{Binding Class}"/>
-                <DataGridCheckBoxColumn x:Name="empIsChecked" Header="حدد"  Width=".5*" Binding="{Binding IsSelected}"  />
+                <!--<DataGridCheckBoxColumn x:Name="empIsChecked" Header="حدد"  Width=".5*" Binding="{Binding IsSelected}"   />-->
+                <DataGridTemplateColumn x:Name="addb" Header=" انقر للإضافة" >
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+
+                            <Button x:Name="add_wtcher" Content="أضافة" Click="addWtcher_button"></Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="deleTemp" Header="انقر للحذف">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+
+                            <Button x:Name="dele_wtcher" Content="حذف" Click="deleteWtcher_button"></Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn x:Name="addTemp" Header="محدد">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <CheckBox x:Name="add_chb"  IsChecked="{Binding IsSelected , UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"  ></CheckBox>
+                            <!--<Button x:Name="add_wtcher" Content="أضف" Click="addWtcher_button"></Button>-->
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn Header="انقر للحذف">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <Button x:Name="delete_wtcher" Content="احذف" Click="deleteWtcher_button"></Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="RoomsGrid" Grid.Row="1" Grid.Column="1" Margin="20,20,20,20" AutoGenerateColumns="False">
+        <DataGrid x:Name="RoomsGrid" CanUserAddRows="False" Grid.Row="1" Grid.Column="1" Margin="20,24,20,16" AutoGenerateColumns="False" EnableRowVirtualization="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="اسم القاعة"  Width="*" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="نوع القاعة"  Width="*" Binding="{Binding Type}"/>
                 <DataGridTextColumn Header="السعة"  Width="*" Binding="{Binding Capacity}"/>
-                <DataGridCheckBoxColumn Header=""  Width=".5*"/>
+                <DataGridTemplateColumn x:Name="addRoom" Header=" انقر للإضافة" >
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+
+                            <Button x:Name="add_room" Content="أضافة" Click="addRoom_button"></Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="deleRoom" Header="انقر للحذف">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+
+                            <Button x:Name="dele_room" Content="حذف" Click="deleteRoom_button"></Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn x:Name="added" Header="محدد">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <CheckBox x:Name="add_chb"  IsChecked="{Binding IsSelected , UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"  ></CheckBox>
+                            <!--<Button x:Name="add_wtcher" Content="أضف" Click="addWtcher_button"></Button>-->
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="اضافة المحدد " Grid.Column="1" HorizontalAlignment="Left" Margin="364,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.788,0.348" Width="86" Height="21" Click="Button_Click"/>
+        <!--<Button Content="اضافة المحدد " Grid.Column="1" HorizontalAlignment="Left" Margin="364,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.788,0.348" Width="86" Height="21" Click="Button_Click"/>-->
 
     </Grid>
 </UserControl>

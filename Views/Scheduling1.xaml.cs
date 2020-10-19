@@ -2,6 +2,7 @@
 using ExamWatches.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -24,7 +25,8 @@ namespace ExamWatches.Views
         WorkLocation wl = new WorkLocation();
         Watcher wch = new Watcher();
 
-        public static List<WatcherViewModel> SelectedWatcher;
+        public static ObservableCollection<WatcherViewModel> SelectedWatcher;
+        public static ObservableCollection<RoomView> SelectedRoom;
 
         public Scheduling1()
         {
@@ -32,15 +34,13 @@ namespace ExamWatches.Views
             initialEmpListBox();
             initialRoomListBox();
             //  watcherViewModels = new List<WatcherViewModel>();
-            SelectedWatcher = new List<WatcherViewModel>();
+            SelectedWatcher = new ObservableCollection<WatcherViewModel>();
+            SelectedRoom = new ObservableCollection<RoomView>();
+
 
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
-        {
-            Scheduling2 scheduling2 = new Scheduling2();
-            this.Content = scheduling2.Content;
-        }
+
 
 
 
@@ -75,17 +75,44 @@ namespace ExamWatches.Views
         private void employeelist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<WatcherViewModel> watcherViewModels = new List<WatcherViewModel>();
-            wl = db.WorkLocations.Where(x => x.Name == employeelist.SelectedItem).FirstOrDefault();
+            wl = db.WorkLocations.Where(x => x.Name == employeelist.SelectedItem.ToString()).FirstOrDefault();
 
             // Employees.ItemsSource = db.Watchers.Where(x => x.WorkLocationId == wl.Id).ToList();
             List<Watcher> watchers = db.Watchers.Where(x => x.WorkLocationId == wl.Id).ToList();
-
-            foreach (Watcher w in watchers)
+            if (SelectedWatcher.Count() == 0)
             {
-
-                watcherViewModels.Add(new WatcherViewModel { FullName = w.FullName, Class = w.Class, IsSelected = false });
+                foreach (Watcher w in watchers)
+                    watcherViewModels.Add(new WatcherViewModel { Id=w.Id, FullName = w.FirstName+ " "+ w.MiddleName + " "+ w.LastName, Class = w.Class, IsSelected = false });
 
             }
+            else
+            {
+
+                foreach (Watcher w in watchers)
+                {
+                    Boolean b = false;
+
+                    foreach (WatcherViewModel wvm in SelectedWatcher)
+                    {
+
+                        if (w.Id == wvm.Id)
+                        {
+                            b = true;
+                            // watcherViewModels.Add(new WatcherViewModel { FullName = w.FullName, Class = w.Class, IsSelected = true });
+                        }
+                    }
+
+                    if (b == true)
+                        watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FirstName + " " + w.MiddleName + " " + w.LastName, Class = w.Class, IsSelected = true });
+                    else
+                        watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FirstName + " " + w.MiddleName + " " + w.LastName, Class = w.Class, IsSelected = false });
+
+
+
+
+                }
+            }
+
             Employees.ItemsSource = watcherViewModels;
 
 
@@ -93,29 +120,170 @@ namespace ExamWatches.Views
 
         private void roomlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            List<RoomView> roomViewModels = new List<RoomView>();
+            wl = db.WorkLocations.Where(x => x.Name == roomlist.SelectedItem.ToString()).FirstOrDefault();
 
-            wl = db.WorkLocations.Where(x => x.Name == roomlist.SelectedItem).FirstOrDefault();
+            //RoomsGrid.ItemsSource = db.Rooms.Where(x => x.WorkLocationId == wl.Id).ToList();
+            List<Room> rooms = db.Rooms.Where(x => x.WorkLocationId == wl.Id).ToList();
 
-            RoomsGrid.ItemsSource = db.Rooms.Where(x => x.WorkLocationId == wl.Id).ToList();
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            //  List<WatcherViewModel> selectedWatchers = new List<WatcherViewModel>();
-            foreach (WatcherViewModel model in Employees.ItemsSource)
+            if (SelectedRoom.Count() == 0)
             {
-                if (model.IsSelected)
+                foreach (Room w in rooms)
+                    roomViewModels.Add(new RoomView { Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = false });
+
+            }
+            else
+            {
+
+                foreach (Room w in rooms)
                 {
-                    // if(  !SelectedWatcher.Contains(model))
-                    SelectedWatcher.Add(model);
+                    Boolean b = false;
+
+                    foreach (RoomView wvm in SelectedRoom)
+                    {
+
+                        if (w.Name == wvm.Name && w.WorkLocationId == wvm.WorkLocation)
+                        {
+                            b = true;
+                            // watcherViewModels.Add(new WatcherViewModel { FullName = w.FullName, Class = w.Class, IsSelected = true });
+                        }
+                    }
+
+                    if (b == true)
+                        roomViewModels.Add(new RoomView { Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = true });
+                    else
+                        roomViewModels.Add(new RoomView { Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = false });
+
+
+
 
                 }
             }
+            RoomsGrid.ItemsSource = roomViewModels;
+        }
+
+        private void addWtcher_button(object sender, RoutedEventArgs e)
+        {
+            WatcherViewModel watcherView = Employees.SelectedItem as WatcherViewModel;
+            Boolean b = false;
+            foreach (WatcherViewModel wv in SelectedWatcher)
+            {
+                if (wv.Id == watcherView.Id)
+                {
+
+                    b = true;
+                }
+            }
+            if (b == true)
+                MessageBox.Show("هذا العنصر مضاف مسبقا");
+            else
+            {
+                watcherView.IsSelected = true;
+                SelectedWatcher.Add(watcherView);
+            }
+
+        }
+
+        private void deleteWtcher_button(object sender, RoutedEventArgs e)
+        {
+            WatcherViewModel watcherView = Employees.SelectedItem as WatcherViewModel;
+
+            Boolean b = false;
+            foreach (WatcherViewModel wv in SelectedWatcher)
+            {
+
+
+                if (wv.Id == watcherView.Id)
+                {
+
+                    b = true;
+                }
 
 
 
+            }
+            if (b == true)
+            {
+                foreach (WatcherViewModel slw in SelectedWatcher.ToList())
+                {
+                    if (slw.Id == watcherView.Id)
+                    {
+
+                        SelectedWatcher.Remove(slw);
+                        watcherView.IsSelected = false;
+                        
+                        MessageBox.Show("تم الحذف");
+                    }
+                }
+            }
+            else
+                MessageBox.Show("هذا العنصر غير مضاف مسبقا");
+
+        }
+
+        private void addRoom_button(object sender, RoutedEventArgs e)
+        {
+            RoomView roomViewModel = RoomsGrid.SelectedItem as RoomView;
+            Boolean b = false;
+            foreach (RoomView wv in SelectedRoom)
+            {
+
+
+                if (wv.Name == roomViewModel.Name && wv.WorkLocation == roomViewModel.WorkLocation)
+                {
+
+                    b = true;
+                }
+
+
+
+            }
+            if (b == true)
+                MessageBox.Show("هذا العنصر مضاف مسبقا");
+
+            else
+            {
+                roomViewModel.IsSelected = true;
+                // MessageBox.Show(roomViewModel.Name.ToString());
+                SelectedRoom.Add(roomViewModel);
+
+            }
+
+        }
+
+        private void deleteRoom_button(object sender, RoutedEventArgs e)
+        {
+            RoomView watcherView = RoomsGrid.SelectedItem as RoomView;
+
+            Boolean b = false;
+            foreach (RoomView wv in SelectedRoom)
+            {
+
+
+                if (wv.Name == watcherView.Name && wv.WorkLocation == watcherView.WorkLocation)
+                {
+
+                    b = true;
+                }
+
+
+
+            }
+            if (b == true)
+            {
+                foreach (RoomView slw in SelectedRoom.ToList())
+                {
+                    if (slw.Name == watcherView.Name && slw.WorkLocation == watcherView.WorkLocation)
+                    {
+
+                        SelectedRoom.Remove(slw);
+                        watcherView.IsSelected = false;
+                        MessageBox.Show("تم");
+                    }
+                }
+            }
+            else
+                MessageBox.Show("هذا العنصر غير مضاف مسبقا");
 
         }
 

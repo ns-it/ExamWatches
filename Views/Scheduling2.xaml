@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
         mc:Ignorable="d"
-       Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft">
+       Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirection="RightToLeft" Loaded="UserControl_Loaded">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -14,12 +14,13 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="93*"/>
+            <RowDefinition Height="157*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="AllWatchers" Grid.Row="1" Grid.Column="0">
+        <ListView x:Name="AllWatchers" Grid.Row="1" Grid.Column="0" SelectionChanged="AllWatchers_SelectionChanged" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="كافة الأسماء" DisplayMemberBinding="{Binding FullName}"/>
@@ -27,30 +28,30 @@
             </ListView.View>
 
         </ListView>
-        <ListView x:Name="BossWatchers" Grid.Row="1" Grid.Column="1">
+        <ListView x:Name="BossWatchers" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" SelectionChanged="BossWatchers_SelectionChanged" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="رؤساء القاعة"/>
+                    <GridViewColumn Header="رؤساء القاعة"  DisplayMemberBinding="{Binding FullName}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView x:Name="SecretaryWathers" Grid.Row="1" Grid.Column="2">
+        <ListView x:Name="SecretaryWathers" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" SelectionChanged="SecretaryWathers_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="أمناء السر"/>
+                    <GridViewColumn Header="أمناء السر"  DisplayMemberBinding="{Binding FullName}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView x:Name="OrdinaryWatchers" Grid.Row="1" Grid.Column="3">
+        <ListView x:Name="OrdinaryWatchers" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" SelectionChanged="OrdinaryWatchers_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="مراقبون"/>
+                    <GridViewColumn Header="مراقبون"  DisplayMemberBinding="{Binding FullName}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" >
-            <Button x:Name="moveLeft" Content="&lt;&lt;" />
-            <Button x:Name="moveRight" Content="&gt;&gt;" />
+        <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" >
+            <Button x:Name="moveLeft" Content="&lt;&lt;" Click="moveLeft_Click" />
+            <Button x:Name="moveRight" Content="&gt;&gt;" Click="moveRight_Click" />
         </StackPanel>
         <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
