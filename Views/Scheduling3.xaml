@@ -13,33 +13,50 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="4*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid  Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="عدد الفترات الافتراضية" Grid.Row="0" Grid.Column="0"/>
+            <Label Content="مدة الفترة الافتراضية" Grid.Row="1" Grid.Column="0"/>
+            <Label Content="وقت البدء الافتراضي" Grid.Row="2" Grid.Column="0"/>
+
+            <TextBox x:Name="DefaultPeriodsNumber" Grid.Row="0" Grid.Column="1"/>
+            <TextBox x:Name="DefaultDuration"  Grid.Row="1" Grid.Column="1"/>
+            <TextBox x:Name="DefaultStartTime"  Grid.Row="2" Grid.Column="1"/>
+            
+        </Grid>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <TextBlock>تحديد أيام الامتحان</TextBlock>
-            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" />
+            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" SelectionMode="MultipleRange" />
         </StackPanel>
 
 
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <StackPanel  Orientation="Horizontal">
-                <Label Grid.Row="1" Grid.Column="1" Content="عدد الفترات: "/>
-                <TextBox Text="2" Width="150" Height="20" VerticalAlignment="Top"></TextBox>
-                <Button x:Name="apply" Content="تطبيق"></Button>
-                
-            </StackPanel>
+
             <DataGrid x:Name="Periods" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="auto">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="رقم الفترة" Width="*"/>
-                    <DataGridTextColumn Header="مدة الفترة" Width="*"/>
+                    <DataGridTextColumn Header="اليوم" Width="*"/>
+                    <DataGridComboBoxColumn Header="عدد الفترات" Width="*">
+                        
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn Header="مدة الفترة" Width="1.5*"/>
                     <DataGridTextColumn Header="وقت البدء" Width="1.5*"/>
-                    <DataGridTextColumn Header="وقت الانتهاء" Width="1.5*"/>
+                   
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-    
+        <Button Grid.Column="1" Grid.Row="2" Content="بدء التوزيع" Style="{StaticResource RoundButton}"/>
         <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
             <Button x:Name="Next" Content="التالي" Click="Next_Click" />

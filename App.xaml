@@ -364,7 +364,7 @@
             </Setter>
         </Style>
         <Style x:Key="TitleBlock" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="ExtraLight"/>
             <Setter Property="FontStretch" Value="Expanded"/>
             <Setter Property="FontFamily" Value="{StaticResource Cairo}"/>
@@ -424,7 +424,7 @@
             <Setter Property="Margin"  Value="0"/>
             <!--<Setter Property="Height"  Value="28" />-->
             <Setter Property="Padding" Value="8,4"/>
-            <!--<Setter Property="FontFamily" Value= "{StaticResource JF}"/>-->
+            <Setter Property="FontFamily" Value= "{StaticResource Cairo}"/>
             <!--<Setter Property="FontWeight" Value="Bold"/>-->
 
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
