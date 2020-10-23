@@ -17,18 +17,17 @@ namespace ExamWatches.Models
         }
 
         public virtual DbSet<Exam> Exams { get; set; }
-        public virtual DbSet<Period> Periods { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Watch> Watches { get; set; }
         public virtual DbSet<Watcher> Watchers { get; set; }
+        public virtual DbSet<WatcherWatch> WatcherWatches { get; set; }
         public virtual DbSet<WorkLocation> WorkLocations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["WatchConn"].ConnectionString);
             }
         }
@@ -43,13 +42,7 @@ namespace ExamWatches.Models
                     .HasConstraintName("FK_exam_work_location");
             });
 
-            modelBuilder.Entity<Period>(entity =>
-            {
-                entity.HasOne(d => d.WorkLocation)
-                    .WithMany(p => p.Periods)
-                    .HasForeignKey(d => d.WorkLocationId)
-                    .HasConstraintName("FK_period_work_location");
-            });
+
 
             modelBuilder.Entity<Room>(entity =>
             {
@@ -62,7 +55,7 @@ namespace ExamWatches.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
+                entity.Property(e => e.FullName).HasComputedColumnSql("(concat([first_name],' ',[last_name]))");
                 entity.HasOne(d => d.WorkLocation)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.WorkLocationId)
@@ -71,19 +64,10 @@ namespace ExamWatches.Models
 
             modelBuilder.Entity<Watch>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.RoomId).ValueGeneratedOnAdd();
-
                 entity.HasOne(d => d.Exam)
                     .WithMany(p => p.Watches)
                     .HasForeignKey(d => d.ExamId)
                     .HasConstraintName("FK_watch_exam");
-
-                entity.HasOne(d => d.Period)
-                    .WithMany(p => p.Watches)
-                    .HasForeignKey(d => d.PeriodId)
-                    .HasConstraintName("FK_watch_period");
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Watches)
@@ -91,18 +75,33 @@ namespace ExamWatches.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_watch_room");
 
-                entity.HasOne(d => d.Watcher)
-                    .WithMany(p => p.Watches)
-                    .HasForeignKey(d => d.WatcherId)
-                    .HasConstraintName("FK_watch_watcher");
             });
 
             modelBuilder.Entity<Watcher>(entity =>
             {
+                entity.Property(e => e.FullName).HasComputedColumnSql("(concat([first_name],' ',[middle_name],' ',[last_name]))");
+
                 entity.HasOne(d => d.WorkLocation)
                     .WithMany(p => p.Watchers)
                     .HasForeignKey(d => d.WorkLocationId)
                     .HasConstraintName("FK_watcher_work_location");
+            });
+
+            modelBuilder.Entity<WatcherWatch>(entity =>
+            {
+                entity.HasKey(e => new { e.WatcherId, e.WatchId });
+
+                entity.HasOne(d => d.Watch)
+                    .WithMany(p => p.WatcherWatches)
+                    .HasForeignKey(d => d.WatchId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_watcher_watch_watch");
+
+                entity.HasOne(d => d.Watcher)
+                    .WithMany(p => p.WatcherWatches)
+                    .HasForeignKey(d => d.WatcherId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_watcher_watch_watcher");
             });
 
             OnModelCreatingPartial(modelBuilder);
