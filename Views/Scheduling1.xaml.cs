@@ -82,7 +82,7 @@ namespace ExamWatches.Views
             if (SelectedWatcher.Count() == 0)
             {
                 foreach (Watcher w in watchers)
-                    watcherViewModels.Add(new WatcherViewModel { Id=w.Id, FullName = w.FirstName+ " "+ w.MiddleName + " "+ w.LastName, Class = w.Class, IsSelected = false });
+                    watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FirstName + " " + w.MiddleName + " " + w.LastName, Class = w.Class, IsSelected = false });
 
             }
             else
@@ -211,8 +211,14 @@ namespace ExamWatches.Views
 
                         SelectedWatcher.Remove(slw);
                         watcherView.IsSelected = false;
-                        
-                        MessageBox.Show("تم الحذف");
+                        MessageBox.Show("تم");
+                        if (Scheduling2.BossWatcherList.Contains(slw))
+                            Scheduling2.BossWatcherList.Remove(slw);
+                        if (Scheduling2.SecretaryWatchersList.Contains(slw))
+                            Scheduling2.SecretaryWatchersList.Remove(slw);
+                        if (Scheduling2.OrdinaryWatchersList.Contains(slw))
+                            Scheduling2.OrdinaryWatchersList.Remove(slw);
+
                     }
                 }
             }

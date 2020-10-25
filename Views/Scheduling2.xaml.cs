@@ -37,7 +37,7 @@ namespace ExamWatches.Views
             //AllWatcherList = Scheduling1.SelectedWatcher;
 
             AllWatchers.ItemsSource = AllWatcherList;
-      //      AllWatcherList = new ObservableCollection<WatcherViewModel>();
+            //      AllWatcherList = new ObservableCollection<WatcherViewModel>();
             BossWatcherList = new ObservableCollection<WatcherViewModel>();
             BossWatchers.ItemsSource = BossWatcherList;
             SecretaryWatchersList = new ObservableCollection<WatcherViewModel>();
@@ -64,13 +64,15 @@ namespace ExamWatches.Views
 
         private void AllWatchers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (AllWatchers.SelectedItem != null) { selectedWatcher = AllWatchers.SelectedItem as WatcherViewModel;
+            if (AllWatchers.SelectedItem != null)
+            {
+                selectedWatcher = AllWatchers.SelectedItem as WatcherViewModel;
                 count = 0;
             }
 
 
-          
-            
+
+
 
         }
 
@@ -81,28 +83,32 @@ namespace ExamWatches.Views
                 selectedWatcher = BossWatchers.SelectedItem as WatcherViewModel;
                 count = 1;
             }
-           
-       
+
+
         }
 
         private void SecretaryWathers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SecretaryWathers.SelectedItem != null) { selectedWatcher = SecretaryWathers.SelectedItem as WatcherViewModel;
+            if (SecretaryWathers.SelectedItem != null)
+            {
+                selectedWatcher = SecretaryWathers.SelectedItem as WatcherViewModel;
                 count = 2;
             }
 
-            
-            
+
+
         }
 
         private void OrdinaryWatchers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(OrdinaryWatchers.SelectedItem != null) { selectedWatcher = OrdinaryWatchers.SelectedItem as WatcherViewModel;
+            if (OrdinaryWatchers.SelectedItem != null)
+            {
+                selectedWatcher = OrdinaryWatchers.SelectedItem as WatcherViewModel;
                 count = 3;
             }
 
-            
-          
+
+
 
         }
 
@@ -113,31 +119,30 @@ namespace ExamWatches.Views
             {
 
             }
-            if (count == 1)
+            if (count == 1 && AllWatchers.SelectedItem != null)
             {
-                
-                    BossWatcherList.Add(selectedWatcher);
-                
+
+                BossWatcherList.Add(selectedWatcher);
+
 
                 AllWatcherList.Remove(selectedWatcher);
 
-             
+
+
             }
-            if (count == 2)
+            if (count == 2 && BossWatchers.SelectedItem != null)
             {
-              
+
 
                 SecretaryWatchersList.Add(selectedWatcher);
-             
-             
+
                 BossWatcherList.Remove(selectedWatcher);
             }
-            if (count == 3)
+            if (count == 3 && SecretaryWathers.SelectedItem != null)
             {
 
                 OrdinaryWatchersList.Add(selectedWatcher);
-             
-                
+
                 SecretaryWatchersList.Remove(selectedWatcher);
             }
 
@@ -146,28 +151,28 @@ namespace ExamWatches.Views
         private void moveLeft_Click(object sender, RoutedEventArgs e)
         {
             count--;
-            if (count == 0)
+            if (count == 0 && BossWatchers.SelectedItem != null)
             {
                 AllWatcherList.Add(selectedWatcher);
                 BossWatcherList.Remove(selectedWatcher);
 
             }
-            if (count == 1)
+            if (count == 1 && SecretaryWathers.SelectedItem != null)
             {
                 BossWatcherList.Add(selectedWatcher);
                 SecretaryWatchersList.Remove(selectedWatcher);
 
+
             }
-            if (count == 2)
+            if (count == 2 && OrdinaryWatchers.SelectedItem != null)
             {
                 SecretaryWatchersList.Add(selectedWatcher);
                 OrdinaryWatchersList.Remove(selectedWatcher);
 
-                
             }
             if (count == 3)
             {
-                
+
             }
 
 
@@ -177,16 +182,16 @@ namespace ExamWatches.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-         
+            AllWatcherList.Clear();
 
             foreach (WatcherViewModel watcherViewModel in Scheduling1.SelectedWatcher)
             {
-                if(!AllWatcherList.Contains(watcherViewModel)&& !BossWatcherList.Contains(watcherViewModel)&& !SecretaryWatchersList.Contains(watcherViewModel)&& !OrdinaryWatchersList.Contains(watcherViewModel))
-                AllWatcherList.Add(watcherViewModel);
-              
-       
+
+
+                if (!AllWatcherList.Contains(watcherViewModel) && !BossWatcherList.Contains(watcherViewModel) && !SecretaryWatchersList.Contains(watcherViewModel) && !OrdinaryWatchersList.Contains(watcherViewModel))
+                    AllWatcherList.Add(watcherViewModel);
+                // MessageBox.Show(AllWatcherList.Count.ToString());
             }
-           
         }
     }
 }
