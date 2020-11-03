@@ -100,5 +100,18 @@ namespace ExamWatches.Views
             ExamDay_selectionChange_Loop();
 
         }
+
+        private void Periods_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ExamDays_SelectedDatesChanged_2(object sender, SelectionChangedEventArgs e)
+        {  // dateTimeLoop.Add(ExamDays.SelectedDate);
+            dateTimeLoop = ExamDays.SelectedDates;
+            ExamDay_selectionChange_Loop();
+
+
+        }
     }
 }
