@@ -8,8 +8,8 @@ namespace ExamWatches.ViewModels
 {
     public class Scheduling3ViewModel : ObservableObject
     {
-        private DateTime _day;
-        public DateTime day
+        private string _day;
+        public string day
         {
             get { return _day; }
             set { _day = value; OnPropertyChanged("day"); }
@@ -20,17 +20,17 @@ namespace ExamWatches.ViewModels
             get { return _periodListItem; }
             set { _periodListItem = value; OnPropertyChanged("periodListItem"); }
         }
-        private string _timeItem;
-        public string timeItem
+        private TimeSpan _startTime;
+        public TimeSpan startTime
         {
-            get { return _timeItem; }
-            set { _timeItem = value; OnPropertyChanged("timeItem"); }
+            get { return _startTime; }
+            set { _startTime = value; OnPropertyChanged("startTime"); }
         }
-        private string _periodItem;
-        public string periodItem
+        private ObservableCollection<decimal> _periodDuration;
+        public ObservableCollection<decimal> periodDuration
         {
-            get { return _periodItem; }
-            set { _periodItem = value; OnPropertyChanged("periodItem"); }
+            get { return _periodDuration; }
+            set { _periodDuration = value; OnPropertyChanged("periodDuration"); }
         }
 
 

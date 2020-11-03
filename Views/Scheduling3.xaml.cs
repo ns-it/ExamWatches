@@ -22,48 +22,83 @@ namespace ExamWatches.Views
     {
         ObservableCollection<Scheduling3ViewModel> DatesList;
         public ObservableCollection<int> periodList;
-        DateTime dt;
+        public ObservableCollection<decimal> periodDurationList;
+
+        TimeSpan startTime;
+        ObservableCollection<DateTime> dateTimeLoop;
+        Scheduling3ViewModel svm3;
 
         public Scheduling3()
         {
             DatesList = new ObservableCollection<Scheduling3ViewModel>();
             periodList = new ObservableCollection<int>();
+            dateTimeLoop = new ObservableCollection<DateTime>();
+            
             periodList.Add(1);
             periodList.Add(2);
             periodList.Add(3);
+            periodDurationList = new ObservableCollection<decimal>();
+            periodDurationList.Add(new decimal(60));
+            periodDurationList.Add(new decimal(90));
+            periodDurationList.Add(new decimal(120));
+            periodDurationList.Add(new decimal(150));
+
+            periodDurationList.Add(new decimal(180));
+            periodDurationList.Add(new decimal(210));
+            periodDurationList.Add(new decimal(240));
+
+
+
+
 
 
 
             InitializeComponent();
+
+            Periods.ItemsSource = DatesList;
         }
 
         private void ExamDays_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            // dateTimeLoop.Add(ExamDays.SelectedDate);
+            dateTimeLoop = ExamDays.SelectedDates;
+            ExamDay_selectionChange_Loop();
 
-            Scheduling3ViewModel svm3 = new Scheduling3ViewModel();
 
-            //svm3.day=  ExamDays.SelectedDate.Value.ToString("dd//MM//yyyy");
-
-            svm3.day = ExamDays.SelectedDate.Value.Date;
-            svm3.periodListItem = periodList;
-            svm3.timeItem = dt.ToLongTimeString();
-            DatesList.Add(svm3);
-            Periods.ItemsSource = DatesList;
 
 
         }
 
-        //private void Next_Click(object sender, RoutedEventArgs e)
-        //{
-        //    SchedulingFinal schedulingFinal = new SchedulingFinal();
-        //    this.Content = schedulingFinal.Content;
-        //}
+        public void ExamDay_selectionChange_Loop() {
+            
+            foreach (DateTime selectedDate in dateTimeLoop)
+            {
 
-        //private void Previous_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Scheduling2 scheduling2 = new Scheduling2();
-        //    this.Content = scheduling2.Content;
-        //}
+                svm3 = new Scheduling3ViewModel();
+                svm3.day = selectedDate.ToString("dd//MM//yyyy");
+                //   dateTimeLoop.Remove(dt);
+                // svm3.day = ExamDays.SelectedDate.Value.Date;
+                svm3.periodListItem = periodList;
+                svm3.startTime = startTime;
+                svm3.periodDuration = periodDurationList;
+                DatesList.Add(svm3);
+                // Periods.ItemsSource = DatesList;
+              // 
+            }
+            dateTimeLoop.Clear();
+
+
+
+        }
+
+        private void ExamDays_SelectedDatesChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+            // dateTimeLoop.Add(ExamDays.SelectedDate);
+            dateTimeLoop = ExamDays.SelectedDates;
+            ExamDay_selectionChange_Loop();
+
+        }
     }
 }
