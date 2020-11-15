@@ -34,7 +34,7 @@
             <TextBox x:Name="DefaultPeriodsNumber" Grid.Row="0" Grid.Column="1"/>
             <TextBox x:Name="DefaultDuration"  Grid.Row="1" Grid.Column="1"/>
             <TextBox x:Name="DefaultStartTime"  Grid.Row="2" Grid.Column="1"/>
-            
+
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <TextBlock>تحديد أيام الامتحان</TextBlock>
@@ -43,19 +43,19 @@
 
 
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <DataGrid x:Name="Periods" HorizontalAlignment="Stretch" CanUserAddRows="False" Height="285" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
+            <DataGrid x:Name="Periods" HorizontalAlignment="Stretch" CanUserAddRows="False" Height="106" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding day, UpdateSourceTrigger=PropertyChanged}"  />
+                    <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding dayDate, UpdateSourceTrigger=PropertyChanged}"  />
                     <!--<DataGridComboBoxColumn Header="عدد الفترات الامتحانية   " Width="1.8*" SelectedItemBinding="{Binding }" />-->
 
                     <DataGridTemplateColumn Header="عدد الفترات الامتحانية">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox SelectedIndex="0" ItemsSource="{Binding periodListItem,UpdateSourceTrigger=PropertyChanged}" />
+                                <ComboBox x:Name="periodNum"  ItemsSource="{Binding DateNumList, UpdateSourceTrigger=PropertyChanged}"   />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="وقت بدء الفترة " Width="1.3*" Binding="{Binding startTime,UpdateSourceTrigger=PropertyChanged}"/>
+                    <!--<DataGridTextColumn Header="وقت بدء الفترة " Width="1.3*" Binding="{Binding startTime,UpdateSourceTrigger=PropertyChanged}"/>
 
                     <DataGridTemplateColumn Header="مدة الفترة">
                         <DataGridTemplateColumn.CellTemplate>
@@ -63,11 +63,35 @@
                                 <ComboBox SelectedIndex="0" ItemsSource="{Binding periodDuration,UpdateSourceTrigger=PropertyChanged}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="Periods2" CanUserAddRows="False" Height="106" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding day, UpdateSourceTrigger=PropertyChanged}"  />
+                    <!--<DataGridComboBoxColumn Header="عدد الفترات الامتحانية   " Width="1.8*" SelectedItemBinding="{Binding }" />-->
+
+                    <DataGridTemplateColumn Header="عدد الفترات الامتحانية">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox SelectedIndex="0" ItemsSource="{Binding periodID, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="رقم الفترة " Width="1.3*" Binding="{Binding startTime, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <DataGridTemplateColumn Header="مدة الفترة">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox SelectedIndex="0" ItemsSource="{Binding periodDuration, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
         <Button Grid.Column="1" Grid.Row="2" Content="بدء التوزيع" Style="{StaticResource RoundButton}"/>
+        <Button x:Name="addToDatagrid" Content="Button" HorizontalAlignment="Left" Margin="38,204,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.RowSpan="2" RenderTransformOrigin="0.477,0.285" Click="Button_Click"/>
         <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
             <Button x:Name="Next" Content="التالي" Click="Next_Click" />

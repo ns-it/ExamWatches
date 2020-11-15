@@ -14,12 +14,14 @@ namespace ExamWatches.ViewModels
             get { return _day; }
             set { _day = value; OnPropertyChanged("day"); }
         }
-        private ObservableCollection<int> _periodListItem;
-        public ObservableCollection<int> periodListItem
+      
+        private int _periodID;
+        public int periodID
         {
-            get { return _periodListItem; }
-            set { _periodListItem = value; OnPropertyChanged("periodListItem"); }
+            get { return _periodID; }
+            set { _periodID = value; OnPropertyChanged("periodID"); }
         }
+
         private TimeSpan _startTime;
         public TimeSpan startTime
         {

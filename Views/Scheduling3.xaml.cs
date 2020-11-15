@@ -20,19 +20,29 @@ namespace ExamWatches.Views
     /// </summary>
     public partial class Scheduling3 : UserControl
     {
-        ObservableCollection<Scheduling3ViewModel> DatesList;
+        ObservableCollection<fillFirstDataGridmodel> FirstDataGramData;
+        ObservableCollection<Scheduling3ViewModel> SecondDataGramData;
         public ObservableCollection<int> periodList;
         public ObservableCollection<decimal> periodDurationList;
+        DateTime selelectedDate;
+
 
         TimeSpan startTime;
-        ObservableCollection<DateTime> dateTimeLoop;
+        
         Scheduling3ViewModel svm3;
+     
+        fillFirstDataGridmodel fillFirstDataGridmodel;
+        
+
+
 
         public Scheduling3()
         {
-            DatesList = new ObservableCollection<Scheduling3ViewModel>();
+            FirstDataGramData = new ObservableCollection<fillFirstDataGridmodel>();
+            SecondDataGramData = new ObservableCollection<Scheduling3ViewModel>();
             periodList = new ObservableCollection<int>();
-            dateTimeLoop = new ObservableCollection<DateTime>();
+            
+
             
             periodList.Add(1);
             periodList.Add(2);
@@ -55,63 +65,55 @@ namespace ExamWatches.Views
 
             InitializeComponent();
 
-            Periods.ItemsSource = DatesList;
+            Periods.ItemsSource = FirstDataGramData;
+            Periods2.ItemsSource = SecondDataGramData;
+           //ComboBox cb= Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
+            
         }
 
-        private void ExamDays_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            // dateTimeLoop.Add(ExamDays.SelectedDate);
-            dateTimeLoop = ExamDays.SelectedDates;
-            ExamDay_selectionChange_Loop();
-
-
-
-
-        }
+      
 
         public void ExamDay_selectionChange_Loop() {
-            
-            foreach (DateTime selectedDate in dateTimeLoop)
-            {
 
-                svm3 = new Scheduling3ViewModel();
-                svm3.day = selectedDate.ToString("dd//MM//yyyy");
-                //   dateTimeLoop.Remove(dt);
-                // svm3.day = ExamDays.SelectedDate.Value.Date;
-                svm3.periodListItem = periodList;
-                svm3.startTime = startTime;
-                svm3.periodDuration = periodDurationList;
-                DatesList.Add(svm3);
-                // Periods.ItemsSource = DatesList;
-              // 
-            }
-            dateTimeLoop.Clear();
 
+           
+            fillFirstDataGridmodel = new fillFirstDataGridmodel();
+            fillFirstDataGridmodel.dayDate = selelectedDate.ToString("dd//MM//yyyy");
+            fillFirstDataGridmodel.DateNumList = periodList;
+            FirstDataGramData.Add(fillFirstDataGridmodel);
 
 
         }
 
-        private void ExamDays_SelectedDatesChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-            // dateTimeLoop.Add(ExamDays.SelectedDate);
-            dateTimeLoop = ExamDays.SelectedDates;
-            ExamDay_selectionChange_Loop();
-
-        }
-
-        private void Periods_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
+       
 
         private void ExamDays_SelectedDatesChanged_2(object sender, SelectionChangedEventArgs e)
-        {  // dateTimeLoop.Add(ExamDays.SelectedDate);
-            dateTimeLoop = ExamDays.SelectedDates;
+        {
+
+            selelectedDate = (DateTime)ExamDays.SelectedDate;
+
             ExamDay_selectionChange_Loop();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
+            // for (int i = 0; i <= Periods.Items.Count; i++) {
 
 
+            // svm3.day =
+     //     string ss=  Periods.Columns[0].GetCellContent(Periods.Items[0]) as string;
+          //  MessageBox.Show(Periods.Columns[0].GetCellContent(Periods.Items[0]).ToString());
+            ComboBox cb = Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
+            //svm3.periodID =int.Parse( cb.Text);
+            //svm3.startTime = startTime;
+            //svm3.periodDuration = periodDurationList;
+            //SecondDataGramData.Add(svm3);
+
+
+
+            //  }
         }
     }
 }
