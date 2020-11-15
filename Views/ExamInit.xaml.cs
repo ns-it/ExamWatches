@@ -93,15 +93,7 @@ namespace ExamWatches.Views
 
         }
 
-        //private void collageList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        //{
-        //    string collage_name = collageList.Text.ToString();
-        //    wl = db.WorkLocations.Where(x => x.Name == collage_name).FirstOrDefault();
-        //    dean_name.Text = wl.Dean;
-        //    manager_name.Text = wl.Manager;
 
-
-        //}
         // عداد لأيام الامتحان
         private void cmdUp_Click(object sender, RoutedEventArgs e)
         {
@@ -128,6 +120,8 @@ namespace ExamWatches.Views
         // زر الانتقال للصفحة التالية يتم فيه توليد غرض من الصف امتحان وحفظه في القاعدة
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Update.IsEnabled = true;
+            SaveButton.IsEnabled = false;
             Exam exam = new Exam();
 
             if (first.IsChecked == true)
@@ -153,6 +147,7 @@ namespace ExamWatches.Views
             exam.WorkLocationId = work_locationl.Id;
             db.Add(exam);
             db.SaveChanges();
+            MessageBox.Show("تمت عملية الحفظ بنجاح");
         }
 
 
@@ -163,7 +158,7 @@ namespace ExamWatches.Views
 
 
 
-
+        // فحص في حال تم ادخال بيانات الامتحان حسب رقم الفصل والسنة
         private void year_DropDownClosed(object sender, EventArgs e)
         {
             if (first.IsChecked == true)
@@ -186,8 +181,10 @@ namespace ExamWatches.Views
             // yearNum = year.Text;
             Exam exam = new Exam();
             int count = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum && x.WorkLocationId == user_id).Count();
+            // جلب بيانات هذا الامتحان المحدد في حال كان موجود في القاعدة
             if (count == 1)
             {
+                Update.IsEnabled = true;
                 SaveButton.IsEnabled = false;
                 exam = db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum && x.WorkLocationId == user_id).FirstOrDefault();
                 days.Text = exam.DaysNumber.ToString();
@@ -196,6 +193,7 @@ namespace ExamWatches.Views
 
 
             }
+            //   اما في حال عدم ايجاد بيانات لهاد الفصل يتم ادخال بيانات جديدة و حفظها
             else
             {
 
@@ -204,11 +202,41 @@ namespace ExamWatches.Views
                 days.Text = null;
                 startDate.Text = null;
                 endDate.Text = null;
-
+                Update.IsEnabled = false;
             }
         }
+        // زر التعديل على بيانات الامتحان
+        private void UpdataButton_Click(object sender, RoutedEventArgs e)
+        {
 
 
+            db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum && x.WorkLocationId == user_id).ToList().ForEach(x => x.DaysNumber = short.Parse(days.Text));
 
+
+            db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum && x.WorkLocationId == user_id).ToList().ForEach(x => x.StartTime = startDate.SelectedDate);
+
+
+            db.Exams.Where(x => x.AcademicYear == yearNum && x.Semester == semNum && x.WorkLocationId == user_id).ToList().ForEach(x => x.EndTime = endDate.SelectedDate);
+            db.SaveChanges();
+            MessageBox.Show("تمت عملية التعديل بنجاح");
+
+        }
+
+        private void first_Checked(object sender, RoutedEventArgs e)
+        {
+            year.Text = null;
+        }
+
+        private void second_Checked(object sender, RoutedEventArgs e)
+        {
+            year.Text = null;
+
+        }
+
+        private void third_Checked(object sender, RoutedEventArgs e)
+        {
+            year.Text = null;
+        }
     }
+
 }

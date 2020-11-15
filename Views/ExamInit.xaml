@@ -45,9 +45,9 @@
         <TextBox x:Name="manager_name" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5" IsEnabled="False" HorizontalAlignment="Stretch" />
 
         <Label Content="الفصل الدراسي" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right"/>
-        <RadioButton x:Name="first" Content="الأول" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <RadioButton x:Name="second" Content="الثاني"  Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <RadioButton x:Name="third" Content="الثالث" Grid.Row="4" Grid.Column="6" VerticalAlignment="Center"/>
+        <RadioButton x:Name="first" Content="الأول" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Checked="first_Checked"/>
+        <RadioButton x:Name="second" Content="الثاني"  Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="second_Checked" />
+        <RadioButton x:Name="third" Content="الثالث" Grid.Row="4" Grid.Column="6" VerticalAlignment="Center" Checked="third_Checked"/>
 
         <Label Content="العام الدراسي" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right"/>
         <ComboBox x:Name="year" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" DropDownClosed="year_DropDownClosed">
@@ -66,30 +66,28 @@
         </ComboBox>
 
         <Label Content="من" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="3"/>
-        <DatePicker x:Name="startDate"  Grid.Row="6" Grid.Column="4" />
+        <DatePicker x:Name="startDate"  Grid.Row="6" Grid.Column="4"/>
         <Label Content="إلى" Grid.Row="6" Grid.Column="5"/>
         <DatePicker x:Name="endDate" Grid.Row="6" Grid.Column="6"/>
 
         <Label Content="عدد أيام الامتحان" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Right"/>
         <Grid Grid.Row="6" Grid.Column="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="193*"/>
+                <ColumnDefinition Width="98*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="days" x:FieldModifier="private" Text="0" Grid.Column="0" Grid.RowSpan="2" TextChanged="txtNum_TextChanged"
-                     Grid.ColumnSpan="2" Margin="0"/>
-            <Button x:Name="cmdUp" x:FieldModifier="private"  Content="🔺" Click="cmdUp_Click"
-                    Width="20"  Grid.Column="1" Grid.Row="0" FontSize="4"  />
-            <Button x:Name="cmdDown" x:FieldModifier="private" Content="🔻" Click="cmdDown_Click"
-                    Width="20" Grid.Column="1" Grid.Row="1"  FontSize="4"  />
+            <TextBox x:Name="days" x:FieldModifier="private" Text="0" Grid.Column="0" Grid.RowSpan="2" TextChanged="txtNum_TextChanged" Margin="0,0,20,0" Grid.ColumnSpan="3"/>
+            <Button x:Name="cmdUp" x:FieldModifier="private"  Content="🔺" Width="20"  Grid.Column="2" Grid.Row="0" Click="cmdUp_Click" FontSize="4" Padding="0" />
+            <Button x:Name="cmdDown" x:FieldModifier="private"  Content="🔻" Width="20" Grid.Column="2" Click="cmdDown_Click" FontSize="4" Padding="0" Margin="0,12,0,0" Grid.RowSpan="2" />
         </Grid>
 
-        <Button x:Name="SaveButton" Grid.Row="7"  Grid.Column="6" Click="Button_Click" Content="حفظ" Margin="0,10,0,0"/>
-        <Button x:Name="UpdataButton" Grid.Row="7"  Grid.Column="4" Content="تعديل" Margin="20,0,0,0" />
+        <Button x:Name="SaveButton" Grid.Row="7"  Grid.Column="5" Click="Button_Click" Content="حفظ" Margin="27,10,62,0" Grid.ColumnSpan="3" Height="22" VerticalAlignment="Top"/>
+        <Button x:Name="Update" Grid.Row="6"  Grid.Column="4" Content="تعديل" Margin="20,25,0,0" Click="UpdataButton_Click" Grid.RowSpan="2" Height="32" VerticalAlignment="Top" />
 
 
 
