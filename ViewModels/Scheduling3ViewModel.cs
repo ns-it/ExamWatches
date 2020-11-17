@@ -35,7 +35,12 @@ namespace ExamWatches.ViewModels
             set { _periodDuration = value; OnPropertyChanged("periodDuration"); }
         }
 
-
+        private decimal _PD;
+        public decimal PD
+        {
+            get { return _PD; }
+            set { _PD = value; OnPropertyChanged("PD"); }
+        }
 
 
     }

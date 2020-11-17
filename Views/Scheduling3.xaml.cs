@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -40,13 +41,12 @@ namespace ExamWatches.Views
         {
             FirstDataGramData = new ObservableCollection<fillFirstDataGridmodel>();
             SecondDataGramData = new ObservableCollection<Scheduling3ViewModel>();
-            periodList = new ObservableCollection<int>();
-            
-
-            
-            periodList.Add(1);
-            periodList.Add(2);
-            periodList.Add(3);
+            periodList = new ObservableCollection<int>
+            {
+                1,
+                2,
+                3
+            };
             periodDurationList = new ObservableCollection<decimal>();
             periodDurationList.Add(new decimal(60));
             periodDurationList.Add(new decimal(90));
@@ -57,8 +57,7 @@ namespace ExamWatches.Views
             periodDurationList.Add(new decimal(210));
             periodDurationList.Add(new decimal(240));
 
-
-
+         
 
 
 
@@ -66,20 +65,25 @@ namespace ExamWatches.Views
             InitializeComponent();
 
             Periods.ItemsSource = FirstDataGramData;
+          
             Periods2.ItemsSource = SecondDataGramData;
-           //ComboBox cb= Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
-            
+
+
+            //ComboBox cb= Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
+
         }
 
-      
+
 
         public void ExamDay_selectionChange_Loop() {
 
 
            
             fillFirstDataGridmodel = new fillFirstDataGridmodel();
-            fillFirstDataGridmodel.dayDate = selelectedDate.ToString("dd//MM//yyyy");
+            fillFirstDataGridmodel.dayDate = selelectedDate.ToString("dd/MM/yyyy");
+            
             fillFirstDataGridmodel.DateNumList = periodList;
+            fillFirstDataGridmodel.SelectedNum = 1;
             FirstDataGramData.Add(fillFirstDataGridmodel);
 
 
@@ -98,22 +102,37 @@ namespace ExamWatches.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
-            // for (int i = 0; i <= Periods.Items.Count; i++) {
+            foreach (fillFirstDataGridmodel fm in FirstDataGramData)
+            {
+                for (int i=1; i <= fm.SelectedNum; i++) {
 
-
-            // svm3.day =
-     //     string ss=  Periods.Columns[0].GetCellContent(Periods.Items[0]) as string;
-          //  MessageBox.Show(Periods.Columns[0].GetCellContent(Periods.Items[0]).ToString());
-            ComboBox cb = Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
-            //svm3.periodID =int.Parse( cb.Text);
-            //svm3.startTime = startTime;
-            //svm3.periodDuration = periodDurationList;
-            //SecondDataGramData.Add(svm3);
-
-
-
-            //  }
+                    Scheduling3ViewModel SV = new Scheduling3ViewModel();
+                    SV.day = fm.dayDate;
+                    SV.periodID = i;
+                    MessageBox.Show(fm.SelectedNum.ToString());
+                    SV.startTime = startTime;
+                    SV.periodDuration = periodDurationList;
+                    SecondDataGramData.Add(SV);
+                
+                }
+            
+            
+            }
+        
         }
+
+        private void addToSecondGrid(object sender, RoutedEventArgs e)
+        {
+
+            DataRowView dg = Periods.SelectedItem as DataRowView;
+           
+            MessageBox.Show( dg["اليوم"].ToString());
+
+
+
+
+        }
+
+        
     }
 }
