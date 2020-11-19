@@ -29,37 +29,45 @@ namespace ExamWatches.ViewModels
         public string FirstName
         {
             get { return _model.FirstName; }
-            set { _model.FirstName = value; OnPropertyChanged("FirstName");
+            set
+            {
+                _model.FirstName = value; OnPropertyChanged("FirstName");
                 OnPropertyChanged("FullName");
             }
         }
         public string MiddleName
         {
             get { return _model.MiddleName; }
-            set { _model.MiddleName = value; OnPropertyChanged("MiddleName");
+            set
+            {
+                _model.MiddleName = value; OnPropertyChanged("MiddleName");
                 OnPropertyChanged("FullName");
             }
         }
         public string LastName
         {
             get { return _model.LastName; }
-            set { _model.LastName = value; OnPropertyChanged("LastName");
+            set
+            {
+                _model.LastName = value; OnPropertyChanged("LastName");
                 OnPropertyChanged("FullName");
             }
         }
         public string FullName
         {
-            get {
-                //_fullName = _model.FullName;
-                _fullName=  _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
-                return _fullName; 
-            
+            get
+            {
+                //return _model.FullName;
+                _fullName = _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
+                return _fullName;
+
             }
             set
             {
                 //_model.FullName = value;
-                //_fullName = _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
-                OnPropertyChanged("FullName"); }
+                _fullName = _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
+                OnPropertyChanged("FullName");
+            }
         }
         public string Job
         {

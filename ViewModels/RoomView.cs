@@ -6,6 +6,9 @@ namespace ExamWatches.ViewModels
 {
     public class RoomView : ObservableObject
     {
+
+        public int Id { get; set; }
+
         private bool _isSelected;
         public string Name { get; set; }
         public int? Type { get; set; }

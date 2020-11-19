@@ -26,7 +26,7 @@ namespace ExamWatches.Views
         Watcher wch = new Watcher();
 
         public static ObservableCollection<WatcherViewModel> SelectedWatcher;
-        public static ObservableCollection<RoomView> SelectedRoom;
+        public static ObservableCollection<RoomView> SelectedRooms;
 
         public Scheduling1()
         {
@@ -35,7 +35,7 @@ namespace ExamWatches.Views
             initialRoomListBox();
             //  watcherViewModels = new List<WatcherViewModel>();
             SelectedWatcher = new ObservableCollection<WatcherViewModel>();
-            SelectedRoom = new ObservableCollection<RoomView>();
+            SelectedRooms = new ObservableCollection<RoomView>();
 
 
         }
@@ -126,10 +126,10 @@ namespace ExamWatches.Views
             //RoomsGrid.ItemsSource = db.Rooms.Where(x => x.WorkLocationId == wl.Id).ToList();
             List<Room> rooms = db.Rooms.Where(x => x.WorkLocationId == wl.Id).ToList();
 
-            if (SelectedRoom.Count() == 0)
+            if (SelectedRooms.Count() == 0)
             {
                 foreach (Room w in rooms)
-                    roomViewModels.Add(new RoomView { Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = false });
+                    roomViewModels.Add(new RoomView { Id=w.Id, Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = false });
 
             }
             else
@@ -139,7 +139,7 @@ namespace ExamWatches.Views
                 {
                     Boolean b = false;
 
-                    foreach (RoomView wvm in SelectedRoom)
+                    foreach (RoomView wvm in SelectedRooms)
                     {
 
                         if (w.Name == wvm.Name && w.WorkLocationId == wvm.WorkLocation)
@@ -150,9 +150,9 @@ namespace ExamWatches.Views
                     }
 
                     if (b == true)
-                        roomViewModels.Add(new RoomView { Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = true });
+                        roomViewModels.Add(new RoomView { Id=w.Id, Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = true });
                     else
-                        roomViewModels.Add(new RoomView { Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = false });
+                        roomViewModels.Add(new RoomView {Id=w.Id, Name = w.Name, Type = w.Type, Capacity = w.Capacity, WorkLocation = w.WorkLocationId, IsSelected = false });
 
 
 
@@ -231,7 +231,7 @@ namespace ExamWatches.Views
         {
             RoomView roomViewModel = RoomsGrid.SelectedItem as RoomView;
             Boolean b = false;
-            foreach (RoomView wv in SelectedRoom)
+            foreach (RoomView wv in SelectedRooms)
             {
 
 
@@ -251,7 +251,7 @@ namespace ExamWatches.Views
             {
                 roomViewModel.IsSelected = true;
                 // MessageBox.Show(roomViewModel.Name.ToString());
-                SelectedRoom.Add(roomViewModel);
+                SelectedRooms.Add(roomViewModel);
 
             }
 
@@ -262,7 +262,7 @@ namespace ExamWatches.Views
             RoomView watcherView = RoomsGrid.SelectedItem as RoomView;
 
             Boolean b = false;
-            foreach (RoomView wv in SelectedRoom)
+            foreach (RoomView wv in SelectedRooms)
             {
 
 
@@ -277,12 +277,12 @@ namespace ExamWatches.Views
             }
             if (b == true)
             {
-                foreach (RoomView slw in SelectedRoom.ToList())
+                foreach (RoomView slw in SelectedRooms.ToList())
                 {
                     if (slw.Name == watcherView.Name && slw.WorkLocation == watcherView.WorkLocation)
                     {
 
-                        SelectedRoom.Remove(slw);
+                        SelectedRooms.Remove(slw);
                         watcherView.IsSelected = false;
                         MessageBox.Show("تم");
                     }

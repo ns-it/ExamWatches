@@ -8,15 +8,15 @@ namespace ExamWatches.ViewModels
 {
     public class Scheduling3ViewModel : ObservableObject
     {
-        private string _day;
-        public string day
+        private DateTime _day;
+        public DateTime day
         {
             get { return _day; }
             set { _day = value; OnPropertyChanged("day"); }
         }
       
-        private int _periodID;
-        public int periodID
+        private short _periodID;
+        public short periodID
         {
             get { return _periodID; }
             set { _periodID = value; OnPropertyChanged("periodID"); }

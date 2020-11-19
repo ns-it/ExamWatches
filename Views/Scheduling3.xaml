@@ -15,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="4*"/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -38,14 +38,14 @@
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <TextBlock>تحديد أيام الامتحان</TextBlock>
-            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" SelectionMode="MultipleRange" SelectedDatesChanged="ExamDays_SelectedDatesChanged_2" />
+            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" SelectionMode="SingleDate" SelectedDatesChanged="ExamDays_SelectedDatesChanged_2" />
         </StackPanel>
 
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <DataGrid x:Name="Periods" HorizontalAlignment="Stretch" CanUserAddRows="False" Height="auto" Width="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"   >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding dayDate, UpdateSourceTrigger=PropertyChanged}"  />
+                    <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding dayDate, UpdateSourceTrigger=PropertyChanged,StringFormat='dd/MM/yyyy'}"  />
                     <!--<DataGridComboBoxColumn Header="عدد الفترات الامتحانية   " Width="1.8*" SelectedItemBinding="{Binding }" />-->
 
                     <DataGridTemplateColumn Header="عدد الفترات الامتحانية"   >
@@ -59,9 +59,9 @@
 
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="Periods2" CanUserAddRows="False" Height="106" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
+            <DataGrid x:Name="Periods2" CanUserAddRows="False" Height="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding day, UpdateSourceTrigger=PropertyChanged}"  />
+                    <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding day, UpdateSourceTrigger=PropertyChanged,StringFormat='dd/MM/yyyy'}"  />
                     <!--<DataGridComboBoxColumn Header="عدد الفترات الامتحانية   " Width="1.8*" SelectedItemBinding="{Binding }" />-->
 
                     <DataGridTextColumn Header="رقم الفترة " Width="*" Binding="{Binding periodID, UpdateSourceTrigger=PropertyChanged}"  />
@@ -77,7 +77,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button Grid.Column="1" Grid.Row="2" Content="بدء التوزيع" Style="{StaticResource RoundButton}"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="بدء التوزيع" Style="{StaticResource RoundButton}" Click="Button_Click_1"/>
         <Button x:Name="addToDatagrid" Content="Button" HorizontalAlignment="Center" Margin="0,186,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.477,0.285" Click="Button_Click"/>
         <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />

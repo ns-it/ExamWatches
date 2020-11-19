@@ -4,35 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
+              xmlns:viewmodels="clr-namespace:ExamWatches.ViewModels"
         mc:Ignorable="d"
-  Height="auto" Width="auto" d:DesignHeight="600" d:DesignWidth="800" FlowDirection="RightToLeft">
-    <Grid Margin="20,20,20,20">
+  Height="auto" Width="auto" d:DesignHeight="600" d:DesignWidth="800" FlowDirection="LeftToRight">
+    <UserControl.DataContext>
+        <viewmodels:SchedulingFinalViewModel/>
+    </UserControl.DataContext>
+    <Grid Margin="20,20,20,20" x:Name="PrintArea" FlowDirection="RightToLeft">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="2*"/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DatePicker Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
-            <Label Content="عدد الفترات: " VerticalAlignment="Center"/>
-            <TextBox  Text="2" Width="150" Height="20" VerticalAlignment="Center"></TextBox>
-        </StackPanel>
-        <TextBlock x:Name="Period" Grid.Column="2" Grid.Row="0" Text="التوقيت: 9:00-10:30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-        <DataGrid x:Name="WatchesSchedule" Grid.Row="1" Grid.ColumnSpan="3">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="القاعة" Width="*"/>
-                <DataGridTextColumn Header="رئيس القاعة" Width="*"/>
-                <DataGridTextColumn Header="أمين السر" Width="*"/>
-                <DataGridTextColumn Header="المراقبون" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="Print"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Content="طباعة"></Button>
-        <!--<StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Style="{StaticResource TitleBlock }">
+                        <Run Text=" جدول توزيع المراقبات النهائي في: "/>
+            <Run Text="{Binding CollegeName}"/>
+        </TextBlock>
+        <!--<DatePicker Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"
+                    SelectedDate="{Binding WatchDate}"
+                    DisplayDateStart="{Binding FirstDate}" DisplayDateEnd="{Binding LastDate}" >
+            <DatePicker.BlackoutDates>
+                
+                <CalendarDateRange End="2020-09-24" Start="9/20/2020"/>
+            </DatePicker.BlackoutDates>
+        </DatePicker>-->
+        <ComboBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"
+                  ItemsSource="{Binding WatchDates }"  ItemStringFormat="dd/MM/yyyy" SelectedItem="{Binding SelectedWatchDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></ComboBox>
+
+        <Label Grid.Row="1" Grid.Column="1" Content="رقم الفترة: " VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding PeriodValues}"  SelectedValue="{Binding SelectedWatchPeriod ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  VerticalAlignment="Center">
+        </ComboBox>
+        <TextBox x:Name="Period" Grid.Column="3" Grid.Row="1" Text="{Binding SelectedWatchDuration,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
+        <Grid Grid.Row="2" Grid.ColumnSpan="4" FlowDirection="LeftToRight">
+            <DataGrid x:Name="WatchesSchedule" ItemsSource="{Binding WatchesList,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"
+                   CanUserAddRows="False" IsReadOnly="True" FlowDirection="RightToLeft">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="القاعة" Width="*" Binding="{Binding Room.Name }"/>
+                    <DataGridTextColumn Header="رئيس القاعة" Width="*" Binding="{Binding RoomChiefs}"/>
+                    <DataGridTextColumn Header="أمين السر" Width="*" Binding="{Binding RoomSecretaries}"/>
+                    <DataGridTextColumn Header="المراقبون" Width="*" Binding="{Binding RoomWatchers}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        <Button x:Name="Print" Style="{StaticResource RoundButton}"  VerticalAlignment="Center" Grid.Column="3" Grid.Row="3" Content="طباعة" Click="Print_Click"></Button>
+        <!--<StackPanel Grid.Column="2" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <Button x:Name="Print"  VerticalAlignment="Center" Content="طباعة"></Button>
             <Button x:Name="OpenWatcherScheduling"  Content="عرض المراقبات الخاصة بمراقب معين" Click="OpenWatcherScheduling_Click"></Button>
         </StackPanel>-->

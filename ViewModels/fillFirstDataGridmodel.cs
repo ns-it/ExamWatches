@@ -12,8 +12,8 @@ namespace ExamWatches.ViewModels
     {
 
 
-        private string _dayDate;
-        public string dayDate
+        private DateTime _dayDate;
+        public DateTime dayDate
         {
             get { return _dayDate; }
             set { _dayDate = value; OnPropertyChanged("dayDate"); }
