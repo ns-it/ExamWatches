@@ -17,6 +17,9 @@ namespace ExamWatches.Models
         [Key]
         [Column("id")]
         public long Id { get; set; }
+        [Column("title")]
+        [StringLength(5)]
+        public string Title { get; set; }
         [Column("first_name")]
         [StringLength(50)]
         public string FirstName { get; set; }
@@ -28,7 +31,7 @@ namespace ExamWatches.Models
         public string LastName { get; set; }
         [Required]
         [Column("full_name")]
-        [StringLength(152)]
+        [StringLength(158)]
         public string FullName { get; set; }
         [Column("job")]
         [StringLength(50)]

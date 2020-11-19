@@ -69,17 +69,11 @@ namespace ExamWatches.Models
                     .HasForeignKey(d => d.ExamId)
                     .HasConstraintName("FK_watch_exam");
 
-                entity.HasOne(d => d.Room)
-                    .WithMany(p => p.Watches)
-                    .HasForeignKey(d => d.RoomId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_watch_room");
-
             });
 
             modelBuilder.Entity<Watcher>(entity =>
             {
-                entity.Property(e => e.FullName).HasComputedColumnSql("(concat([first_name],' ',[middle_name],' ',[last_name]))");
+                entity.Property(e => e.FullName).HasComputedColumnSql("(concat([title],' ',[first_name],' ',[middle_name],' ',[last_name]))");
 
                 entity.HasOne(d => d.WorkLocation)
                     .WithMany(p => p.Watchers)
@@ -89,7 +83,13 @@ namespace ExamWatches.Models
 
             modelBuilder.Entity<WatcherWatch>(entity =>
             {
-                entity.HasKey(e => new { e.WatcherId, e.WatchId });
+                entity.HasKey(e => new { e.WatcherId, e.WatchId, e.RoomId });
+
+                entity.HasOne(d => d.Room)
+    .WithMany(p => p.WatcherWatches)
+    .HasForeignKey(d => d.RoomId)
+    .OnDelete(DeleteBehavior.ClientSetNull)
+    .HasConstraintName("FK_watcher_watch_room");
 
                 entity.HasOne(d => d.Watch)
                     .WithMany(p => p.WatcherWatches)

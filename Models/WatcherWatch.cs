@@ -14,12 +14,17 @@ namespace ExamWatches.Models
         [Key]
         [Column("watch_id")]
         public long WatchId { get; set; }
+        [Column("room_id")]
+        public int RoomId { get; set; }
         [Column("watcher_type")]
         [StringLength(50)]
         public string WatcherType { get; set; }
         [Column("attendence")]
         public bool Attendence { get; set; }
 
+        [ForeignKey(nameof(RoomId))]
+        [InverseProperty("WatcherWatches")]
+        public virtual Room Room { get; set; }
         [ForeignKey(nameof(WatchId))]
         [InverseProperty("WatcherWatches")]
         public virtual Watch Watch { get; set; }

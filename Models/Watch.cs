@@ -20,8 +20,7 @@ namespace ExamWatches.Models
         public short? ExamId { get; set; }
         [Column("period_id")]
         public short? PeriodId { get; set; }
-        [Column("room_id")]
-        public int RoomId { get; set; }
+
         [Column("watch_date", TypeName = "date")]
         public DateTime? WatchDate { get; set; }
         [Column("duration", TypeName = "decimal(3, 0)")]
@@ -34,9 +33,7 @@ namespace ExamWatches.Models
         [ForeignKey(nameof(ExamId))]
         [InverseProperty("Watches")]
         public virtual Exam Exam { get; set; }
-        [ForeignKey(nameof(RoomId))]
-        [InverseProperty("Watches")]
-        public virtual Room Room { get; set; }
+
         [InverseProperty("Watch")]
         public virtual ICollection<WatcherWatch> WatcherWatches { get; set; }
     }
