@@ -16,13 +16,10 @@ namespace ExamWatches.ViewModels
         //public DateTime? WatchDate { get; set; }
         //public short? WatchPeriodId { get; set; }
         public Room WatchRoom { get; set; }
-
         public Watch Watch { get; set; }
         public Watcher Watcher { get; set; }
-
         public string WatchType { get; set; }
         public bool Attendence { get; set; }
-
         public string RoomChief { get; set; }
 
 
