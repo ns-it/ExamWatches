@@ -27,6 +27,8 @@ namespace ExamWatches.Views
         private int _numValue = 0;
         int semNum;
         string yearNum;
+        public static short examID;
+        public static short exID;
         // متحول يحتفظ برقم المستخدم الذي قام بتسجيل الدخول
         int user_id = Convert.ToInt32(App.Current.Properties["user_id"]);
         // غرض للتعامل مع القاعدة
@@ -120,10 +122,11 @@ namespace ExamWatches.Views
         // زر الانتقال للصفحة التالية يتم فيه توليد غرض من الصف امتحان وحفظه في القاعدة
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             Update.IsEnabled = true;
             SaveButton.IsEnabled = false;
             Exam exam = new Exam();
-
+            Exam ex = new Exam();
             if (first.IsChecked == true)
             {
                 exam.Semester = 1;
@@ -148,6 +151,12 @@ namespace ExamWatches.Views
             db.Add(exam);
             db.SaveChanges();
             MessageBox.Show("تمت عملية الحفظ بنجاح");
+            ex = db.Exams.Where(x => x.Semester == exam.Semester && x.AcademicYear == exam.AcademicYear && x.DaysNumber == exam.DaysNumber && x.StartTime == exam.StartTime && x.EndTime == exam.EndTime && x.WorkLocationId == exam.WorkLocationId).FirstOrDefault();
+            examID = ex.Id;
+            MessageBox.Show(ex.Id.ToString());
+
+            
+
         }
 
 

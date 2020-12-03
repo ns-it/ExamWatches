@@ -55,7 +55,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
+                 
 
                 </DataGrid.Columns>
             </DataGrid>
@@ -76,9 +76,10 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <Button x:Name="reset" Content="تفريغ " Click="reset_Click"/>
         </StackPanel>
         <Button Grid.Column="1" Grid.Row="2" Content="بدء التوزيع" Style="{StaticResource RoundButton}" Click="Button_Click_1"/>
-        <Button x:Name="addToDatagrid" Content="Button" HorizontalAlignment="Center" Margin="0,186,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.477,0.285" Click="Button_Click"/>
+        <Button x:Name="addToDatagrid" Content="اضف إلى الجدول الثاني" HorizontalAlignment="Center" Margin="0,210,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.477,0.285" Click="Button_Click" Grid.RowSpan="2"/>
         <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
             <Button x:Name="Next" Content="التالي" Click="Next_Click" />

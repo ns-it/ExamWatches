@@ -28,8 +28,9 @@ namespace ExamWatches.Views
         public ObservableCollection<decimal> periodDurationList;
         DateTime selelectedDate;
 
-        short EXAM_ID = 211;
+        public static short EXAM_ID = ExamInit.examID;
         short WORK_LOCATION_ID;
+        Boolean exist;
 
         TimeSpan startTime;
         public WorkLocation UserWorkLocation { get; set; }
@@ -44,6 +45,7 @@ namespace ExamWatches.Views
 
         public Scheduling3()
         {
+            //EXAM_ID= ExamInit.examID;
             FirstDataGramData = new ObservableCollection<fillFirstDataGridmodel>();
             SecondDataGramData = new ObservableCollection<Scheduling3ViewModel>();
             periodList = new ObservableCollection<int>
@@ -115,18 +117,37 @@ namespace ExamWatches.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             foreach (fillFirstDataGridmodel fm in FirstDataGramData)
             {
+                exist = false;
                 for (short i = 1; i <= fm.SelectedNum; i++)
                 {
 
                     Scheduling3ViewModel SV = new Scheduling3ViewModel();
-                    SV.day = fm.dayDate;
-                    SV.periodID = i;
+                    
+                    foreach (Scheduling3ViewModel second in SecondDataGramData)
+                    {
+                        if (fm.dayDate == second.day && fm.SelectedNum==second.periodID )
+                        {
+                            exist = true;
+                        }
+
+                    }
+                    if (exist == false) {
+
+                        SV.day = fm.dayDate;
+                        SV.periodID = i;
                     MessageBox.Show(fm.SelectedNum.ToString());
                     SV.startTime = startTime;
                     SV.periodDuration = periodDurationList;
                     SecondDataGramData.Add(SV);
+                    }
+                else {
+                        MessageBox.Show(" التاريخ   "+ fm.dayDate.ToString("dd/MM/yyyy")+ "   و الفترة   " +  i + "تمت اضافتهم مسبقاَ");
+                
+                }
+                   
 
                 }
 
@@ -157,7 +178,7 @@ namespace ExamWatches.Views
                     w = new Watch()
                     {
                         Duration = s.PD,
-                        ExamId = EXAM_ID,
+                        ExamId = ExamInit.examID,
                         PeriodId = s.periodID,
                         StartTime = s.startTime,
                         WorkLocationId = WORK_LOCATION_ID,
@@ -229,45 +250,24 @@ namespace ExamWatches.Views
 
 
 
-                    //if (RoomChiefs.Count > 0)
-                    //    w.WatcherWatches.Add(
-                    //    new WatcherWatch()
-                    //    {
-                    //        WatchId = w.Id,
-                    //        WatcherId = RoomChiefs.Dequeue().Id,
-                    //        WatcherType = "1",
-                    //        RoomId = roomView.Id
-                    //    }
-                    //    );
-                    //if (RoomSecretaries.Count > 0)
-                    //    w.WatcherWatches.Add(
-                    //    new WatcherWatch()
-                    //    {
-                    //        WatchId = w.Id,
-                    //        WatcherId = RoomSecretaries.Dequeue().Id,
-                    //        WatcherType = "2",
-                    //        RoomId = roomView.Id
-                    //    }
-                    //        );
-                    //if (RoomWatchers.Count > 0)
-                    //    w.WatcherWatches.Add(
-                    //        new WatcherWatch()
-                    //        {
-                    //            WatchId = w.Id,
-                    //            WatcherId = RoomWatchers.Dequeue().Id,
-                    //            WatcherType = "3",
-                    //            RoomId = roomView.Id
-                    //        }
-                    //        );
                 }
             }
 
             foreach(Watch w in Watches)
             {
                 db.Watches.Add(w);
-                db.SaveChanges();
+                
             }
+            db.SaveChanges();
 
         }
+
+        private void reset_Click(object sender, RoutedEventArgs e)
+        {
+            FirstDataGramData.Clear();
+            SecondDataGramData.Clear();
+        }
+
+        
     }
 }
