@@ -117,7 +117,7 @@ namespace ExamWatches.ViewModels
             }
 
             WatchesListView = CollectionViewSource.GetDefaultView(WatchesList);
-
+            SelectedWatcher = Watchers.FirstOrDefault();
             //db.WatcherWatches.Where()
 
 
