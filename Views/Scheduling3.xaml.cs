@@ -23,7 +23,7 @@ namespace ExamWatches.Views
     public partial class Scheduling3 : UserControl
 
     {
-
+        int numric = 0;
         ObservableCollection<fillFirstDataGridmodel> FirstDataGramData;
         ObservableCollection<Scheduling3ViewModel> SecondDataGramData;
         ObservableCollection<Scheduling3ViewModel> BaseList;
@@ -40,7 +40,7 @@ namespace ExamWatches.Views
         public WorkLocation UserWorkLocation { get; set; }
         public User CurrentUser { get; set; }
 
-        Scheduling3ViewModel svm3;
+        
 
         fillFirstDataGridmodel fillFirstDataGridmodel;
 
@@ -312,22 +312,24 @@ namespace ExamWatches.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            numric++;
+            if (numric == 1) { 
            
             List<Watch> wachList = new List<Watch>();
 
             wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
             MessageBox.Show(wachList.Count().ToString());
-            foreach (Watch w in wachList)
-            {
+                foreach (Watch w in wachList)
+                {
 
-                Scheduling3ViewModel model = new Scheduling3ViewModel();
-                model.day = (DateTime)w.WatchDate;
-                model.periodID = (short)w.PeriodId;
-                model.startTime = (TimeSpan)w.StartTime;
-                model.PD = (decimal)w.Duration;
-               
-                SecondDataGramData.Add(model);
+                    Scheduling3ViewModel model = new Scheduling3ViewModel();
+                    model.day = (DateTime)w.WatchDate;
+                    model.periodID = (short)w.PeriodId;
+                    model.startTime = (TimeSpan)w.StartTime;
+                    model.PD = (decimal)w.Duration;
 
+                    SecondDataGramData.Add(model);
+                }
 
 
 

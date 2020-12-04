@@ -56,48 +56,13 @@ namespace ExamWatches.Views
         {
 
 
-            //PrintDG print = new PrintDG();
-
-            //print.printDG(WatchesSchedule, "Title");
             PrintDialog printDlg = new PrintDialog();
 
-            //PrintRTL.PrintDialodPrintVisualWithRTLWorkaround(printDlg, this, "wewewe");
+            printDlg.PrintVisual(PrintArea, "User Control Printing.");
 
-
-            //PrintDialog printDlg = new PrintDialog();
-
-            ////FlowDocument flow = new FlowDocument(new Paragraph(new Run("Test Text for printing")));
-            ////flow.Name = "FlowDoc";
-
-
-            //printDlg.PrintVisual(PrintArea, "User Control Printing.");
-
-            //printDlg.
-
-
-            //FixedDocument fixedDocument = Utilities.PrintHelper.GetFixedDocument(this, printDlg);
-
-
-            //Utilities.PrintHelper.ShowPrintPreview(fixedDocument);
-
-            //Utilities.PrintHelper.ShowPrintPreview()
-
-            //// Create a PrintDialog  
-            //PrintDialog printDlg = new PrintDialog();
-            //// Create a FlowDocument dynamically.  
-            //FlowDocument doc = CreateFlowDocument();
-            //doc.Name = "FlowDoc";
-            //// Create IDocumentPaginatorSource from FlowDocument  
-            //IDocumentPaginatorSource idpSource = doc;
-            //// Call PrintDocument method to send document to printer  
-            //printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing.");
 
         }
 
-        //private void OpenWatcherScheduling_Click(object sender, RoutedEventArgs e)
-        //{
-        //    WatcherScheduling watcherScheduling = new WatcherScheduling();
-        //    this.Content = watcherScheduling.Content;
-        //}
+      
     }
 }

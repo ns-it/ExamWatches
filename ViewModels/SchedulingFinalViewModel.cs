@@ -42,7 +42,7 @@ public List<DateTime?> WatchDates { get; set; }
 
         private Watch _selectedWatch;
 
-        private int EXAM_ID = 211;
+        
 
         public Watch SelectedWatch
         {
