@@ -199,6 +199,8 @@ namespace ExamWatches.Views
                 days.Text = exam.DaysNumber.ToString();
                 startDate.Text = exam.StartTime.ToString();
                 endDate.Text = exam.EndTime.ToString();
+                examID = exam.Id;
+                MessageBox.Show(examID.ToString());
 
 
             }
@@ -206,7 +208,7 @@ namespace ExamWatches.Views
             else
             {
 
-                MessageBox.Show("insert new data and click save");
+                MessageBox.Show("ادخل بيانات الامتحان");
                 SaveButton.IsEnabled = true;
                 days.Text = null;
                 startDate.Text = null;

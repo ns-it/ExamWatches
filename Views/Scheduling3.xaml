@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExamWatches.Views"
         mc:Ignorable="d"
        Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600"
-             FlowDirection="RightToLeft">
+             FlowDirection="RightToLeft" Loaded="UserControl_Loaded">
     <Grid Margin="20,20,20,20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

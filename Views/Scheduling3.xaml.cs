@@ -21,9 +21,13 @@ namespace ExamWatches.Views
     /// Interaction logic for Scheduling3.xaml
     /// </summary>
     public partial class Scheduling3 : UserControl
+
     {
+
         ObservableCollection<fillFirstDataGridmodel> FirstDataGramData;
         ObservableCollection<Scheduling3ViewModel> SecondDataGramData;
+        ObservableCollection<Scheduling3ViewModel> BaseList;
+
         public ObservableCollection<int> periodList;
         public ObservableCollection<decimal> periodDurationList;
         DateTime selelectedDate;
@@ -40,7 +44,7 @@ namespace ExamWatches.Views
 
         fillFirstDataGridmodel fillFirstDataGridmodel;
 
-        public ExamWatchesDBContext db;
+        ExamWatchesDBContext db = new ExamWatchesDBContext();
 
 
         public Scheduling3()
@@ -48,6 +52,9 @@ namespace ExamWatches.Views
             //EXAM_ID= ExamInit.examID;
             FirstDataGramData = new ObservableCollection<fillFirstDataGridmodel>();
             SecondDataGramData = new ObservableCollection<Scheduling3ViewModel>();
+            BaseList = new ObservableCollection<Scheduling3ViewModel>();
+       
+
             periodList = new ObservableCollection<int>
             {
                 1,
@@ -91,15 +98,29 @@ namespace ExamWatches.Views
 
         public void ExamDay_selectionChange_Loop()
         {
+            bool t = false;
+            foreach (Scheduling3ViewModel scheduling in SecondDataGramData)
+            {
+              
+                if (scheduling.day == selelectedDate)
+                {
+                    t = true;
+                }
+            
+            }
+            if (t == false)
+            {
+                fillFirstDataGridmodel = new fillFirstDataGridmodel();
+                fillFirstDataGridmodel.dayDate = selelectedDate;
 
+                fillFirstDataGridmodel.DateNumList = periodList;
+                fillFirstDataGridmodel.SelectedNum = 1;
+                FirstDataGramData.Add(fillFirstDataGridmodel);
+            }
+            else {
 
-
-            fillFirstDataGridmodel = new fillFirstDataGridmodel();
-            fillFirstDataGridmodel.dayDate = selelectedDate;
-
-            fillFirstDataGridmodel.DateNumList = periodList;
-            fillFirstDataGridmodel.SelectedNum = 1;
-            FirstDataGramData.Add(fillFirstDataGridmodel);
+                MessageBox.Show("التاريخ مضاف مسبقا");
+            }
 
 
         }
@@ -123,12 +144,13 @@ namespace ExamWatches.Views
                 exist = false;
                 for (short i = 1; i <= fm.SelectedNum; i++)
                 {
+                    exist = false;
 
                     Scheduling3ViewModel SV = new Scheduling3ViewModel();
                     
                     foreach (Scheduling3ViewModel second in SecondDataGramData)
                     {
-                        if (fm.dayDate == second.day && fm.SelectedNum==second.periodID )
+                        if (  second.day== fm.dayDate && second.periodID==i )
                         {
                             exist = true;
                         }
@@ -136,22 +158,21 @@ namespace ExamWatches.Views
                     }
                     if (exist == false) {
 
+
                         SV.day = fm.dayDate;
                         SV.periodID = i;
                     MessageBox.Show(fm.SelectedNum.ToString());
                     SV.startTime = startTime;
                     SV.periodDuration = periodDurationList;
                     SecondDataGramData.Add(SV);
+                        BaseList.Add(SV);
                     }
                 else {
                         MessageBox.Show(" التاريخ   "+ fm.dayDate.ToString("dd/MM/yyyy")+ "   و الفترة   " +  i + "تمت اضافتهم مسبقاَ");
                 
                 }
-                   
-
+ 
                 }
-
-
             }
 
         }
@@ -171,7 +192,7 @@ namespace ExamWatches.Views
 
 
 
-            foreach (Scheduling3ViewModel s in SecondDataGramData)
+            foreach (Scheduling3ViewModel s in BaseList)
             {
                 //foreach (RoomView roomView in Scheduling1.SelectedRooms)
                 //{
@@ -266,8 +287,52 @@ namespace ExamWatches.Views
         {
             FirstDataGramData.Clear();
             SecondDataGramData.Clear();
+            // UserControl_Loaded();
+
+            List<Watch> wachList = new List<Watch>();
+
+            wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
+            MessageBox.Show(wachList.Count().ToString());
+            foreach (Watch w in wachList)
+            {
+
+                Scheduling3ViewModel model = new Scheduling3ViewModel();
+                model.day = (DateTime)w.WatchDate;
+                model.periodID = (short)w.PeriodId;
+                model.startTime = (TimeSpan)w.StartTime;
+                model.PD = (decimal)w.Duration;
+
+                SecondDataGramData.Add(model);
+
+
+
+
+            }
         }
 
-        
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+           
+            List<Watch> wachList = new List<Watch>();
+
+            wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
+            MessageBox.Show(wachList.Count().ToString());
+            foreach (Watch w in wachList)
+            {
+
+                Scheduling3ViewModel model = new Scheduling3ViewModel();
+                model.day = (DateTime)w.WatchDate;
+                model.periodID = (short)w.PeriodId;
+                model.startTime = (TimeSpan)w.StartTime;
+                model.PD = (decimal)w.Duration;
+               
+                SecondDataGramData.Add(model);
+
+
+
+
+            }
+
+        }
     }
 }
