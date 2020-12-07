@@ -74,6 +74,15 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="addb" Header="انقر للحذف" >
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate >
+
+                                <Button x:Name="delete_day" Content="حذف" Click="delete_day_Click" ></Button>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="reset" Content="تفريغ " Click="reset_Click"/>

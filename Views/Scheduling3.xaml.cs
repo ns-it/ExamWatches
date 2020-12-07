@@ -23,7 +23,7 @@ namespace ExamWatches.Views
     public partial class Scheduling3 : UserControl
 
     {
-        int numric = 0;
+       public static int numric = 0;
         ObservableCollection<fillFirstDataGridmodel> FirstDataGramData;
         ObservableCollection<Scheduling3ViewModel> SecondDataGramData;
         ObservableCollection<Scheduling3ViewModel> BaseList;
@@ -312,8 +312,8 @@ namespace ExamWatches.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            numric++;
-            if (numric == 1) { 
+            SecondDataGramData.Clear();
+            
            
             List<Watch> wachList = new List<Watch>();
 
@@ -333,7 +333,41 @@ namespace ExamWatches.Views
 
 
 
+            
+
+        }
+
+        private void delete_day_Click(object sender, RoutedEventArgs e)
+        {
+         Scheduling3ViewModel scheduling3ViewModel=   Periods2.SelectedItem as Scheduling3ViewModel;
+            SecondDataGramData.Remove(scheduling3ViewModel);
+            List<Watch> wachList = new List<Watch>();
+
+            wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
+            
+            foreach (Watch w in wachList)
+            {
+                if(w.WatchDate==scheduling3ViewModel.day && w.PeriodId==scheduling3ViewModel.periodID && w.StartTime==scheduling3ViewModel.startTime && w.Duration==scheduling3ViewModel.PD)
+                {
+                    db.Watches.Remove(w);
+                    db.SaveChanges();
+
+                }
+
+
             }
+            foreach (Scheduling3ViewModel scheduling3ViewModel1 in BaseList.ToList()) {
+                if (scheduling3ViewModel.day==scheduling3ViewModel1.day && scheduling3ViewModel.periodID == scheduling3ViewModel1.periodID && scheduling3ViewModel.PD == scheduling3ViewModel1.PD && scheduling3ViewModel.startTime == scheduling3ViewModel1.startTime)
+                {
+                    BaseList.Remove(scheduling3ViewModel);
+                   
+                    MessageBox.Show(BaseList.Count().ToString());
+
+                }
+
+            }
+
+
 
         }
     }

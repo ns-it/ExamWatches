@@ -170,6 +170,7 @@ namespace ExamWatches.Views
         // فحص في حال تم ادخال بيانات الامتحان حسب رقم الفصل والسنة
         private void year_DropDownClosed(object sender, EventArgs e)
         {
+            
             if (first.IsChecked == true)
             {
                 semNum = 1;
