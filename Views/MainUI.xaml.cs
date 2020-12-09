@@ -20,13 +20,13 @@ namespace ExamWatches.Views
     /// </summary>
     public partial class MainUI : Window
     {
-        readonly Scheduling1 scheduling1;
-        readonly Scheduling2 scheduling2;
-        readonly Scheduling3 scheduling3;
-        readonly SchedulingFinal schedulingFinal;
-        readonly WatcherScheduling watcherScheduling;
+        Scheduling1 scheduling1;
+        Scheduling2 scheduling2;
+        Scheduling3 scheduling3;
+        SchedulingFinal schedulingFinal;
+        WatcherScheduling watcherScheduling;
 
-     public string CurrentUserName { get; private set; }
+        public string CurrentUserName { get; private set; }
 
         //Scheduling1ViewModel scheduling1ViewModel;
         //Scheduling2ViewModel scheduling2ViewModel;
@@ -42,8 +42,7 @@ namespace ExamWatches.Views
             scheduling1 = new Scheduling1();
             scheduling2 = new Scheduling2();
             scheduling3 = new Scheduling3();
-            schedulingFinal = new SchedulingFinal();
-            watcherScheduling = new WatcherScheduling();
+
 
             //scheduling1ViewModel = new Scheduling1ViewModel();
             //scheduling2ViewModel = new Scheduling2ViewModel();
@@ -52,6 +51,8 @@ namespace ExamWatches.Views
             //watcherSchedulingViewModel = new WatcherSchedulingViewModel();
 
             DataContext = scheduling1;
+            ShowScheduling1.IsChecked = true;
+
 
             //int id = LogIn.user_id;
             //using (ExamWatchesDBContext db = new ExamWatchesDBContext())
@@ -85,39 +86,92 @@ namespace ExamWatches.Views
         private void ShowScheduling1_Click(object sender, RoutedEventArgs e)
         {
             DataContext = scheduling1;
+
+            ShowScheduling1.IsChecked = true;
+            ShowScheduling2.IsChecked = false;
+            ShowScheduling3.IsChecked = false;
+            //ShowSchedulingFinal.IsChecked = false;
+            //ShowWatcherScheduling.IsChecked = false;
+
             //DataContext = scheduling1ViewModel;
         }
 
         private void ShowScheduling2_Click(object sender, RoutedEventArgs e)
         {
             DataContext = scheduling2;
+
+            ShowScheduling1.IsChecked = false;
+            ShowScheduling2.IsChecked = true;
+            ShowScheduling3.IsChecked = false;
+            //ShowSchedulingFinal.IsChecked = false;
+            //ShowWatcherScheduling.IsChecked = false;
+
             //DataContext = scheduling2ViewModel;
         }
 
         private void ShowScheduling3_Click(object sender, RoutedEventArgs e)
         {
             DataContext = scheduling3;
+            ShowScheduling1.IsChecked = false;
+            ShowScheduling2.IsChecked = false;
+            ShowScheduling3.IsChecked = true;
+            //ShowSchedulingFinal.IsChecked = false;
+            //ShowWatcherScheduling.IsChecked = false;
+
             //DataContext = scheduling3ViewModel;
         }
 
         private void ShowSchedulingFinal_Click(object sender, RoutedEventArgs e)
         {
+            schedulingFinal = new SchedulingFinal();
+
             DataContext = schedulingFinal;
+
+            //ShowScheduling1.IsChecked = false;
+            //ShowScheduling2.IsChecked = false;
+            //ShowScheduling3.IsChecked = false;
+            ShowSchedulingFinal.IsChecked = true;
+            ShowWatcherScheduling.IsChecked = false;
+
             //DataContext = schedulingFinalViewModel;
 
         }
 
         private void ShowWatcherScheduling_Click(object sender, RoutedEventArgs e)
         {
+            watcherScheduling = new WatcherScheduling();
             DataContext = watcherScheduling;
+
+            //ShowScheduling1.IsChecked = false;
+            //ShowScheduling2.IsChecked = false;
+            //ShowScheduling3.IsChecked = false;
+            ShowSchedulingFinal.IsChecked = false;
+            ShowWatcherScheduling.IsChecked = true;
+
             //DataContext = watcherSchedulingViewModel;
+        }
+
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SchedulingProcessTab.IsSelected)
+            { DataContext = scheduling1; }
+            if (FinalSchedulingTab.IsSelected)
+            {
+                schedulingFinal = new SchedulingFinal();
+                DataContext = schedulingFinal;
+            }
+
+
         }
 
         private void ChangeUser_Click(object sender, RoutedEventArgs e)
         {
-           
+
             new LogIn().Show();
             this.Close();
         }
+
+
     }
 }

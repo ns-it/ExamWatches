@@ -23,7 +23,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Style="{StaticResource TitleBlock }">
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource TitleBlock }" FontSize="15">
                         <Run Text=" جدول توزيع المراقبات النهائي في: "/>
             <Run Text="{Binding CollegeName}"/>
         </TextBlock>

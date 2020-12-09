@@ -13,15 +13,19 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+  
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -35,17 +39,9 @@
             <TextBox x:Name="DefaultDuration"  Grid.Row="1" Grid.Column="1"/>
             <TextBox x:Name="DefaultStartTime"  Grid.Row="2" Grid.Column="1"/>
 
-        </Grid>
-        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0">
-            <TextBlock>تحديد أيام الامتحان</TextBlock>
-            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" SelectionMode="SingleDate" SelectedDatesChanged="ExamDays_SelectedDatesChanged_2" />
-            <Button x:Name="addToDatagrid" Content="اضف إلى الجدول الثاني" Click="Button_Click" Style="{StaticResource RoundButton}" />
-
-        </StackPanel>
-
-
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <DataGrid x:Name="Periods" HorizontalAlignment="Stretch" CanUserAddRows="False" Height="auto" Width="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"   >
+            <DataGrid x:Name="Periods"  Grid.Row="3" Grid.ColumnSpan="2"
+                      HorizontalAlignment="Stretch" 
+                      CanUserAddRows="False" Height="auto" Width="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"   >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding dayDate, UpdateSourceTrigger=PropertyChanged,StringFormat='dd/MM/yyyy'}"  />
                     <!--<DataGridComboBoxColumn Header="عدد الفترات الامتحانية   " Width="1.8*" SelectedItemBinding="{Binding }" />-->
@@ -57,11 +53,25 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                 
+
 
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="Periods2" CanUserAddRows="False" Height="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
+            <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="reset" Content="تفريغ " Style="{StaticResource RoundButton}" Click="reset_Click" Grid.Column="0"/>
+                <Button x:Name="addToDatagrid" Grid.Column="1" 
+                    Content="اضف إلى الجدول الثاني" Click="Button_Click" Style="{StaticResource RoundButton}" />
+
+
+            </Grid>
+
+            <DataGrid x:Name="Periods2" Grid.Row="5" Grid.ColumnSpan="2"
+                      CanUserAddRows="False" Height="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding day, UpdateSourceTrigger=PropertyChanged,StringFormat='dd/MM/yyyy'}"  />
                     <!--<DataGridComboBoxColumn Header="عدد الفترات الامتحانية   " Width="1.8*" SelectedItemBinding="{Binding }" />-->
@@ -88,6 +98,16 @@
                 </DataGrid.Columns>
             </DataGrid>
 
+        </Grid>
+        <StackPanel  Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Top" Margin="10,0">
+            <TextBlock>تحديد أيام الامتحان</TextBlock>
+            <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" SelectionMode="SingleDate" SelectedDatesChanged="ExamDays_SelectedDatesChanged_2" />
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -95,7 +115,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="reset" Content="تفريغ " Style="{StaticResource RoundButton}" Click="reset_Click" Grid.Column="0"/>
+            <!--<Button x:Name="reset" Content="تفريغ " Style="{StaticResource RoundButton}" Click="reset_Click" Grid.Column="0"/>-->
             <Button  Content="بدء التوزيع" Style="{StaticResource RoundButton}" Click="Button_Click_1" Grid.Column="1"/>
 
         </Grid>

@@ -29,7 +29,7 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.ColumnSpan="2">
+        <TabControl Grid.ColumnSpan="2" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="التهيئة">
                 <Grid>
                     <TabControl TabStripPlacement="Left">
@@ -51,7 +51,7 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="توزيع المراقبات" x:Name="SchedulingTab">
+            <TabItem Header="توزيع المراقبات" x:Name="SchedulingProcessTab">
 
                 <Grid >
                     <Grid.ColumnDefinitions>
@@ -62,14 +62,29 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Content="1" x:Name="ShowScheduling1" Click="ShowScheduling1_Click"/>
-                        <Button Content="2" x:Name="ShowScheduling2" Click="ShowScheduling2_Click"/>
-                        <Button Content="3" x:Name="ShowScheduling3" Click="ShowScheduling3_Click"/>
-                        <Button Content="4" x:Name="ShowSchedulingFinal" Click="ShowSchedulingFinal_Click"/>
-                        <Button Content="5" x:Name="ShowWatcherScheduling" Click="ShowWatcherScheduling_Click"/>
+                        <ToggleButton Content="اختيار المراقبين والقاعات" x:Name="ShowScheduling1" Click="ShowScheduling1_Click" IsChecked="True"/>
+                        <TextBlock Text=">>"/>
+                        <ToggleButton Content="فرز المراقبين وفق نوع المراقبة" x:Name="ShowScheduling2" Click="ShowScheduling2_Click"/>
+                        <TextBlock Text=">>"/>
+                        <ToggleButton Content="اختيار الأيام والفترات" x:Name="ShowScheduling3" Click="ShowScheduling3_Click"/>
                     </StackPanel>
                     <ContentControl Grid.Row="1" Content="{Binding}" />
                 </Grid>
+            </TabItem>
+            <TabItem Header="الجدول النهائي" x:Name="FinalSchedulingTab">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ToggleButton Content="المراقبات حسب الفترة الامتحانية" x:Name="ShowSchedulingFinal" Click="ShowSchedulingFinal_Click"/>
+                        <ToggleButton Content="المراقبات حسب اسم المراقب" x:Name="ShowWatcherScheduling" Click="ShowWatcherScheduling_Click"/>
+
+                    </StackPanel>
+                    <ContentControl Grid.Row="1" Content="{Binding}" />
+                </Grid>
+
             </TabItem>
 
         </TabControl>

@@ -17,14 +17,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Height="200" VerticalAlignment="Bottom">
+        <StackPanel Grid.Row="0" Grid.Column="0"  VerticalAlignment="Center">
             <Label Content="عرض الموظفين من كلية"/>
             <ListBox x:Name="employeelist" SelectionChanged="employeelist_SelectionChanged"  >
 
 
             </ListBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
             <Label Content="عرض القاعات من كلية"/>
             <ListBox x:Name="roomlist" SelectionChanged="roomlist_SelectionChanged">
 
