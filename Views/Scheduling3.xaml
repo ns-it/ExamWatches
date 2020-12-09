@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
         mc:Ignorable="d"
-       Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600"
+       Height="auto" Width="auto" d:DesignHeight="600" d:DesignWidth="800"
              FlowDirection="RightToLeft" Loaded="UserControl_Loaded">
     <Grid Margin="20,20,20,20">
         <Grid.ColumnDefinitions>
@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="0" Grid.Column="1">
@@ -36,9 +36,11 @@
             <TextBox x:Name="DefaultStartTime"  Grid.Row="2" Grid.Column="1"/>
 
         </Grid>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,0">
             <TextBlock>تحديد أيام الامتحان</TextBlock>
             <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" x:Name="ExamDays" SelectionMode="SingleDate" SelectedDatesChanged="ExamDays_SelectedDatesChanged_2" />
+            <Button x:Name="addToDatagrid" Content="اضف إلى الجدول الثاني" Click="Button_Click" Style="{StaticResource RoundButton}" />
+
         </StackPanel>
 
 
@@ -85,10 +87,18 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="reset" Content="تفريغ " Click="reset_Click"/>
+
         </StackPanel>
-        <Button Grid.Column="1" Grid.Row="2" Content="بدء التوزيع" Style="{StaticResource RoundButton}" Click="Button_Click_1"/>
-        <Button x:Name="addToDatagrid" Content="اضف إلى الجدول الثاني" HorizontalAlignment="Center" Margin="0,210,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.477,0.285" Click="Button_Click" Grid.RowSpan="2"/>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="reset" Content="تفريغ " Style="{StaticResource RoundButton}" Click="reset_Click" Grid.Column="0"/>
+            <Button  Content="بدء التوزيع" Style="{StaticResource RoundButton}" Click="Button_Click_1" Grid.Column="1"/>
+
+        </Grid>
         <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >
             <Button x:Name="Previous" Content="السابق" Click="Previous_Click" />
             <Button x:Name="Next" Content="التالي" Click="Next_Click" />
