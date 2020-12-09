@@ -286,7 +286,7 @@ namespace ExamWatches.Views
         private void reset_Click(object sender, RoutedEventArgs e)
         {
             FirstDataGramData.Clear();
-            SecondDataGramData.Clear();
+           // SecondDataGramData.Clear();
             // UserControl_Loaded();
 
             List<Watch> wachList = new List<Watch>();
@@ -326,7 +326,8 @@ namespace ExamWatches.Views
                     model.day = (DateTime)w.WatchDate;
                     model.periodID = (short)w.PeriodId;
                     model.startTime = (TimeSpan)w.StartTime;
-                    model.PD = (decimal)w.Duration;
+                model.periodDuration = periodDurationList;
+                model.PD =(decimal) w.Duration;
 
                     SecondDataGramData.Add(model);
                 }
