@@ -83,9 +83,21 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Content="الفصل الدراسي" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <RadioButton x:Name="first" Content="الأول" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Checked="first_Checked"/>
-                <RadioButton x:Name="second" Content="الثاني"  Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="second_Checked" />
-                <RadioButton x:Name="third" Content="الثالث" Grid.Row="1" Grid.Column="6" VerticalAlignment="Center" Checked="third_Checked"/>
+                <GroupBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="5" BorderThickness="0">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <RadioButton x:Name="first" Content="الأول"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Checked="first_Checked"/>
+                            <RadioButton x:Name="second" Content="الثاني"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="second_Checked" />
+                            <RadioButton x:Name="third" Content="الثالث"  Grid.Column="2" VerticalAlignment="Center" Checked="third_Checked"/>
+
+                        </Grid>
+          
+                </GroupBox>
 
                 <Label Content="العام الدراسي" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
                 <ComboBox x:Name="year" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" DropDownClosed="year_DropDownClosed">

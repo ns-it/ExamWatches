@@ -154,8 +154,8 @@ namespace ExamWatches.Views
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SchedulingProcessTab.IsSelected)
-            { DataContext = scheduling1; }
+            //if (SchedulingProcessTab.IsSelected)
+            //{ DataContext = scheduling1; }
             if (FinalSchedulingTab.IsSelected)
             {
                 schedulingFinal = new SchedulingFinal();
