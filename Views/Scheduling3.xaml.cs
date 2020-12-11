@@ -289,25 +289,25 @@ namespace ExamWatches.Views
            // SecondDataGramData.Clear();
             // UserControl_Loaded();
 
-            List<Watch> wachList = new List<Watch>();
+            //List<Watch> wachList = new List<Watch>();
 
-            wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
-            MessageBox.Show(wachList.Count().ToString());
-            foreach (Watch w in wachList)
-            {
+            //wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
+            //MessageBox.Show(wachList.Count().ToString());
+            //foreach (Watch w in wachList)
+            //{
 
-                Scheduling3ViewModel model = new Scheduling3ViewModel();
-                model.day = (DateTime)w.WatchDate;
-                model.periodID = (short)w.PeriodId;
-                model.startTime = (TimeSpan)w.StartTime;
-                model.PD = (decimal)w.Duration;
+            //    Scheduling3ViewModel model = new Scheduling3ViewModel();
+            //    model.day = (DateTime)w.WatchDate;
+            //    model.periodID = (short)w.PeriodId;
+            //    model.startTime = (TimeSpan)w.StartTime;
+            //    model.PD = (decimal)w.Duration;
 
-                SecondDataGramData.Add(model);
-
-
+            //    SecondDataGramData.Add(model);
 
 
-            }
+
+
+            //}
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

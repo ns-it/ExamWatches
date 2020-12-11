@@ -35,5 +35,10 @@ namespace ExamWatches.Views
         {
             RoomsInitVM.SelectedItemChangedAction(null);
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

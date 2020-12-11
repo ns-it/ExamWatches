@@ -28,7 +28,7 @@ namespace ExamWatches.Views
         int semNum;
         string yearNum;
         public static short examID;
-        public static short exID;
+      //  public static short exID;
         // متحول يحتفظ برقم المستخدم الذي قام بتسجيل الدخول
         int user_id = Convert.ToInt32(App.Current.Properties["user_id"]);
         // غرض للتعامل مع القاعدة
@@ -55,10 +55,36 @@ namespace ExamWatches.Views
             InitializeComponent();
             add_collage_list();
             intialize_windows();
+            SaveButton.IsEnabled = false;
 
             days.Text = _numValue.ToString();
+            work_locationl = db.WorkLocations.Where(x => x.Name == collageList.Text).FirstOrDefault();
+            getExamID();
 
 
+        }
+
+
+        public void getExamID() {
+            Exam e = new Exam();
+            e = db.Exams.OrderByDescending(x => x.Id).Where(x => x.WorkLocationId == work_locationl.Id).FirstOrDefault();
+
+            examID = db.Exams.OrderByDescending(x => x.Id).Where(x=>x.WorkLocationId==work_locationl.Id).FirstOrDefault().Id;
+            MessageBox.Show(examID.ToString());
+            if (e.Semester == 1)
+            { first.IsChecked = true; }
+            if (e.Semester == 2)
+            { second.IsChecked = true; }
+            if (e.Semester == 3)
+            { third.IsChecked = true; }
+
+            year.Text = e.AcademicYear;
+            days.Text = e.DaysNumber.ToString();
+            startDate.Text = e.StartTime.ToString();
+            endDate.Text = e.EndTime.ToString();
+
+        
+        
         }
         // تهيئة القائمة الخاصة بأسماء الكليات
         public void add_collage_list()
@@ -237,17 +263,26 @@ namespace ExamWatches.Views
         private void first_Checked(object sender, RoutedEventArgs e)
         {
             year.Text = null;
+            days.Text = null;
+            startDate.Text = null;
+            endDate.Text = null;
         }
 
         private void second_Checked(object sender, RoutedEventArgs e)
         {
             year.Text = null;
+            days.Text = null;
+            startDate.Text = null;
+            endDate.Text = null;
 
         }
 
         private void third_Checked(object sender, RoutedEventArgs e)
         {
             year.Text = null;
+            days.Text = null;
+            startDate.Text = null;
+            endDate.Text = null;
         }
     }
 

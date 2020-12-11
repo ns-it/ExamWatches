@@ -1,6 +1,9 @@
-﻿using ExamWatches.Utilities;
+﻿using ExamWatches.Models;
+using ExamWatches.Utilities;
+using ExamWatches.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Printing;
 using System.Text;
 using System.Windows;
@@ -20,6 +23,8 @@ namespace ExamWatches.Views
     /// </summary>
     public partial class SchedulingFinal : UserControl
     {
+
+        ExamWatchesDBContext db = new ExamWatchesDBContext();
         public SchedulingFinal()
         {
             InitializeComponent();
@@ -29,87 +34,39 @@ namespace ExamWatches.Views
 
 
 
-        private FlowDocument CreateFlowDocument()
-        {
-            // Create a FlowDocument  
-            FlowDocument doc = new FlowDocument();
-            // Create a Section  
-            Section sec = new Section();
-            // Create first Paragraph  
-            Paragraph p1 = new Paragraph();
-            // Create and add a new Bold, Italic and Underline  
-            Bold bld = new Bold();
-            bld.Inlines.Add(new Run("First Paragraph"));
-            Italic italicBld = new Italic();
-            italicBld.Inlines.Add(bld);
-            Underline underlineItalicBld = new Underline();
-            underlineItalicBld.Inlines.Add(italicBld);
-            // Add Bold, Italic, Underline to Paragraph  
-            p1.Inlines.Add(underlineItalicBld);
-            // Add Paragraph to Section  
-            sec.Blocks.Add(p1);
-            // Add Section to FlowDocument  
-            doc.Blocks.Add(sec);
-            return doc;
-        }
 
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
-
-
-            //PrintDialog printDlg = new PrintDialog();
-
-            //printDlg.PrintVisual(PrintArea, "User Control Printing.");
-
-
-
-
-            //----------------< Print_Document() >-----------------------
-
-            //----< Get_Print_Dialog_and_Printer >----
-
-            PrintDialog printDialog = new PrintDialog();
-
-            printDialog.PrintQueue = LocalPrintServer.GetDefaultPrintQueue();
-
-            printDialog.PrintTicket = printDialog.PrintQueue.DefaultPrintTicket;
-
-    
-
-            printDialog.PrintTicket.PageOrientation = PageOrientation.Landscape;
-
-            printDialog.PrintTicket.PageScalingFactor = 90;
-
-            printDialog.PrintTicket.PageMediaSize = new PageMediaSize(PageMediaSizeName.ISOA4);
-
-            printDialog.PrintTicket.PageBorderless = PageBorderless.None;
             
+         
+            ObservableCollection<WatchTableViewModel> list = new ObservableCollection<WatchTableViewModel>();
+          list=  WatchesSchedule.ItemsSource as ObservableCollection<WatchTableViewModel>;
+            MessageBox.Show(list.Count.ToString());
+            foreach (WatchTableViewModel wtvm in list) {
+                Final f = new Final();
 
-            if (printDialog.ShowDialog() == true)
+                f.Date = date.Text;
+                f.Period = period.Text;
+                f.Roomname=  wtvm.Room.Name;
+             f.RoomChief=   wtvm.RoomChiefs;
+            f.RoomSecretarie=    wtvm.RoomSecretaries;
+              f.RoomWatcher=  wtvm.RoomWatchers;
 
-            {
-
-                //----< print >----   
-
-                // set the print ticket for the document sequence and write it to the printer.
-
-                //-< send_document_to_printer >-
-
-                XpsDocumentWriter writer = PrintQueue.CreateXpsDocumentWriter(printDialog.PrintQueue);
-
-                writer.WriteAsync(PrintArea, printDialog.PrintTicket);
-                
-
-                //-</ send_document_to_printer >-
-
-                //----</ print >----   
-
+                db.Finals.Add(f);
+                db.SaveChanges();
+            
+            
             }
+
+
 
 
         }
 
-      
+        private void WatchesSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
