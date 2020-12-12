@@ -71,7 +71,7 @@
             </Grid>
 
             <DataGrid x:Name="Periods2" Grid.Row="5" Grid.ColumnSpan="2"
-                      CanUserAddRows="False" Height="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  >
+                      CanUserAddRows="False" Height="auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Margin="0,0,0,-6" Grid.RowSpan="2"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="اليوم " Width="*" Binding="{Binding day, UpdateSourceTrigger=PropertyChanged,StringFormat='dd/MM/yyyy'}"  />
                     <!--<DataGridComboBoxColumn Header="عدد الفترات الامتحانية   " Width="1.8*" SelectedItemBinding="{Binding }" />-->

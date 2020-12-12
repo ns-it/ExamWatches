@@ -345,7 +345,7 @@ namespace ExamWatches.Views
             List<Watch> wachList = new List<Watch>();
 
             wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
-            
+          
             foreach (Watch w in wachList)
             {
                 if(w.WatchDate==scheduling3ViewModel.day && w.PeriodId==scheduling3ViewModel.periodID && w.StartTime==scheduling3ViewModel.startTime && w.Duration==scheduling3ViewModel.PD)

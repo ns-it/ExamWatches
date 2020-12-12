@@ -8,14 +8,15 @@
         xmlns:nc="clr-namespace:Microsoft.Reporting.NETCore;assembly=Microsoft.ReportViewer.NETCore"
         mc:Ignorable="d"
         Title="report1" Height="450" Width="800">
-    <Grid>
-        <WindowsFormsHost HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="800">
+    <Grid Margin="0,79,0,0">
+        <WindowsFormsHost HorizontalAlignment="Center" Height="356" VerticalAlignment="Center" Width="800">
             <rv:ReportViewer x:Name="repviewer">
 
 
             </rv:ReportViewer>
 
         </WindowsFormsHost>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="47,-65,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.257,-0.329"/>
 
     </Grid>
 </Window>

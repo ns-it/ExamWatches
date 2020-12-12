@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="final" msprop:Generator_TableClassName="finalDataTable" msprop:Generator_TableVarName="tablefinal" msprop:Generator_TablePropName="final" msprop:Generator_RowDeletingName="finalRowDeleting" msprop:Generator_RowChangingName="finalRowChanging" msprop:Generator_RowEvHandlerName="finalRowChangeEventHandler" msprop:Generator_RowDeletedName="finalRowDeleted" msprop:Generator_UserTableName="final" msprop:Generator_RowChangedName="finalRowChanged" msprop:Generator_RowEvArgName="finalRowChangeEvent" msprop:Generator_RowClassName="finalRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:short" />
+              <xs:element name="date" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_UserColumnName="date" type="xs:string" minOccurs="0" />
+              <xs:element name="period" msprop:Generator_ColumnVarNameInTable="columnperiod" msprop:Generator_ColumnPropNameInRow="period" msprop:Generator_ColumnPropNameInTable="periodColumn" msprop:Generator_UserColumnName="period" type="xs:string" minOccurs="0" />
+              <xs:element name="roomName" msprop:Generator_ColumnVarNameInTable="columnroomName" msprop:Generator_ColumnPropNameInRow="roomName" msprop:Generator_ColumnPropNameInTable="roomNameColumn" msprop:Generator_UserColumnName="roomName" type="xs:string" minOccurs="0" />
+              <xs:element name="RoomChief" msprop:Generator_ColumnVarNameInTable="columnRoomChief" msprop:Generator_ColumnPropNameInRow="RoomChief" msprop:Generator_ColumnPropNameInTable="RoomChiefColumn" msprop:Generator_UserColumnName="RoomChief" type="xs:string" minOccurs="0" />
+              <xs:element name="RoomSecretarie" msprop:Generator_ColumnVarNameInTable="columnRoomSecretarie" msprop:Generator_ColumnPropNameInRow="RoomSecretarie" msprop:Generator_ColumnPropNameInTable="RoomSecretarieColumn" msprop:Generator_UserColumnName="RoomSecretarie" type="xs:string" minOccurs="0" />
+              <xs:element name="RoomWatcher" msprop:Generator_ColumnVarNameInTable="columnRoomWatcher" msprop:Generator_ColumnPropNameInRow="RoomWatcher" msprop:Generator_ColumnPropNameInTable="RoomWatcherColumn" msprop:Generator_UserColumnName="RoomWatcher" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

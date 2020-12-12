@@ -4,6 +4,7 @@ using ExamWatches.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Printing;
 using System.Text;
 using System.Windows;
@@ -38,26 +39,36 @@ namespace ExamWatches.Views
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
+            List<Final> flist = new List<Final>();
+            flist = db.Finals.ToList<Final>();
+
+            foreach (Final i in flist) {
+                db.Finals.Remove(i);
+                db.SaveChanges();
             
-         
-            ObservableCollection<WatchTableViewModel> list = new ObservableCollection<WatchTableViewModel>();
-          list=  WatchesSchedule.ItemsSource as ObservableCollection<WatchTableViewModel>;
-            MessageBox.Show(list.Count.ToString());
-            foreach (WatchTableViewModel wtvm in list) {
+            }
+
+
+            foreach (WatchTableViewModel wtvm in WatchesSchedule.Items)
+            {
                 Final f = new Final();
 
                 f.Date = date.Text;
                 f.Period = period.Text;
-                f.Roomname=  wtvm.Room.Name;
-             f.RoomChief=   wtvm.RoomChiefs;
-            f.RoomSecretarie=    wtvm.RoomSecretaries;
-              f.RoomWatcher=  wtvm.RoomWatchers;
+                f.Roomname = wtvm.Room.Name;
+                f.RoomChief = wtvm.RoomChiefs;
+                f.RoomSecretarie = wtvm.RoomSecretaries;
+                f.RoomWatcher = wtvm.RoomWatchers;
 
                 db.Finals.Add(f);
+
                 db.SaveChanges();
-            
-            
+
+
+
             }
+            report1 r = new report1();
+            r.Show();
 
 
 
