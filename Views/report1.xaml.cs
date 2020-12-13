@@ -57,7 +57,8 @@ namespace ExamWatches.Views
             DataTable dt = getDataTable();
             ReportDataSource ds = new ReportDataSource("DataSet1", dt);
             repviewer.LocalReport.DataSources.Add(ds);
-            repviewer.LocalReport.ReportEmbeddedResource = "ExamWatches.Report1.rdlc";
+            repviewer.LocalReport.ReportPath = "Report1.rdlc";
+            
             repviewer.RefreshReport();
         }
     }
