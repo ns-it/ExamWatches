@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Text;
 using System.Windows;
@@ -40,7 +41,7 @@ namespace ExamWatches.Views
             //SqlDataAdapter adp = new SqlDataAdapter(sql);
             //adp.Fill(dt);
             
-          SqlConnection nwindConn = new SqlConnection("Data Source=DESKTOP-9841DFE;Initial Catalog=exam_watches;Integrated Security=True");
+          SqlConnection nwindConn = new SqlConnection(ConfigurationManager.ConnectionStrings["WatchConn"].ConnectionString);
            SqlCommand selectCMD = new SqlCommand("SELECT * FROM final", nwindConn);
             SqlDataAdapter customerDA = new SqlDataAdapter();
             customerDA.SelectCommand = selectCMD;

@@ -19,8 +19,8 @@
             <ColumnDefinition Width=".2*"/>
         </Grid.ColumnDefinitions>-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
- 
+            <RowDefinition Height="*"/>
+
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
@@ -28,7 +28,7 @@
                 <Setter Property="Padding" Value="5,5,5,5" />
             </Style>
         </Grid.Resources>
-        <GroupBox Header="معلومات الكلية" Grid.Row="0" Grid.ColumnSpan="8" Padding="100">
+        <GroupBox Header="معلومات الكلية" Grid.Row="0" Grid.ColumnSpan="8" Padding="100 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -37,32 +37,32 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-
+                    <RowDefinition/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Content="الكلية" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="collageList" Grid.Row="0" Grid.Column="1"   IsEnabled="False" HorizontalAlignment="Stretch" />
-
-                
-                <Label Content="اسم العميد" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="dean_name" Grid.Row="1" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" />
-                <Button x:Name="DeanNameStartEdit" Grid.Row="1" Grid.Column="2" Content="تعديل"/>
-                <Button x:Name="DeanNameSaveChanges" Grid.Row="1" Grid.Column="3" Content="حفظ"/>
+                <Label Content="الكلية" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="collageList" Grid.Row="1" Grid.Column="1"   IsEnabled="False" HorizontalAlignment="Stretch" />
 
 
-                <Label Content="رئيس الدائرة" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="manager_name" Grid.Row="2" Grid.Column="1"  IsEnabled="False" HorizontalAlignment="Stretch" />
-                <Button x:Name="ManagerNameStartEdit" Grid.Row="2" Grid.Column="2" Content="تعديل"/>
-                <Button x:Name="ManagerNameSaveChanges" Grid.Row="2" Grid.Column="3" Content="حفظ"/>
+                <Label Content="اسم العميد" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="dean_name" Grid.Row="2" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" />
+                <Button x:Name="DeanNameStartEdit" Grid.Row="2" Grid.Column="2" Content="تعديل"/>
+                <Button x:Name="DeanNameSaveChanges" Grid.Row="2" Grid.Column="3" Content="حفظ"/>
+
+
+                <Label Content="رئيس الدائرة" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="manager_name" Grid.Row="3" Grid.Column="1"  IsEnabled="False" HorizontalAlignment="Stretch" />
+                <Button x:Name="ManagerNameStartEdit" Grid.Row="3" Grid.Column="2" Content="تعديل"/>
+                <Button x:Name="ManagerNameSaveChanges" Grid.Row="3" Grid.Column="3" Content="حفظ"/>
 
 
 
             </Grid>
         </GroupBox>
-        <GroupBox Header="معلومات الامتحان" Grid.Row="1" Padding="100">
+        <GroupBox Header="معلومات الامتحان" Grid.Row="1" Padding="100 0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -72,7 +72,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
-      
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -85,18 +85,18 @@
                 <Label Content="الفصل الدراسي" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right"/>
                 <GroupBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="5" BorderThickness="0">
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <RadioButton x:Name="first" Content="الأول"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Checked="first_Checked"/>
-                            <RadioButton x:Name="second" Content="الثاني"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="second_Checked" />
-                            <RadioButton x:Name="third" Content="الثالث"  Grid.Column="2" VerticalAlignment="Center" Checked="third_Checked"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="first" Content="الأول"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Checked="first_Checked"/>
+                        <RadioButton x:Name="second" Content="الثاني"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="second_Checked" />
+                        <RadioButton x:Name="third" Content="الثالث"  Grid.Column="2" VerticalAlignment="Center" Checked="third_Checked"/>
 
-                        </Grid>
-          
+                    </Grid>
+
                 </GroupBox>
 
                 <Label Content="العام الدراسي" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
@@ -135,7 +135,7 @@
                     <Button x:Name="cmdDown" x:FieldModifier="private"  Content="🔻" Width="20" Grid.Column="2" Click="cmdDown_Click" FontSize="4" Padding="0" Margin="0,12,0,0" Grid.RowSpan="2" />
                 </Grid>
 
-                <Button x:Name="SaveButton" Style="{StaticResource RoundButton}"  Grid.Row="4"  Grid.Column="6" Click="Button_Click" Content="حفظ" Margin="1,0,1,5" Height="31" VerticalAlignment="Bottom"/>
+                <Button x:Name="SaveButton" Style="{StaticResource RoundButton}"  Grid.Row="4"  Grid.Column="6" Click="Button_Click" Content="حفظ"  VerticalAlignment="Top"/>
                 <Button x:Name="Update" Style="{StaticResource RoundButton}"  Grid.Row="4"  Grid.Column="4" Content="تعديل"  Click="UpdataButton_Click"   VerticalAlignment="Top" />
 
             </Grid>

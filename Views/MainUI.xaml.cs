@@ -51,7 +51,7 @@ namespace ExamWatches.Views
             //watcherSchedulingViewModel = new WatcherSchedulingViewModel();
 
             DataContext = scheduling1;
-            ShowScheduling1.IsChecked = true;
+            //ShowScheduling1.IsChecked = true;
 
 
             //int id = LogIn.user_id;
@@ -121,45 +121,56 @@ namespace ExamWatches.Views
             //DataContext = scheduling3ViewModel;
         }
 
-        private void ShowSchedulingFinal_Click(object sender, RoutedEventArgs e)
-        {
-            schedulingFinal = new SchedulingFinal();
+        //private void ShowSchedulingFinal_Click(object sender, RoutedEventArgs e)
+        //{
+        //    schedulingFinal = new SchedulingFinal();
 
-            DataContext = schedulingFinal;
+        //    DataContext = schedulingFinal;
 
-            //ShowScheduling1.IsChecked = false;
-            //ShowScheduling2.IsChecked = false;
-            //ShowScheduling3.IsChecked = false;
-            ShowSchedulingFinal.IsChecked = true;
-            ShowWatcherScheduling.IsChecked = false;
+        //    //ShowScheduling1.IsChecked = false;
+        //    //ShowScheduling2.IsChecked = false;
+        //    //ShowScheduling3.IsChecked = false;
+        //    ShowSchedulingFinal.IsChecked = true;
+        //    ShowWatcherScheduling.IsChecked = false;
 
-            //DataContext = schedulingFinalViewModel;
+        //    //DataContext = schedulingFinalViewModel;
 
-        }
+        //}
 
-        private void ShowWatcherScheduling_Click(object sender, RoutedEventArgs e)
-        {
-            watcherScheduling = new WatcherScheduling();
-            DataContext = watcherScheduling;
+        //private void ShowWatcherScheduling_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //watcherScheduling = new WatcherScheduling();
+        //    DataContext = watcherScheduling;
 
-            //ShowScheduling1.IsChecked = false;
-            //ShowScheduling2.IsChecked = false;
-            //ShowScheduling3.IsChecked = false;
-            ShowSchedulingFinal.IsChecked = false;
-            ShowWatcherScheduling.IsChecked = true;
+        //    //ShowScheduling1.IsChecked = false;
+        //    //ShowScheduling2.IsChecked = false;
+        //    //ShowScheduling3.IsChecked = false;
+        //    ShowSchedulingFinal.IsChecked = false;
+        //    ShowWatcherScheduling.IsChecked = true;
 
-            //DataContext = watcherSchedulingViewModel;
-        }
+        //    //DataContext = watcherSchedulingViewModel;
+        //}
 
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (SchedulingProcessTab.IsSelected)
-            //{ DataContext = scheduling1; }
+            ////if (SchedulingProcessTab.IsSelected)
+            ////{ DataContext = scheduling1; }
             if (FinalSchedulingTab.IsSelected)
             {
-                schedulingFinal = new SchedulingFinal();
-                DataContext = schedulingFinal;
+                //schedulingFinal = new SchedulingFinal();
+
+                //watcherScheduling = new WatcherScheduling();
+
+                //WatcherSchedulingViewInstance = new WatcherScheduling();
+                //SchedulingFinalViewInstance = new SchedulingFinal();
+
+
+
+                WatcherSchedulingViewInstance = new WatcherScheduling();
+                SchedulingFinalViewInstance = new SchedulingFinal();
+
+                //DataContext = schedulingFinal;
             }
 
 

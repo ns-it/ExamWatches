@@ -126,13 +126,17 @@ public List<DateTime?> WatchDates { get; set; }
         public DateTime LastDate { get; set; }
         public List<WatcherWatch> WatcherWatchesList { get; set; }
 
+
+        public short CurrentExamId { get; set; }
+
+
         public SchedulingFinalViewModel()
 
         {
 
 
 
-
+            CurrentExamId = Views.ExamInit.examID;
 
             db = new ExamWatchesDBContext();
 
@@ -152,7 +156,7 @@ public List<DateTime?> WatchDates { get; set; }
             .Include(w => w.WatcherWatches).ThenInclude(ww => ww.Room)
             .Include(w => w.WatcherWatches).ThenInclude(ww => ww.Watcher)
            .Where(
-               w => w.ExamId == 211
+               w => w.ExamId == CurrentExamId
 
           )
           .OrderByDescending(w => w.WatchDate).ToList();
