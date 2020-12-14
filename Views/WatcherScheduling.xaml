@@ -27,9 +27,9 @@
             <ComboBox x:Name="WatcherName" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="150" ItemsSource="{Binding Watchers}" DisplayMemberPath="FullName" SelectedValue="{Binding SelectedWatcher}" />
             
             <!--<TextBlock x:Name="Period" Grid.Column="1" Grid.Row="0" Text="مكان العمل: الآداب" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>-->
-            <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="wl" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Run Text=" مكان العمل: "/>
-            <Run Text="{Binding SelectedWatcher.WorkLocation.Name}"/>
+            <Run x:Name="worloc" Text="{Binding SelectedWatcher.WorkLocation.Name}"/>
             </TextBlock>
             <DataGrid x:Name="WatcherSchedule" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding WatchesList}" AutoGenerateColumns="False" CanUserAddRows="False" FlowDirection="RightToLeft">
                 <DataGrid.Columns>

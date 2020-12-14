@@ -1,0 +1,19 @@
+﻿<Window x:Class="ExamWatches.Views.report2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        xmlns:nc="clr-namespace:Microsoft.Reporting.NETCore;assembly=Microsoft.ReportViewer.NETCore"
+        xmlns:local="clr-namespace:ExamWatches.Views"
+        mc:Ignorable="d"
+        Title="report2" Height="450" Width="800">
+    <Grid>
+        <WindowsFormsHost HorizontalAlignment="Left" Height="353" Margin="0,74,0,0" VerticalAlignment="Top" Width="795">
+            <rv:ReportViewer x:Name="repviewer"></rv:ReportViewer>
+
+        </WindowsFormsHost>
+        <Button Content="عرض البيانات" HorizontalAlignment="Left" Margin="684,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
+    </Grid>
+</Window>

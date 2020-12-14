@@ -37,9 +37,7 @@ namespace ExamWatches.Views
       public  DataTable getDataTable() {
             
            DataTable dt = new DataTable();
-            //SqlCommand sql =new SqlCommand("select * from final;");
-            //SqlDataAdapter adp = new SqlDataAdapter(sql);
-            //adp.Fill(dt);
+           
             
           SqlConnection nwindConn = new SqlConnection(ConfigurationManager.ConnectionStrings["WatchConn"].ConnectionString);
            SqlCommand selectCMD = new SqlCommand("SELECT * FROM final", nwindConn);

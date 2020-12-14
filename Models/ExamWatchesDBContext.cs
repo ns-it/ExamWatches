@@ -18,6 +18,7 @@ namespace ExamWatches.Models
 
         public virtual DbSet<Exam> Exams { get; set; }
         public virtual DbSet<Final> Finals { get; set; }
+        public virtual DbSet<Print> Prints { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Watch> Watches { get; set; }
