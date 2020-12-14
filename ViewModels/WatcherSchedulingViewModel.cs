@@ -64,7 +64,7 @@ namespace ExamWatches.ViewModels
             UserWorkLocation = db.WorkLocations.Find(CurrentUser.WorkLocationId);
             CollegeName = CurrentUser.WorkLocation.Name;
 
-            CurrentExamId = 211;
+            CurrentExamId = Views.ExamInit.examID;
 
             WatcherWatches = db.WatcherWatches.Include(x => x.Watcher).Include(ww=>ww.Room).ThenInclude(x => x.WorkLocation).Include(x => x.Watch)
                 //.ThenInclude(x => x.Room)

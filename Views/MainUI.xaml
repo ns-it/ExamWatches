@@ -54,6 +54,17 @@
             <TabItem Header="توزيع المراقبات" x:Name="SchedulingProcessTab">
 
                 <Grid >
+                    <!--<TabControl>
+                        <TabItem Header="اختيار المراقبين والقاعات">
+                            <views:Scheduling1/>
+                        </TabItem>
+                        <TabItem Header="فرز المراقبين وفق نوع القاعة">
+                            <views:Scheduling2/>
+                        </TabItem>
+                        <TabItem Header="اختيار الأيام والفترات">
+                            <views:Scheduling3/>
+                        </TabItem>
+                    </TabControl>-->
                     <Grid.ColumnDefinitions>
 
                     </Grid.ColumnDefinitions>
@@ -63,9 +74,9 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <ToggleButton Content="اختيار المراقبين والقاعات" x:Name="ShowScheduling1" Click="ShowScheduling1_Click" IsChecked="True"/>
-                        <TextBlock Text=">>"/>
+                        <TextBlock Text="›"/>
                         <ToggleButton Content="فرز المراقبين وفق نوع المراقبة" x:Name="ShowScheduling2" Click="ShowScheduling2_Click"/>
-                        <TextBlock Text=">>"/>
+                        <TextBlock Text="›"/>
                         <ToggleButton Content="اختيار الأيام والفترات" x:Name="ShowScheduling3" Click="ShowScheduling3_Click"/>
                     </StackPanel>
                     <ContentControl Grid.Row="1" Content="{Binding}" />
@@ -73,7 +84,15 @@
             </TabItem>
             <TabItem Header="الجدول النهائي" x:Name="FinalSchedulingTab">
                 <Grid>
-                    <Grid.RowDefinitions>
+                    <TabControl>
+                        <TabItem Header="المراقبات حسب الفترة الامتحانية">
+                            <views:SchedulingFinal x:Name="SchedulingFinalViewInstance"/>
+                        </TabItem>
+                        <TabItem Header="المراقبات حسب اسم المراقب">
+                            <views:WatcherScheduling x:Name="WatcherSchedulingViewInstance"/>
+                        </TabItem>
+                    </TabControl>
+                    <!--<Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
@@ -82,7 +101,7 @@
                         <ToggleButton Content="المراقبات حسب اسم المراقب" x:Name="ShowWatcherScheduling" Click="ShowWatcherScheduling_Click"/>
 
                     </StackPanel>
-                    <ContentControl Grid.Row="1" Content="{Binding}" />
+                    <ContentControl Grid.Row="1" Content="{Binding}" />-->
                 </Grid>
 
             </TabItem>

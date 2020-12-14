@@ -126,13 +126,17 @@ public List<DateTime?> WatchDates { get; set; }
         public DateTime LastDate { get; set; }
         public List<WatcherWatch> WatcherWatchesList { get; set; }
 
+
+        public short CurrentExamId { get; set; }
+
+
         public SchedulingFinalViewModel()
 
         {
 
 
 
-
+            CurrentExamId = Views.ExamInit.examID;
 
             db = new ExamWatchesDBContext();
 
