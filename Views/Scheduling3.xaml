@@ -35,9 +35,9 @@
             <Label Content="مدة الفترة الافتراضية" Grid.Row="1" Grid.Column="0"/>
             <Label Content="وقت البدء الافتراضي" Grid.Row="2" Grid.Column="0"/>
 
-            <TextBox x:Name="DefaultPeriodsNumber" Grid.Row="0" Grid.Column="1"/>
-            <TextBox x:Name="DefaultDuration"  Grid.Row="1" Grid.Column="1"/>
-            <TextBox x:Name="DefaultStartTime"  Grid.Row="2" Grid.Column="1"/>
+            <TextBox x:Name="DefaultPeriodsNumber" Grid.Row="0" Grid.Column="1" Text="1"/>
+            <TextBox x:Name="DefaultDuration"  Grid.Row="1" Grid.Column="1" Text="90"/>
+            <TextBox x:Name="DefaultStartTime"  Grid.Row="2" Grid.Column="1" Text="09:00"/>
 
             <DataGrid x:Name="Periods"  Grid.Row="3" Grid.ColumnSpan="2"
                       HorizontalAlignment="Stretch" 
@@ -105,10 +105,6 @@
 
         </StackPanel>
 
-
-        <StackPanel Grid.Row="1" Grid.Column="1">
-
-        </StackPanel>
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

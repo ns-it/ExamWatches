@@ -23,7 +23,7 @@ namespace ExamWatches.Views
     public partial class Scheduling3 : UserControl
 
     {
-       public static int numric = 0;
+        public static int numric = 0;
         ObservableCollection<fillFirstDataGridmodel> FirstDataGramData;
         ObservableCollection<Scheduling3ViewModel> SecondDataGramData;
         ObservableCollection<Scheduling3ViewModel> BaseList;
@@ -40,7 +40,7 @@ namespace ExamWatches.Views
         public WorkLocation UserWorkLocation { get; set; }
         public User CurrentUser { get; set; }
 
-        
+
 
         fillFirstDataGridmodel fillFirstDataGridmodel;
 
@@ -53,7 +53,7 @@ namespace ExamWatches.Views
             FirstDataGramData = new ObservableCollection<fillFirstDataGridmodel>();
             SecondDataGramData = new ObservableCollection<Scheduling3ViewModel>();
             BaseList = new ObservableCollection<Scheduling3ViewModel>();
-       
+
 
             periodList = new ObservableCollection<int>
             {
@@ -61,20 +61,10 @@ namespace ExamWatches.Views
                 2,
                 3
             };
-            periodDurationList = new ObservableCollection<decimal>();
-            periodDurationList.Add(new decimal(60));
-            periodDurationList.Add(new decimal(90));
-            periodDurationList.Add(new decimal(120));
-            periodDurationList.Add(new decimal(150));
-
-            periodDurationList.Add(new decimal(180));
-            periodDurationList.Add(new decimal(210));
-            periodDurationList.Add(new decimal(240));
-
-
-
-
-
+            periodDurationList = new ObservableCollection<decimal>
+            {
+                60,90,120,150,180,210,240
+            };
 
 
             InitializeComponent();
@@ -89,9 +79,7 @@ namespace ExamWatches.Views
             CurrentUser = db.Users.Find(userid);
             UserWorkLocation = db.WorkLocations.Find(CurrentUser.WorkLocationId);
             WORK_LOCATION_ID = UserWorkLocation.Id;
-
             //ComboBox cb= Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
-
         }
 
 
@@ -101,12 +89,10 @@ namespace ExamWatches.Views
             bool t = false;
             foreach (Scheduling3ViewModel scheduling in SecondDataGramData)
             {
-              
                 if (scheduling.day == selelectedDate)
                 {
                     t = true;
                 }
-            
             }
             if (t == false)
             {
@@ -117,16 +103,11 @@ namespace ExamWatches.Views
                 fillFirstDataGridmodel.SelectedNum = 1;
                 FirstDataGramData.Add(fillFirstDataGridmodel);
             }
-            else {
-
+            else
+            {
                 MessageBox.Show("التاريخ مضاف مسبقا");
             }
-
-
         }
-
-
-
 
         private void ExamDays_SelectedDatesChanged_2(object sender, SelectionChangedEventArgs e)
         {
@@ -138,7 +119,7 @@ namespace ExamWatches.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
             foreach (fillFirstDataGridmodel fm in FirstDataGramData)
             {
                 exist = false;
@@ -147,31 +128,32 @@ namespace ExamWatches.Views
                     exist = false;
 
                     Scheduling3ViewModel SV = new Scheduling3ViewModel();
-                    
+
                     foreach (Scheduling3ViewModel second in SecondDataGramData)
                     {
-                        if (  second.day== fm.dayDate && second.periodID==i )
+                        if (second.day == fm.dayDate && second.periodID == i)
                         {
                             exist = true;
                         }
 
                     }
-                    if (exist == false) {
-
-
+                    if (exist == false)
+                    {
                         SV.day = fm.dayDate;
                         SV.periodID = i;
-                    MessageBox.Show(fm.SelectedNum.ToString());
-                    SV.startTime = startTime;
-                    SV.periodDuration = periodDurationList;
-                    SecondDataGramData.Add(SV);
+                        MessageBox.Show(fm.SelectedNum.ToString());
+                        SV.startTime = TimeSpan.Parse(DefaultStartTime.Text);
+                        SV.PD = decimal.Parse(DefaultDuration.Text);
+                        SV.periodDuration = periodDurationList;
+                        SecondDataGramData.Add(SV);
                         BaseList.Add(SV);
                     }
-                else {
-                        MessageBox.Show(" التاريخ   "+ fm.dayDate.ToString("dd/MM/yyyy")+ "   و الفترة   " +  i + "تمت اضافتهم مسبقاَ");
-                
-                }
- 
+                    else
+                    {
+                        MessageBox.Show(" التاريخ   " + fm.dayDate.ToString("dd/MM/yyyy") + "   و الفترة   " + i + "تمت اضافتهم مسبقاَ");
+
+                    }
+
                 }
             }
 
@@ -189,26 +171,29 @@ namespace ExamWatches.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            int NumberOfRooms = Scheduling1.SelectedRooms.Count();
+            int NumberOfCheifs = Scheduling2.BossWatcherList.Count();
+            int NumberOfSecretaries = Scheduling2.SecretaryWatchersList.Count();
+            int NumberOfWatchers = Scheduling2.OrdinaryWatchersList.Count();
 
+            if (NumberOfCheifs < NumberOfRooms) { MessageBox.Show("عدد رؤساء القاعات أقل من عدد القاعات"); return; }
+            if (NumberOfSecretaries < NumberOfRooms) { MessageBox.Show("عدد أمناء السر أقل من عدد القاعات"); return; }
+            if (NumberOfWatchers < NumberOfRooms) { MessageBox.Show("عدد المراقبين أقل من عدد القاعات"); return; }
 
 
             foreach (Scheduling3ViewModel s in BaseList)
             {
-                //foreach (RoomView roomView in Scheduling1.SelectedRooms)
-                //{
-                    w = new Watch()
-                    {
-                        Duration = s.PD,
-                        ExamId = ExamInit.examID,
-                        PeriodId = s.periodID,
-                        StartTime = s.startTime,
-                        WorkLocationId = WORK_LOCATION_ID,
-                        WatchDate = s.day,
-                        WatcherWatches = new List<WatcherWatch>()
-                        //RoomId = roomView.Id
-
-                    };
-                    Watches.Add(w);
+                w = new Watch()
+                {
+                    Duration = s.PD,
+                    ExamId = ExamInit.examID,
+                    PeriodId = s.periodID,
+                    StartTime = s.startTime,
+                    WorkLocationId = WORK_LOCATION_ID,
+                    WatchDate = s.day,
+                    WatcherWatches = new List<WatcherWatch>()
+                };
+                Watches.Add(w);
                 //}
             }
 
@@ -228,56 +213,60 @@ namespace ExamWatches.Views
 
                 foreach (RoomView roomView in Scheduling1.SelectedRooms)
                 {
-                    //foreach(WatcherViewModel wvm in Scheduling2.BossWatcherList)
-                    //{
-                        w.WatcherWatches.Add(
-                            new WatcherWatch()
-                            {
-                                WatchId = w.Id,
-                                WatcherId = RoomChiefs.Dequeue().Id,
-                                //WatcherId = wvm.Id,
-                                WatcherType = "1",
-                                RoomId = roomView.Id
-                            }
-                            );
-                    //}
-                    //foreach (WatcherViewModel wvm in Scheduling2.SecretaryWatchersList)
-                    //{
-                        w.WatcherWatches.Add(
-                            new WatcherWatch()
-                            {
-                                WatchId = w.Id,
-                                WatcherId = RoomSecretaries.Dequeue().Id,
-                                //WatcherId = wvm.Id,
-                                WatcherType = "2",
-                                RoomId = roomView.Id
-                            }
-                            );
-                    //}
-                    //foreach (WatcherViewModel wvm in Scheduling2.OrdinaryWatchersList)
-                    //{
-                        w.WatcherWatches.Add(
-                            new WatcherWatch()
-                            {
-                                WatchId = w.Id,
-                                WatcherId = RoomWatchers.Dequeue().Id,
-                                //WatcherId = wvm.Id,
-                                WatcherType = "3",
-                                RoomId = roomView.Id
-                            }
-                            );
-                    //}
-
-
+                    while (!(RoomChiefs.Count == 0 && RoomSecretaries.Count == 0 && RoomWatchers.Count == 0))
+                    {
+                        //foreach(WatcherViewModel wvm in Scheduling2.BossWatcherList)
+                        //{
+                        if (!RoomChiefs.Count.Equals(0))
+                            w.WatcherWatches.Add(
+                                new WatcherWatch()
+                                {
+                                    WatchId = w.Id,
+                                    WatcherId = RoomChiefs.Dequeue().Id,
+                                    //WatcherId = wvm.Id,
+                                    WatcherType = "1",
+                                    RoomId = roomView.Id
+                                }
+                                );
+                        //}
+                        //foreach (WatcherViewModel wvm in Scheduling2.SecretaryWatchersList)
+                        //{
+                        if (!RoomSecretaries.Count.Equals(0))
+                            w.WatcherWatches.Add(
+                                new WatcherWatch()
+                                {
+                                    WatchId = w.Id,
+                                    WatcherId = RoomSecretaries.Dequeue().Id,
+                                    //WatcherId = wvm.Id,
+                                    WatcherType = "2",
+                                    RoomId = roomView.Id
+                                }
+                                );
+                        //}
+                        //foreach (WatcherViewModel wvm in Scheduling2.OrdinaryWatchersList)
+                        //{
+                        if (!RoomWatchers.Count.Equals(0))
+                            w.WatcherWatches.Add(
+                        new WatcherWatch()
+                        {
+                            WatchId = w.Id,
+                            WatcherId = RoomWatchers.Dequeue().Id,
+                            //WatcherId = wvm.Id,
+                            WatcherType = "3",
+                            RoomId = roomView.Id
+                        }
+                        );
+                    }
 
 
                 }
             }
 
-            foreach(Watch w in Watches)
+
+            foreach (Watch w in Watches)
             {
                 db.Watches.Add(w);
-                
+
             }
             db.SaveChanges();
 
@@ -286,90 +275,51 @@ namespace ExamWatches.Views
         private void reset_Click(object sender, RoutedEventArgs e)
         {
             FirstDataGramData.Clear();
-           // SecondDataGramData.Clear();
-            // UserControl_Loaded();
-
-            //List<Watch> wachList = new List<Watch>();
-
-            //wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
-            //MessageBox.Show(wachList.Count().ToString());
-            //foreach (Watch w in wachList)
-            //{
-
-            //    Scheduling3ViewModel model = new Scheduling3ViewModel();
-            //    model.day = (DateTime)w.WatchDate;
-            //    model.periodID = (short)w.PeriodId;
-            //    model.startTime = (TimeSpan)w.StartTime;
-            //    model.PD = (decimal)w.Duration;
-
-            //    SecondDataGramData.Add(model);
-
-
-
-
-            //}
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             SecondDataGramData.Clear();
-            
-           
             List<Watch> wachList = new List<Watch>();
-
             wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
             MessageBox.Show(wachList.Count().ToString());
-                foreach (Watch w in wachList)
-                {
-
-                    Scheduling3ViewModel model = new Scheduling3ViewModel();
-                    model.day = (DateTime)w.WatchDate;
-                    model.periodID = (short)w.PeriodId;
-                    model.startTime = (TimeSpan)w.StartTime;
+            foreach (Watch w in wachList)
+            {
+                Scheduling3ViewModel model = new Scheduling3ViewModel();
+                model.day = (DateTime)w.WatchDate;
+                model.periodID = (short)w.PeriodId;
+                model.startTime = (TimeSpan)w.StartTime;
                 model.periodDuration = periodDurationList;
-                model.PD =(decimal) w.Duration;
-
-                    SecondDataGramData.Add(model);
-                }
-
-
-
-            
+                model.PD = (decimal)w.Duration;
+                SecondDataGramData.Add(model);
+            }
 
         }
 
         private void delete_day_Click(object sender, RoutedEventArgs e)
         {
-         Scheduling3ViewModel scheduling3ViewModel=   Periods2.SelectedItem as Scheduling3ViewModel;
+            Scheduling3ViewModel scheduling3ViewModel = Periods2.SelectedItem as Scheduling3ViewModel;
             SecondDataGramData.Remove(scheduling3ViewModel);
             List<Watch> wachList = new List<Watch>();
 
             wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
-          
+
             foreach (Watch w in wachList)
             {
-                if(w.WatchDate==scheduling3ViewModel.day && w.PeriodId==scheduling3ViewModel.periodID && w.StartTime==scheduling3ViewModel.startTime && w.Duration==scheduling3ViewModel.PD)
+                if (w.WatchDate == scheduling3ViewModel.day && w.PeriodId == scheduling3ViewModel.periodID && w.StartTime == scheduling3ViewModel.startTime && w.Duration == scheduling3ViewModel.PD)
                 {
                     db.Watches.Remove(w);
                     db.SaveChanges();
-
                 }
-
-
             }
-            foreach (Scheduling3ViewModel scheduling3ViewModel1 in BaseList.ToList()) {
-                if (scheduling3ViewModel.day==scheduling3ViewModel1.day && scheduling3ViewModel.periodID == scheduling3ViewModel1.periodID && scheduling3ViewModel.PD == scheduling3ViewModel1.PD && scheduling3ViewModel.startTime == scheduling3ViewModel1.startTime)
+            foreach (Scheduling3ViewModel scheduling3ViewModel1 in BaseList.ToList())
+            {
+                if (scheduling3ViewModel.day == scheduling3ViewModel1.day && scheduling3ViewModel.periodID == scheduling3ViewModel1.periodID && scheduling3ViewModel.PD == scheduling3ViewModel1.PD && scheduling3ViewModel.startTime == scheduling3ViewModel1.startTime)
                 {
                     BaseList.Remove(scheduling3ViewModel);
-                   
                     MessageBox.Show(BaseList.Count().ToString());
-
                 }
-
             }
-
-
-
         }
     }
 }
