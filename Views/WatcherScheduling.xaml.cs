@@ -48,7 +48,8 @@ namespace ExamWatches.Views
                 Print f = new Print();
                 f.FullName = WatcherName.Text;
                 f.worklocation = worloc.Text;
-                f.WatchDate = wtvm.Watch.WatchDate.ToString();
+                DateTime dttt = (DateTime)wtvm.Watch.WatchDate;
+                f.WatchDate = dttt.ToString("dd/MM/yyyy");
                 f.PeriodId = wtvm.Watch.PeriodId.ToString();
                 f.Name = wtvm.WatchRoom.Name;
                 f.WatchType = wtvm.WatchType;

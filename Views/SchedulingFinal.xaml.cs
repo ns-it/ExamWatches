@@ -44,8 +44,9 @@ namespace ExamWatches.Views
             foreach (WatchTableViewModel wtvm in WatchesSchedule.Items)
             {
                 Final f = new Final();
+                DateTime dtt =(DateTime) date.SelectedValue;
 
-                f.Date = date.Text;
+                f.Date = dtt.ToString("dd/MM/yyyy");
                 f.Period = period.Text;
                 f.Roomname = wtvm.Room.Name;
                 f.RoomChief = wtvm.RoomChiefs;
