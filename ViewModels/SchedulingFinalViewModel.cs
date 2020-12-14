@@ -17,18 +17,18 @@ namespace ExamWatches.ViewModels
         ExamWatchesDBContext db;
         public List<Watch> Watches { get; set; }
 
-        private List<short?> _periodValues;
-        public List<short?> PeriodValues
+        private ObservableCollection<short?> _periodValues;
+        public ObservableCollection<short?> PeriodValues
         {
             get { return _periodValues; }
             set
             {
                 _periodValues = value; OnPropertyChanged("PeriodValues");
-
             }
         }
 
-public List<DateTime?> WatchDates { get; set; }
+
+        public ObservableCollection<DateTime?> WatchDates { get; set; }
 
 
         public ObservableCollection<WatchTableViewModel> WatchesList { get; set; }
@@ -66,7 +66,7 @@ public List<DateTime?> WatchDates { get; set; }
             {
                 _selectedWatchDate = value; OnPropertyChanged("SelectedWatchDate");
                
-                PeriodValues = db.Watches.Where(w=>w.WatchDate.Equals(value)).Select(x => x.PeriodId).Distinct().ToList();
+                PeriodValues = new ObservableCollection<short?>( db.Watches.Where(w=>w.WatchDate.Equals(value)).Select(x => x.PeriodId).Distinct().ToList());
                 OnPropertyChanged("PeriodValues");
                 //OnPropertyChanged("SelectedWatchDuration");
                 //if (!WatchesListView.IsEmpty)
@@ -124,31 +124,37 @@ public List<DateTime?> WatchDates { get; set; }
 
         public DateTime FirstDate { get; set; }
         public DateTime LastDate { get; set; }
-        public List<WatcherWatch> WatcherWatchesList { get; set; }
-
-
+        //public List<WatcherWatch> WatcherWatchesList { get; set; }
         public short CurrentExamId { get; set; }
 
 
         public SchedulingFinalViewModel()
 
         {
-
-
-
             CurrentExamId = Views.ExamInit.examID;
-
             db = new ExamWatchesDBContext();
-
             int userid = Int32.Parse(App.Current.Properties["user_id"].ToString());
             CurrentUser = db.Users.Find(userid);
             UserWorkLocation = db.WorkLocations.Find(CurrentUser.WorkLocationId);
             CollegeName = CurrentUser.WorkLocation.Name;
+            WatchDates = new ObservableCollection<DateTime?>();
+            PeriodValues = new ObservableCollection<short?>();
+            WatchesList = new ObservableCollection<WatchTableViewModel>();
 
-            WatchDates = db.Watches.Select(x => x.WatchDate).Distinct().ToList();
+            Initialization();
 
-            PeriodValues = db.Watches.Select(x => x.PeriodId).Distinct().ToList();
-            //new ObservableCollection<short> { 1, 2, 3 };
+            WatchesListView = CollectionViewSource.GetDefaultView(WatchesList);
+            SelectedWatchDate = WatchDates.FirstOrDefault();
+            SelectedWatchPeriod = PeriodValues.FirstOrDefault();
+
+        }
+
+        public void Initialization()
+        {
+
+            WatchDates.Clear();
+            PeriodValues.Clear();
+            WatchesList.Clear();
 
 
             Watches = db.Watches
@@ -157,19 +163,22 @@ public List<DateTime?> WatchDates { get; set; }
             .Include(w => w.WatcherWatches).ThenInclude(ww => ww.Watcher)
            .Where(
                w => w.ExamId == CurrentExamId
-
           )
           .OrderByDescending(w => w.WatchDate).ToList();
 
             SelectedWatch = Watches.FirstOrDefault();
 
-
-            WatchesList = new ObservableCollection<WatchTableViewModel>();
-            WatcherWatchesList = new List<WatcherWatch>();
+            foreach (DateTime? d in Watches.Select(x => x.WatchDate).Distinct().ToList())
+            {
+                WatchDates.Add(d);
+            }
+            foreach (short? p in Watches.Select(x => x.PeriodId).Distinct().ToList())
+            {
+                PeriodValues.Add(p);
+            }            
+            //WatcherWatchesList = new List<WatcherWatch>();
 
             WatchTableViewModel row;
-
-
 
             foreach (DateTime date in WatchDates)
                 foreach (short p in PeriodValues)
@@ -186,110 +195,32 @@ public List<DateTime?> WatchDates { get; set; }
                             {
                                 row = new WatchTableViewModel()
                                 {
-
                                     Room = db.Rooms.Find(r.FirstOrDefault().RoomId),
                                     Watch = w
-
                                 };
                                 foreach (var ww in r)
                                 {
                                     row.WatcherWatchesList.Add(ww);
 
                                     if (ww.WatcherType.Equals("1"))
-                                        //row.RoomChiefs += ww.Watcher.FullName + "\n";
                                         row.RoomChiefsList.Add(ww.Watcher.FullName);
                                     else if (ww.WatcherType.Equals("2"))
-                                        //row.RoomSecretaries += ww.Watcher.FullName + "\n";
                                         row.RoomSecretariesList.Add(ww.Watcher.FullName);
                                     else if (ww.WatcherType.Equals("3"))
-                                        //row.RoomWatchers += ww.Watcher.FullName + "\n";
                                         row.RoomWatchersList.Add(ww.Watcher.FullName);
-
-
-
                                 }
 
                                 row.RoomChiefs = string.Join(", ", row.RoomChiefsList.ToArray());
                                 row.RoomSecretaries = string.Join(", ", row.RoomSecretariesList.ToArray());
                                 row.RoomWatchers = string.Join(", ", row.RoomWatchersList.ToArray());
 
-
                                 WatchesList.Add(row);
-
                             }
-
-                            //         foreach (WatcherWatch ww in w.WatcherWatches)
-                            //         {
-
-
-                            ////             WatchesList.Add(row);
-                            //             //if (ww.WatcherType.Equals("1"))
-                            //             //    //row.RoomChiefs += ww.Watcher.FullName + "\n";
-                            //             //    row.RoomChiefsList.Add(ww.Watcher.FullName);
-                            //             //else if (ww.WatcherType.Equals("2"))
-                            //             //    //row.RoomSecretaries += ww.Watcher.FullName + "\n";
-                            //             //    row.RoomSecretariesList.Add(ww.Watcher.FullName);
-                            //             //else if (ww.WatcherType.Equals("3"))
-                            //             //    //row.RoomWatchers += ww.Watcher.FullName + "\n";
-                            //             //    row.RoomWatchersList.Add(ww.Watcher.FullName);
-
-                            //         }
                         }
-
                     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-            //foreach (Watch w in Watches)
-            //{
-            //    row = new WatchTableViewModel()
-            //    {
-            //        Watch = w
-            //    };
-
-
-            //    WatchesList.Add(row);
-
-            //    foreach (WatcherWatch ww in w.WatcherWatches)
-            //    {
-            //        WatcherWatchesList.Add(ww);
-
-            //        if (ww.WatcherType.Equals("1"))
-            //            //row.RoomChiefs += ww.Watcher.FullName + "\n";
-            //            row.RoomChiefsList.Add(ww.Watcher.FullName);
-            //        else if (ww.WatcherType.Equals("2"))
-            //            //row.RoomSecretaries += ww.Watcher.FullName + "\n";
-            //            row.RoomSecretariesList.Add(ww.Watcher.FullName);
-            //        else if (ww.WatcherType.Equals("3"))
-            //            //row.RoomWatchers += ww.Watcher.FullName + "\n";
-            //            row.RoomWatchersList.Add(ww.Watcher.FullName);
-            //    }
-
-            //    row.RoomChiefs = string.Join(", ", row.RoomChiefsList.ToArray());
-            //    row.RoomSecretaries = string.Join(", ", row.RoomSecretariesList.ToArray());
-            //    row.RoomWatchers = string.Join(", ", row.RoomWatchersList.ToArray());
-            //}
-
-            WatchesListView = CollectionViewSource.GetDefaultView(WatchesList);
-
-            SelectedWatchDate = WatchDates.FirstOrDefault();
-            SelectedWatchPeriod = PeriodValues.FirstOrDefault();
-
-            //SelectedWatchDate = SelectedWatch.WatchDate;
-            //SelectedWatchPeriod = SelectedWatch.PeriodId;
-            //SelectedWatchDuration = GetWatchDurationString();
-
         }
+
 
         private string GetWatchDurationString()
         {

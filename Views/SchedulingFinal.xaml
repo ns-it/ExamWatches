@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:ExamWatches.Views"
         xmlns:viewmodels="clr-namespace:ExamWatches.ViewModels"
         mc:Ignorable="d"
-  Height="auto" Width="auto" d:DesignHeight="600" d:DesignWidth="800" FlowDirection="LeftToRight">
+  Height="auto" Width="auto" d:DesignHeight="600" d:DesignWidth="800" FlowDirection="LeftToRight" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
-        <viewmodels:SchedulingFinalViewModel/>
+        <viewmodels:SchedulingFinalViewModel x:Name="FinalVM"/>
     </UserControl.DataContext>
     <Grid Margin="20,20,20,20" x:Name="PrintArea" FlowDirection="RightToLeft">
         <Grid.ColumnDefinitions>

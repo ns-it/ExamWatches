@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamWatches.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Printing;
 using System.Text;
@@ -24,11 +25,11 @@ namespace ExamWatches.Views
             InitializeComponent();
         }
 
-        private void OpenWatcherScheduling_Click(object sender, RoutedEventArgs e)
-        {
-            SchedulingFinal schedulingFinal = new SchedulingFinal();
-            this.Content = schedulingFinal.Content;
-        }
+        //private void OpenWatcherScheduling_Click(object sender, RoutedEventArgs e)
+        //{
+        //    SchedulingFinal schedulingFinal = new SchedulingFinal();
+        //    this.Content = schedulingFinal.Content;
+        //}
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
@@ -110,6 +111,11 @@ namespace ExamWatches.Views
                 //now print the visual to printer to fit on the one page.
                 printDlg.PrintVisual(parea, "First Fit to Page WPF Print");
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = new WatcherSchedulingViewModel();
         }
     }
 }

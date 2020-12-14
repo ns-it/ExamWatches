@@ -28,6 +28,21 @@ namespace ExamWatches.Views
 
         public string CurrentUserName { get; private set; }
 
+        //private int _selectedIndex;
+        //public int SelectedIndex
+        //{
+        //    get { return _selectedIndex; }
+        //    set
+        //    {
+        //        _selectedIndex = value; OnPropertyChanged("SelectedIndex");
+        //        if (value.Equals(2))
+        //        {
+        //            Initialization();
+        //        }
+
+        //    }
+        //}
+
         //Scheduling1ViewModel scheduling1ViewModel;
         //Scheduling2ViewModel scheduling2ViewModel;
         //Scheduling3ViewModel scheduling3ViewModel;
@@ -43,6 +58,8 @@ namespace ExamWatches.Views
             scheduling2 = new Scheduling2();
             scheduling3 = new Scheduling3();
 
+            WatcherSchedulingViewInstance = new WatcherScheduling();
+            //SchedulingFinalViewInstance = new SchedulingFinal();
 
             //scheduling1ViewModel = new Scheduling1ViewModel();
             //scheduling2ViewModel = new Scheduling2ViewModel();
@@ -162,13 +179,13 @@ namespace ExamWatches.Views
 
                 //watcherScheduling = new WatcherScheduling();
 
-                //WatcherSchedulingViewInstance = new WatcherScheduling();
-                //SchedulingFinalViewInstance = new SchedulingFinal();
-
-
-
                 WatcherSchedulingViewInstance = new WatcherScheduling();
                 SchedulingFinalViewInstance = new SchedulingFinal();
+
+
+
+                //WatcherSchedulingViewInstance = new WatcherScheduling();
+                //SchedulingFinalViewInstance.FinalVM.Initialization();
 
                 //DataContext = schedulingFinal;
             }

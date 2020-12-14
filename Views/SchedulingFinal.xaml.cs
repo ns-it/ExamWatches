@@ -31,12 +31,6 @@ namespace ExamWatches.Views
             InitializeComponent();
         }
 
-
-
-
-
-
-
         private void Print_Click(object sender, RoutedEventArgs e)
         {
             List<Final> flist = new List<Final>();
@@ -44,10 +38,8 @@ namespace ExamWatches.Views
 
             foreach (Final i in flist) {
                 db.Finals.Remove(i);
-                db.SaveChanges();
-            
+                db.SaveChanges();          
             }
-
 
             foreach (WatchTableViewModel wtvm in WatchesSchedule.Items)
             {
@@ -61,23 +53,21 @@ namespace ExamWatches.Views
                 f.RoomWatcher = wtvm.RoomWatchers;
 
                 db.Finals.Add(f);
-
                 db.SaveChanges();
-
-
 
             }
             report1 r = new report1();
             r.Show();
-
-
-
-
         }
 
         private void WatchesSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = new SchedulingFinalViewModel();
         }
     }
 }
