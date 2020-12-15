@@ -23,6 +23,9 @@ namespace ExamWatches.Views
     public partial class ExamInit : UserControl
 
     {
+        public static string deanName;
+        public static string wl;
+
         // متحول خاص بعدد أيام الامتحان
         private int _numValue = 0;
         int semNum;
@@ -60,6 +63,12 @@ namespace ExamWatches.Views
             days.Text = _numValue.ToString();
             work_locationl = db.WorkLocations.Where(x => x.Name == collageList.Text).FirstOrDefault();
             getExamID();
+            string collage_name = collageList.Text.ToString();
+            work_locationl = db.WorkLocations.Where(x => x.Name == collage_name).FirstOrDefault();
+            dean_name.Text = work_locationl.Dean;
+            deanName = work_locationl.Dean;
+            manager_name.Text = work_locationl.Manager;
+            wl = work_locationl.Manager;
 
 
         }
@@ -105,7 +114,9 @@ namespace ExamWatches.Views
             string collage_name = collageList.Text.ToString();
             work_locationl = db.WorkLocations.Where(x => x.Name == collage_name).FirstOrDefault();
             dean_name.Text = work_locationl.Dean;
+            deanName = work_locationl.Dean;
             manager_name.Text = work_locationl.Manager;
+            wl = work_locationl.Manager;
 
         }
 

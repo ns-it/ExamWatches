@@ -52,6 +52,9 @@ namespace ExamWatches.Views
                 f.RoomChief = wtvm.RoomChiefs;
                 f.RoomSecretarie = wtvm.RoomSecretaries;
                 f.RoomWatcher = wtvm.RoomWatchers;
+                f.StartTime = time.Text;
+                f.dean = ExamInit.deanName;
+                f.manager =ExamInit.wl;
 
                 db.Finals.Add(f);
                 db.SaveChanges();

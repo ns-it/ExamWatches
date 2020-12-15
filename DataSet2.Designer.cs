@@ -297,6 +297,10 @@ namespace ExamWatches {
             
             private global::System.Data.DataColumn columnattendence;
             
+            private global::System.Data.DataColumn columndean;
+            
+            private global::System.Data.DataColumn columnmanager;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public printDataTable() {
@@ -404,6 +408,22 @@ namespace ExamWatches {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn deanColumn {
+                get {
+                    return this.columndean;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn managerColumn {
+                get {
+                    return this.columnmanager;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +459,7 @@ namespace ExamWatches {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public printRow AddprintRow(string FullName, string worklocation, string WatchDate, string PeriodId, string Name, string WatchType, string RoomChief, bool attendence) {
+            public printRow AddprintRow(string FullName, string worklocation, string WatchDate, string PeriodId, string Name, string WatchType, string RoomChief, bool attendence, string dean, string manager) {
                 printRow rowprintRow = ((printRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -450,7 +470,9 @@ namespace ExamWatches {
                         Name,
                         WatchType,
                         RoomChief,
-                        attendence};
+                        attendence,
+                        dean,
+                        manager};
                 rowprintRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowprintRow);
                 return rowprintRow;
@@ -482,6 +504,8 @@ namespace ExamWatches {
                 this.columnWatchType = base.Columns["WatchType"];
                 this.columnRoomChief = base.Columns["RoomChief"];
                 this.columnattendence = base.Columns["attendence"];
+                this.columndean = base.Columns["dean"];
+                this.columnmanager = base.Columns["manager"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -505,6 +529,10 @@ namespace ExamWatches {
                 base.Columns.Add(this.columnRoomChief);
                 this.columnattendence = new global::System.Data.DataColumn("attendence", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnattendence);
+                this.columndean = new global::System.Data.DataColumn("dean", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndean);
+                this.columnmanager = new global::System.Data.DataColumn("manager", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmanager);
                 this.columnid.AutoIncrement = true;
                 this.columnid.AutoIncrementSeed = -1;
                 this.columnid.AutoIncrementStep = -1;
@@ -790,6 +818,38 @@ namespace ExamWatches {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string dean {
+                get {
+                    try {
+                        return ((string)(this[this.tableprint.deanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dean\' in table \'print\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableprint.deanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string manager {
+                get {
+                    try {
+                        return ((string)(this[this.tableprint.managerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'manager\' in table \'print\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableprint.managerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsFullNameNull() {
                 return this.IsNull(this.tableprint.FullNameColumn);
             }
@@ -882,6 +942,30 @@ namespace ExamWatches {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetattendenceNull() {
                 this[this.tableprint.attendenceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsdeanNull() {
+                return this.IsNull(this.tableprint.deanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetdeanNull() {
+                this[this.tableprint.deanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsmanagerNull() {
+                return this.IsNull(this.tableprint.managerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetmanagerNull() {
+                this[this.tableprint.managerColumn] = global::System.Convert.DBNull;
             }
         }
         

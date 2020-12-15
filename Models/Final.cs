@@ -16,6 +16,19 @@ namespace ExamWatches.Models
         [StringLength(50)]
         public string Date { get; set; }
 
+        [Column("dean")]
+        [StringLength(50)]
+        public string dean { get; set; }
+
+        [Column("manager")]
+        [StringLength(50)]
+        public string manager { get; set; }
+
+
+        [Column("start_time")]
+        [StringLength(50)]
+        public string StartTime { get; set; }
+
         [Column("period")]
         [StringLength(10)]
         public string Period { get; set; }

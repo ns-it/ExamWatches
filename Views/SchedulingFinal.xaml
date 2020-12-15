@@ -41,7 +41,7 @@
         <Label Grid.Row="1" Grid.Column="1" Content="رقم الفترة: " VerticalAlignment="Center"/>
         <ComboBox x:Name="period" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding PeriodValues}"  SelectedValue="{Binding SelectedWatchPeriod ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  VerticalAlignment="Center">
         </ComboBox>
-        <TextBox x:Name="Period" Grid.Column="3" Grid.Row="1" Text="{Binding SelectedWatchDuration,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
+        <TextBox x:Name="time" Grid.Column="3" Grid.Row="1" Text="{Binding SelectedWatchDuration,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
         <Grid Grid.Row="2" Grid.ColumnSpan="4" FlowDirection="LeftToRight">
 
             <DataGrid x:Name="WatchesSchedule" ItemsSource="{Binding WatchesList,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False"

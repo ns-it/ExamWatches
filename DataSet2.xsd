@@ -12,7 +12,7 @@
   <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="print" msprop:Generator_TableClassName="printDataTable" msprop:Generator_TableVarName="tableprint" msprop:Generator_RowChangedName="printRowChanged" msprop:Generator_TablePropName="print" msprop:Generator_RowDeletingName="printRowDeleting" msprop:Generator_RowChangingName="printRowChanging" msprop:Generator_RowEvHandlerName="printRowChangeEventHandler" msprop:Generator_RowDeletedName="printRowDeleted" msprop:Generator_RowClassName="printRow" msprop:Generator_UserTableName="print" msprop:Generator_RowEvArgName="printRowChangeEvent">
+        <xs:element name="print" msprop:Generator_TableClassName="printDataTable" msprop:Generator_TableVarName="tableprint" msprop:Generator_TablePropName="print" msprop:Generator_RowDeletingName="printRowDeleting" msprop:Generator_RowChangingName="printRowChanging" msprop:Generator_RowEvHandlerName="printRowChangeEventHandler" msprop:Generator_RowDeletedName="printRowDeleted" msprop:Generator_UserTableName="print" msprop:Generator_RowChangedName="printRowChanged" msprop:Generator_RowEvArgName="printRowChangeEvent" msprop:Generator_RowClassName="printRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:short" />
@@ -24,6 +24,8 @@
               <xs:element name="WatchType" msprop:Generator_ColumnVarNameInTable="columnWatchType" msprop:Generator_ColumnPropNameInRow="WatchType" msprop:Generator_ColumnPropNameInTable="WatchTypeColumn" msprop:Generator_UserColumnName="WatchType" type="xs:string" minOccurs="0" />
               <xs:element name="RoomChief" msprop:Generator_ColumnVarNameInTable="columnRoomChief" msprop:Generator_ColumnPropNameInRow="RoomChief" msprop:Generator_ColumnPropNameInTable="RoomChiefColumn" msprop:Generator_UserColumnName="RoomChief" type="xs:string" minOccurs="0" />
               <xs:element name="attendence" msprop:Generator_ColumnVarNameInTable="columnattendence" msprop:Generator_ColumnPropNameInRow="attendence" msprop:Generator_ColumnPropNameInTable="attendenceColumn" msprop:Generator_UserColumnName="attendence" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dean" msprop:Generator_ColumnVarNameInTable="columndean" msprop:Generator_ColumnPropNameInRow="dean" msprop:Generator_ColumnPropNameInTable="deanColumn" msprop:Generator_UserColumnName="dean" type="xs:string" minOccurs="0" />
+              <xs:element name="manager" msprop:Generator_ColumnVarNameInTable="columnmanager" msprop:Generator_ColumnPropNameInRow="manager" msprop:Generator_ColumnPropNameInTable="managerColumn" msprop:Generator_UserColumnName="manager" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

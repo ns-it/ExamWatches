@@ -55,6 +55,9 @@ namespace ExamWatches.Views
                 f.WatchType = wtvm.WatchType;
                 f.RoomChief = wtvm.RoomChief;
                 f.attendence = wtvm.Attendence;
+                f.dean = ExamInit.deanName;
+                f.manager = ExamInit.wl;
+
 
 
                 db.Prints.Add(f);

@@ -19,8 +19,14 @@ namespace ExamWatches.Models
             [Column("FullName")]
             [StringLength(50)]
             public string FullName { get; set; }
+        [Column("dean")]
+        [StringLength(50)]
+        public string dean { get; set; }
+        [Column("manager")]
+        [StringLength(50)]
+        public string manager { get; set; }
 
-            [Column("worklocation")]
+        [Column("worklocation")]
             [StringLength(50)]
             public string worklocation { get; set; }
 
