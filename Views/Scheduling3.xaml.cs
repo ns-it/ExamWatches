@@ -176,9 +176,9 @@ namespace ExamWatches.Views
             int NumberOfSecretaries = Scheduling2.SecretaryWatchersList.Count();
             int NumberOfWatchers = Scheduling2.OrdinaryWatchersList.Count();
 
-            if (NumberOfCheifs < NumberOfRooms) { MessageBox.Show("عدد رؤساء القاعات أقل من عدد القاعات"); return; }
+            //if (NumberOfCheifs < NumberOfRooms) { MessageBox.Show("عدد رؤساء القاعات أقل من عدد القاعات"); return; }
             if (NumberOfSecretaries < NumberOfRooms) { MessageBox.Show("عدد أمناء السر أقل من عدد القاعات"); return; }
-            if (NumberOfWatchers < NumberOfRooms) { MessageBox.Show("عدد المراقبين أقل من عدد القاعات"); return; }
+            //if (NumberOfWatchers < NumberOfRooms) { MessageBox.Show("عدد المراقبين أقل من عدد القاعات"); return; }
 
 
             foreach (Scheduling3ViewModel s in BaseList)
@@ -210,10 +210,11 @@ namespace ExamWatches.Views
                 foreach (WatcherViewModel wv in Scheduling2.OrdinaryWatchersList)
                     RoomWatchers.Enqueue(db.Watchers.Find(wv.Id));
 
+                while (!(RoomChiefs.Count == 0 && RoomSecretaries.Count == 0 && RoomWatchers.Count == 0))
 
-                foreach (RoomView roomView in Scheduling1.SelectedRooms)
                 {
-                    while (!(RoomChiefs.Count == 0 && RoomSecretaries.Count == 0 && RoomWatchers.Count == 0))
+                    foreach (RoomView roomView in Scheduling1.SelectedRooms)
+
                     {
                         //foreach(WatcherViewModel wvm in Scheduling2.BossWatcherList)
                         //{
