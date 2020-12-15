@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Report1.rdlc" />
     <None Remove="Report2.rdlc" />
+    <None Remove="Views\20170615220750!Al-Baath_University_logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
     <Resource Include="Fonts\JF.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Views\20170615220750!Al-Baath_University_logo.png" />
     <Content Include="Report2.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

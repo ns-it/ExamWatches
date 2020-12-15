@@ -60,5 +60,16 @@ namespace ExamWatches.Views
             
             repviewer.RefreshReport();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            repviewer.Reset();
+            DataTable dt = getDataTable();
+            ReportDataSource ds = new ReportDataSource("DataSet1", dt);
+            repviewer.LocalReport.DataSources.Add(ds);
+            repviewer.LocalReport.ReportPath = "Report1.rdlc";
+
+            repviewer.RefreshReport();
+        }
     }
 }

@@ -29,13 +29,7 @@ namespace ExamWatches.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            repviewer.Reset();
-            DataTable dt = getDataTable();
-            ReportDataSource ds = new ReportDataSource("DataSet1", dt);
-            repviewer.LocalReport.DataSources.Add(ds);
-            repviewer.LocalReport.ReportPath = "Report2.rdlc";
-
-            repviewer.RefreshReport();
+           
         }
 
 
@@ -54,6 +48,17 @@ namespace ExamWatches.Views
 
             return dt;
 
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            repviewer.Reset();
+            DataTable dt = getDataTable();
+            ReportDataSource ds = new ReportDataSource("DataSet1", dt);
+            repviewer.LocalReport.DataSources.Add(ds);
+            repviewer.LocalReport.ReportPath = "Report2.rdlc";
+
+            repviewer.RefreshReport();
         }
     }
 }

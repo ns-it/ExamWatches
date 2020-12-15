@@ -7,16 +7,15 @@
         xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         xmlns:nc="clr-namespace:Microsoft.Reporting.NETCore;assembly=Microsoft.ReportViewer.NETCore"
         mc:Ignorable="d"
-        Title="report1" Height="450" Width="800">
-    <Grid Margin="0,79,0,0">
-        <WindowsFormsHost HorizontalAlignment="Center" Height="356" VerticalAlignment="Center" Width="800">
+        Title="تقرير الطباعة" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid Margin="0,-19,0,0">
+        <WindowsFormsHost HorizontalAlignment="Center" Height="454" VerticalAlignment="Center" Width="800">
             <rv:ReportViewer x:Name="repviewer"/>
 
 
 
 
         </WindowsFormsHost>
-        <Button Content="عرض البيانات" HorizontalAlignment="Left" Margin="700,-68,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.257,-0.329"/>
 
     </Grid>
 </Window>
