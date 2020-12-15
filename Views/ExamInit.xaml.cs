@@ -284,6 +284,105 @@ namespace ExamWatches.Views
             startDate.Text = null;
             endDate.Text = null;
         }
+
+        private void manager_name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ManagerNameStartEdit_Click(object sender, RoutedEventArgs e)
+        {
+            //ManagerNameCancel.IsEnabled = true;
+            //ManagerNameSaveChanges.IsEnabled = true;
+            //ManagerNameStartEdit.IsEnabled = false;
+
+            ManagerNameCancel.Visibility = Visibility.Visible;
+            ManagerNameSaveChanges.Visibility = Visibility.Visible;
+            ManagerNameStartEdit.Visibility = Visibility.Hidden;
+
+            manager_name.IsEnabled = true;
+        }
+
+        private void ManagerNameSaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            
+            work_locationl.Manager = manager_name.Text;
+            db.WorkLocations.Update(work_locationl);
+            db.SaveChanges();
+
+            //ManagerNameCancel.IsEnabled = false;
+            //ManagerNameSaveChanges.IsEnabled = false;
+            //ManagerNameStartEdit.IsEnabled = true;
+
+            ManagerNameCancel.Visibility = Visibility.Hidden;
+            ManagerNameSaveChanges.Visibility = Visibility.Hidden;
+            ManagerNameStartEdit.Visibility = Visibility.Visible;
+
+            manager_name.IsEnabled = false;
+
+        }
+        private void ManagerNameCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+            //ManagerNameCancel.IsEnabled = false;
+            //ManagerNameSaveChanges.IsEnabled = false;
+            //ManagerNameStartEdit.IsEnabled = true;
+
+
+            ManagerNameCancel.Visibility = Visibility.Hidden;
+            ManagerNameSaveChanges.Visibility = Visibility.Hidden;
+            ManagerNameStartEdit.Visibility = Visibility.Visible;
+
+            manager_name.IsEnabled = false;
+
+        }
+
+        private void DeanNameStartEdit_Click(object sender, RoutedEventArgs e)
+        {
+            //DeanNameCancel.IsEnabled = true;
+            //DeanNameSaveChanges.IsEnabled = true;
+            //DeanNameStartEdit.IsEnabled = false;
+
+            DeanNameStartEdit.Visibility = Visibility.Hidden;
+            DeanNameSaveChanges.Visibility = Visibility.Visible;
+            DeanNameCancel.Visibility = Visibility.Visible;
+
+            dean_name.IsEnabled = true;
+
+        }
+
+        private void DeanNameSaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            work_locationl.Dean = dean_name.Text;
+            db.WorkLocations.Update(work_locationl);
+            db.SaveChanges();
+
+            //DeanNameCancel.IsEnabled = false;
+            //DeanNameSaveChanges.IsEnabled = false;
+            //DeanNameStartEdit.IsEnabled = true;
+
+            DeanNameStartEdit.Visibility = Visibility.Visible;
+            DeanNameSaveChanges.Visibility = Visibility.Hidden;
+            DeanNameCancel.Visibility = Visibility.Hidden;
+
+            dean_name.IsEnabled = false;
+        }
+
+        private void DeanNameCancel_Click(object sender, RoutedEventArgs e)
+        {
+            //DeanNameCancel.IsEnabled = false;
+            //DeanNameSaveChanges.IsEnabled = false;
+            //DeanNameStartEdit.IsEnabled = true;
+
+
+            DeanNameStartEdit.Visibility = Visibility.Visible;
+            DeanNameSaveChanges.Visibility = Visibility.Hidden;
+            DeanNameCancel.Visibility = Visibility.Hidden;
+
+            dean_name.IsEnabled = false;
+        }
+
+     
     }
 
 }

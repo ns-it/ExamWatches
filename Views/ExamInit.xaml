@@ -35,6 +35,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -49,15 +50,16 @@
 
                 <Label Content="اسم العميد" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="dean_name" Grid.Row="2" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Stretch" />
-                <Button x:Name="DeanNameStartEdit" Grid.Row="2" Grid.Column="2" Content="تعديل"/>
-                <Button x:Name="DeanNameSaveChanges" Grid.Row="2" Grid.Column="3" Content="حفظ"/>
+                <Button x:Name="DeanNameStartEdit" Grid.Row="2" Grid.Column="2"  Content="تعديل" Click="DeanNameStartEdit_Click"/>
+                <Button x:Name="DeanNameSaveChanges" Grid.Row="2" Grid.Column="2" Content="حفظ" Visibility="Hidden" Click="DeanNameSaveChanges_Click"/>
+                <Button x:Name="DeanNameCancel" Grid.Row="2" Grid.Column="3" Content="إلغاء" Visibility="Hidden" IsCancel="True" Click="DeanNameCancel_Click"/>
 
 
                 <Label Content="رئيس الدائرة" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="manager_name" Grid.Row="3" Grid.Column="1"  IsEnabled="False" HorizontalAlignment="Stretch" />
-                <Button x:Name="ManagerNameStartEdit" Grid.Row="3" Grid.Column="2" Content="تعديل"/>
-                <Button x:Name="ManagerNameSaveChanges" Grid.Row="3" Grid.Column="3" Content="حفظ"/>
-
+                <TextBox x:Name="manager_name" Grid.Row="3" Grid.Column="1"  IsEnabled="False" HorizontalAlignment="Stretch" TextChanged="manager_name_TextChanged" />
+                <Button x:Name="ManagerNameStartEdit" Grid.Row="3" Grid.Column="2" Content="تعديل" Click="ManagerNameStartEdit_Click"/>
+                <Button x:Name="ManagerNameSaveChanges" Grid.Row="3" Grid.Column="2" Content="حفظ" Visibility="Hidden" Click="ManagerNameSaveChanges_Click"/>
+                <Button x:Name="ManagerNameCancel" Grid.Row="3" Grid.Column="3" Content="إلغاء" Visibility="Hidden" IsCancel="True" Click="ManagerNameCancel_Click"/>
 
 
             </Grid>
