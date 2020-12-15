@@ -82,7 +82,7 @@
         <DataGrid x:Name="RoomsGrid" CanUserAddRows="False" Grid.Row="1" Grid.Column="1" Margin="20,24,20,16" AutoGenerateColumns="False" EnableRowVirtualization="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="اسم القاعة"  Width="*" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="نوع القاعة"  Width="*" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="نوع القاعة"  Width="*" Binding="{Binding TypeString}"/>
                 <DataGridTextColumn Header="السعة"  Width="*" Binding="{Binding Capacity}"/>
                 <DataGridTemplateColumn x:Name="addRoom" Header=" انقر للإضافة" >
                     <DataGridTemplateColumn.CellTemplate >

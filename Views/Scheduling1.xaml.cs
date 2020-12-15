@@ -82,7 +82,7 @@ namespace ExamWatches.Views
             if (SelectedWatcher.Count() == 0)
             {
                 foreach (Watcher w in watchers)
-                    watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FirstName + " " + w.MiddleName + " " + w.LastName, Class = w.Class, IsSelected = false });
+                    watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FullName + " - ف " + w.Class, Class = w.Class, IsSelected = false });
 
             }
             else
@@ -103,9 +103,9 @@ namespace ExamWatches.Views
                     }
 
                     if (b == true)
-                        watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FirstName + " " + w.MiddleName + " " + w.LastName, Class = w.Class, IsSelected = true });
+                        watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FullName + " - ف " + w.Class, Class = w.Class, IsSelected = true });
                     else
-                        watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FirstName + " " + w.MiddleName + " " + w.LastName, Class = w.Class, IsSelected = false });
+                        watcherViewModels.Add(new WatcherViewModel { Id = w.Id, FullName = w.FullName + " - ف " + w.Class, Class = w.Class, IsSelected = false });
 
 
 

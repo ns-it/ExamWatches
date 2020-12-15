@@ -20,5 +20,35 @@ namespace ExamWatches.ViewModels
             set { _isSelected = value; OnPropertyChanged("IsSelected"); }
         }
 
+
+        public string TypeString
+        {
+            get
+            {
+                return Type switch
+                {
+                    1 => "صغيرة",
+                    2 => "متوسطة",
+                    3 => "كبيرة",
+                    4 => "مدرج",
+                    _ => "",
+                };
+            }
+
+            set
+            {
+                Type = value switch
+                {
+                    "صغيرة" => 1,
+                    "متوسطة" => 2,
+                    "كبيرة" => 3,
+                    "مدرج" => 4,
+                    _ => 0,
+                };
+                ;
+                OnPropertyChanged("Type");
+            }
+        }
+
     }
 }
