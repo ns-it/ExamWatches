@@ -1,7 +1,4 @@
 ﻿using ExamWatches.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ExamWatches.ViewModels
 {
@@ -26,6 +23,18 @@ namespace ExamWatches.ViewModels
             get { return _model.Id; }
             set { _model.Id = value; OnPropertyChanged("Id"); }
         }
+
+        public string Title
+        {
+            get { return _model.Title; }
+            set
+            {
+                _model.Title = value; OnPropertyChanged("Title");
+                OnPropertyChanged("FullName");
+            }
+
+        }
+
         public string FirstName
         {
             get { return _model.FirstName; }
@@ -58,14 +67,14 @@ namespace ExamWatches.ViewModels
             get
             {
                 //return _model.FullName;
-                _fullName = _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
+                _fullName = _model.Title + " " + _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
                 return _fullName;
 
             }
             set
             {
                 //_model.FullName = value;
-                _fullName = _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
+                _fullName = _model.Title + " " + _model.FirstName + " " + _model.MiddleName + " " + _model.LastName;
                 OnPropertyChanged("FullName");
             }
         }
