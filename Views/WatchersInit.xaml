@@ -21,6 +21,8 @@ Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirectio
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -33,23 +35,34 @@ Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirectio
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TitleBlock }" FontSize="15">
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="8" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TitleBlock }" FontSize="15">
                         <Run Text=" المراقبون الموجودون في: "/>
             <Run Text="{Binding CollegeName}"/>
         </TextBlock>
-        <Label Content="الاسم" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"/>
-        <TextBox x:Name="watcherFirstName"
+        <Label Content="اللقب" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"/>
+        <!--<TextBox x:Name="watcherTitle"
                  Grid.Row="1" Grid.Column="1"
+                 Text="{Binding CurrentItem.Title, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsEditModeOn}"/>-->
+        <ComboBox x:Name="watcherTitle" 
+                  Grid.Row="1" Grid.Column="1"
+                  ItemsSource="{Binding Titles}"
+                  SelectedValue="{Binding CurrentItem.Title, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  IsEnabled="{Binding IsEditModeOn}"/>
+
+        <Label Content="الاسم" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
+        <TextBox x:Name="watcherFirstName"
+                 Grid.Row="1" Grid.Column="3"
                  Text="{Binding CurrentItem.FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>
-        <Label Content="اسم الأب" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
+        <Label Content="اسم الأب" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right"/>
         <TextBox x:Name="watcherMiddleName" 
-                  Grid.Row="1" Grid.Column="3"
+                  Grid.Row="1" Grid.Column="5"
                  Text="{Binding CurrentItem.MiddleName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>
-        <Label Content="الكنية" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right"/>
+        <Label Content="الكنية" Grid.Row="1" Grid.Column="6" HorizontalAlignment="Right"/>
         <TextBox x:Name="watcherLastName"
-                 Grid.Row="1" Grid.Column="5"
+                 Grid.Row="1" Grid.Column="7"
                  Text="{Binding CurrentItem.LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>
         <!--<TextBox x:Name="watcherName" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
@@ -80,7 +93,7 @@ Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirectio
         </UniformGrid>-->
 
         <Label Content="العمل" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Margin="1,0,1,0"/>
-        <TextBox x:Name="watcherJob" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" VerticalAlignment="Center"
+        <TextBox x:Name="watcherJob" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Center"
                  Text="{Binding CurrentItem.Job, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>
 
@@ -89,19 +102,19 @@ Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirectio
                  Text="{Binding CurrentItem.Class, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>-->
         <ComboBox x:Name="watcherClass" 
-                  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" VerticalAlignment="Center" 
+                  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Center" 
                   ItemsSource="{Binding Classes}"
                   SelectedValue="{Binding CurrentItem.Class, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                   IsEnabled="{Binding IsEditModeOn}"/>
-        
+
         <Label Content="الشهادة" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Margin="1,0,1,0"/>
-        <TextBox x:Name="watcherCertificate" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" VerticalAlignment="Center"
+        <TextBox x:Name="watcherCertificate" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Center"
                  Text="{Binding CurrentItem.Certificate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsEditModeOn}"/>
 
 
 
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="6" HorizontalAlignment="Right" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center">
             <Button x:Name="DeleteButton" Content="حذف" Style="{StaticResource Delete}"
                     IsEnabled="{Binding ElementName=WatchersGrid,Path=SelectedItems.Count}"
                     Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=WatchersGrid,Path=SelectedItem}"
@@ -126,7 +139,7 @@ Height="auto" Width="auto" d:DesignHeight="400" d:DesignWidth="600" FlowDirectio
 
         </StackPanel>
 
-        <DataGrid Grid.Row="6" Grid.ColumnSpan="6" x:Name="WatchersGrid" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" Width="auto" SelectionChanged="ItemsList_CollectionChanged" CanUserAddRows="False" IsReadOnly="True">
+        <DataGrid Grid.Row="6" Grid.ColumnSpan="8" x:Name="WatchersGrid" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" Width="auto" SelectionChanged="ItemsList_CollectionChanged" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="اسم المراقب" Binding="{Binding FullName}" Width="2*"/>
                 <DataGridTextColumn Header="عمله" Binding="{Binding Job}" Width="*"/>

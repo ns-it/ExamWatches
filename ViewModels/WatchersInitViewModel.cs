@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
@@ -17,7 +16,7 @@ namespace ExamWatches.ViewModels
 
         // CONSTANT LISTS  
 
-        public List<string> WorkTypes { get; set; }
+        public List<string> Titles { get; set; }
         public List<string> Classes { get; set; }
 
 
@@ -71,7 +70,7 @@ namespace ExamWatches.ViewModels
         public WatchersInitViewModel()
         {
             Classes = new List<string>() { "أولى", "ثانية", "ثالثة", "رابعة", "خامسة" };
-            WorkTypes = new List<string>() { "صغيرة", "متوسطة", "كبيرة", "مدرج" };
+            Titles = new List<string>() { "", "د.", "م.", "قا.", "أ.د." };
 
 
 
@@ -134,6 +133,7 @@ namespace ExamWatches.ViewModels
                 SelectedItem.FirstName = CurrentItem.FirstName;
                 SelectedItem.MiddleName = CurrentItem.MiddleName;
                 SelectedItem.LastName = CurrentItem.LastName;
+                SelectedItem.Title = CurrentItem.Title;
                 SelectedItem.FullName = CurrentItem.FullName;
                 SelectedItem.Job = CurrentItem.Job;
                 SelectedItem.Class = CurrentItem.Class;
@@ -149,6 +149,7 @@ namespace ExamWatches.ViewModels
                     FirstName = CurrentItem.FirstName,
                     MiddleName = CurrentItem.MiddleName,
                     LastName = CurrentItem.LastName,
+                    Title = CurrentItem.Title,
                     //FullName = CurrentItem.FullName,
                     Job = CurrentItem.Job,
                     Class = CurrentItem.Class,
@@ -185,6 +186,7 @@ namespace ExamWatches.ViewModels
                 CurrentItem.FirstName = "";
                 CurrentItem.MiddleName = "";
                 CurrentItem.LastName = "";
+                CurrentItem.Title = "";
                 CurrentItem.FullName = "";
                 CurrentItem.Job = "";
                 CurrentItem.Class = null;
@@ -206,6 +208,7 @@ namespace ExamWatches.ViewModels
                 CurrentItem.FirstName = SelectedItem.FirstName;
                 CurrentItem.MiddleName = SelectedItem.MiddleName;
                 CurrentItem.LastName = SelectedItem.LastName;
+                CurrentItem.Title = SelectedItem.Title;
                 CurrentItem.FullName = SelectedItem.FullName;
                 CurrentItem.Job = SelectedItem.Job;
                 CurrentItem.Class = SelectedItem.Class;
@@ -242,8 +245,10 @@ namespace ExamWatches.ViewModels
             {
                 CurrentItem.Id = SelectedItem.Id;
                 CurrentItem.FirstName = SelectedItem.FirstName;
+
                 CurrentItem.MiddleName = SelectedItem.MiddleName;
                 CurrentItem.LastName = SelectedItem.LastName;
+                CurrentItem.Title = SelectedItem.Title;
                 CurrentItem.FullName = SelectedItem.FullName;
                 CurrentItem.Job = SelectedItem.Job;
                 CurrentItem.Class = SelectedItem.Class;
@@ -256,6 +261,7 @@ namespace ExamWatches.ViewModels
                 CurrentItem.FirstName = "";
                 CurrentItem.MiddleName = "";
                 CurrentItem.LastName = "";
+                CurrentItem.Title = "";
                 CurrentItem.FullName = "";
                 CurrentItem.Job = "";
                 CurrentItem.Class = null;
