@@ -6,30 +6,30 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.29265in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74653in</Width>
+              <Width>1.25496in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74653in</Width>
+              <Width>1.43849in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74653in</Width>
+              <Width>1.15724in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74653in</Width>
+              <Width>0.56845in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74653in</Width>
+              <Width>0.55308in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.74653in</Width>
+              <Width>1.23512in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.76042in</Height>
+              <Height>0.59375in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -42,7 +42,7 @@
                             <TextRun>
                               <Value>التوقيت</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -55,11 +55,11 @@
                       <rd:DefaultName>Textbox10</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -81,7 +81,7 @@
                             <TextRun>
                               <Value>المراقب</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -94,11 +94,11 @@
                       <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -120,7 +120,7 @@
                             <TextRun>
                               <Value>أمين السر</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -133,11 +133,11 @@
                       <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -159,7 +159,7 @@
                             <TextRun>
                               <Value>رئيس القاعة</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -172,11 +172,11 @@
                       <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -198,7 +198,7 @@
                             <TextRun>
                               <Value>القاعة</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -211,11 +211,11 @@
                       <rd:DefaultName>Textbox9</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -235,9 +235,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>رقم الفترة</Value>
+                              <Value>الفترة</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -250,11 +250,11 @@
                       <rd:DefaultName>Textbox11</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -276,7 +276,7 @@
                             <TextRun>
                               <Value>التاريخ</Value>
                               <Style>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -289,11 +289,11 @@
                       <rd:DefaultName>Textbox13</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -307,7 +307,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.60417in</Height>
+              <Height>0.4375in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -579,28 +579,35 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
+        <LayoutDirection>RTL</LayoutDirection>
         <DataSetName>DataSet1</DataSetName>
-        <Top>1.91542in</Top>
-        <Left>0.75917in</Left>
-        <Height>1.36459in</Height>
-        <Width>11.47918in</Width>
+        <Top>0.3in</Top>
+        <Left>0.3in</Left>
+        <Height>1.03126in</Height>
+        <Width>7.5in</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
           <TextAlign>Center</TextAlign>
-          <VerticalAlign>Middle</VerticalAlign>
+          <VerticalAlign>Top</VerticalAlign>
           <WritingMode>Horizontal</WritingMode>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>15in</Height>
-    <Style />
+    <Height>6.5in</Height>
+    <Style>
+      <Border>
+        <Color>Silver</Color>
+        <Style>None</Style>
+        <Width>0.3pt</Width>
+      </Border>
+    </Style>
   </Body>
-  <Width>15in</Width>
+  <Width>8.3in</Width>
   <Page>
     <PageHeader>
-      <Height>1.89183in</Height>
+      <Height>2.2in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -619,14 +626,15 @@
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Right</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Left>9.56125in</Left>
-          <Height>0.39583in</Height>
-          <Width>1.67708in</Width>
+          <Top>0.2in</Top>
+          <Left>6in</Left>
+          <Height>0.47916in</Height>
+          <Width>2in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -657,10 +665,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>0.53472in</Top>
-          <Left>5.7175in</Left>
+          <Top>1.5in</Top>
           <Height>0.39583in</Height>
-          <Width>2.34375in</Width>
+          <Width>8.3in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -676,7 +683,8 @@
           <Source>Embedded</Source>
           <Value>ID20170615220750AlBaath_University_logo</Value>
           <Sizing>FitProportional</Sizing>
-          <Left>0.22792in</Left>
+          <Top>0.2in</Top>
+          <Left>0.2in</Left>
           <Height>1.01042in</Height>
           <Width>1.4375in</Width>
           <ZIndex>2</ZIndex>
@@ -694,7 +702,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>1in</Height>
+      <Height>1.4in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -713,15 +721,15 @@
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Right</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
-          <Top>0.14458in</Top>
-          <Left>1.73833in</Left>
-          <Height>0.25in</Height>
-          <Width>1in</Width>
+          <Top>0.1in</Top>
+          <Left>0.2in</Left>
+          <Height>0.3in</Height>
+          <Width>2in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -739,14 +747,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>رئيس الدائرة </Value>
-                  <Style>
-                    <FontSize>14pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value xml:space="preserve">          </Value>
+                  <Value>رئيس الدائرة</Value>
                   <Style>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -754,15 +755,15 @@
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Left</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox6</rd:DefaultName>
-          <Top>0.14458in</Top>
-          <Left>10.62375in</Left>
-          <Height>0.25in</Height>
-          <Width>1in</Width>
+          <Top>0.1in</Top>
+          <Left>6in</Left>
+          <Height>0.3in</Height>
+          <Width>2in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -783,20 +784,21 @@
                 <TextRun>
                   <Value>=First(Fields!manager.Value, "DataSet1")</Value>
                   <Style>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Right</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>0.58609in</Top>
-          <Left>10.19667in</Left>
-          <Height>0.25in</Height>
-          <Width>1.42708in</Width>
+          <Top>0.5in</Top>
+          <Left>6.56488in</Left>
+          <Height>0.3in</Height>
+          <Width>0.87262in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -817,29 +819,31 @@
                 <TextRun>
                   <Value>=First(Fields!dean.Value, "DataSet1")</Value>
                   <Style>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Right</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
-          <Top>0.58609in</Top>
-          <Left>1.405in</Left>
-          <Height>0.25in</Height>
-          <Width>1.33333in</Width>
+          <Top>0.5in</Top>
+          <Left>0.75208in</Left>
+          <Height>0.3in</Height>
+          <Width>0.88542in</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
+            <VerticalAlign>Top</VerticalAlign>
+            <PaddingLeft>0.5pt</PaddingLeft>
+            <PaddingRight>0.5pt</PaddingRight>
+            <PaddingTop>0.5pt</PaddingTop>
+            <PaddingBottom>0.5pt</PaddingBottom>
           </Style>
         </Textbox>
       </ReportItems>
@@ -849,12 +853,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>15in</PageHeight>
-    <PageWidth>15in</PageWidth>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>11.7in</PageHeight>
+    <PageWidth>8.3in</PageWidth>
+    <LeftMargin>0.2in</LeftMargin>
+    <RightMargin>0.2in</RightMargin>
+    <TopMargin>0.2in</TopMargin>
+    <BottomMargin>0.2in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
