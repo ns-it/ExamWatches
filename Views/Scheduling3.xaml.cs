@@ -270,6 +270,7 @@ namespace ExamWatches.Views
 
             }
             db.SaveChanges();
+           // BaseList.Clear();
 
         }
 

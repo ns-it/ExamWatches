@@ -79,7 +79,7 @@ namespace ExamWatches.Views
             e = db.Exams.OrderByDescending(x => x.Id).Where(x => x.WorkLocationId == work_locationl.Id).FirstOrDefault();
 
             examID = db.Exams.OrderByDescending(x => x.Id).Where(x=>x.WorkLocationId==work_locationl.Id).FirstOrDefault().Id;
-            MessageBox.Show(examID.ToString());
+           // MessageBox.Show(examID.ToString());
             if (e.Semester == 1)
             { first.IsChecked = true; }
             if (e.Semester == 2)
@@ -190,7 +190,7 @@ namespace ExamWatches.Views
             MessageBox.Show("تمت عملية الحفظ بنجاح");
             ex = db.Exams.Where(x => x.Semester == exam.Semester && x.AcademicYear == exam.AcademicYear && x.DaysNumber == exam.DaysNumber && x.StartTime == exam.StartTime && x.EndTime == exam.EndTime && x.WorkLocationId == exam.WorkLocationId).FirstOrDefault();
             examID = ex.Id;
-            MessageBox.Show(ex.Id.ToString());
+        //    MessageBox.Show(ex.Id.ToString());
 
             
 
@@ -238,7 +238,7 @@ namespace ExamWatches.Views
                 startDate.Text = exam.StartTime.ToString();
                 endDate.Text = exam.EndTime.ToString();
                 examID = exam.Id;
-                MessageBox.Show(examID.ToString());
+              //  MessageBox.Show(examID.ToString());
 
 
             }
