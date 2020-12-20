@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-
+  
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="0" Grid.Column="1">
@@ -112,7 +112,7 @@
             </Grid.ColumnDefinitions>
 
             <!--<Button x:Name="reset" Content="تفريغ " Style="{StaticResource RoundButton}" Click="reset_Click" Grid.Column="0"/>-->
-            <Button  Content="بدء التوزيع" Style="{StaticResource RoundButton}" Click="Button_Click_1" Grid.Column="1" Margin="2,5,1,0"/>
+            <Button  Content="بدء التوزيع" Style="{StaticResource RoundButton}" Click="Button_Click_1" Grid.Column="1"/>
 
         </Grid>
         <!--<StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" >

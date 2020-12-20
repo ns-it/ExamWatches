@@ -141,7 +141,7 @@ namespace ExamWatches.Views
                     {
                         SV.day = fm.dayDate;
                         SV.periodID = i;
-                        MessageBox.Show(fm.SelectedNum.ToString());
+                        MessageBox.Show("تم");
                         SV.startTime = TimeSpan.Parse(DefaultStartTime.Text);
                         SV.PD = decimal.Parse(DefaultDuration.Text);
                         SV.periodDuration = periodDurationList;
@@ -171,6 +171,7 @@ namespace ExamWatches.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+         //   FirstDataGramData.Clear();
             int NumberOfRooms = Scheduling1.SelectedRooms.Count();
             int NumberOfCheifs = Scheduling2.BossWatcherList.Count();
             int NumberOfSecretaries = Scheduling2.SecretaryWatchersList.Count();
@@ -196,6 +197,7 @@ namespace ExamWatches.Views
                 Watches.Add(w);
                 //}
             }
+
 
             foreach (Watch w in Watches)
             {
@@ -270,7 +272,8 @@ namespace ExamWatches.Views
 
             }
             db.SaveChanges();
-           // BaseList.Clear();
+          // BaseList.Clear();
+            
 
         }
 
@@ -281,7 +284,9 @@ namespace ExamWatches.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            
             SecondDataGramData.Clear();
+            
             List<Watch> wachList = new List<Watch>();
             wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
             MessageBox.Show(wachList.Count().ToString());
