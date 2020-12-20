@@ -583,8 +583,8 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.3in</Top>
         <Left>0.3in</Left>
-        <Height>1.03126in</Height>
-        <Width>7.5in</Width>
+        <Height>1.03125in</Height>
+        <Width>7.49999in</Width>
         <Style>
           <Border>
             <Style>None</Style>

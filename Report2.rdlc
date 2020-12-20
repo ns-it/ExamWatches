@@ -6,33 +6,33 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.40625in</Width>
+              <Width>0.94505in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.84028in</Height>
+              <Height>0.66667in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -58,11 +58,11 @@
                       <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -96,11 +96,11 @@
                       <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -134,11 +134,11 @@
                       <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -172,11 +172,11 @@
                       <rd:DefaultName>Textbox7</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -210,11 +210,11 @@
                       <rd:DefaultName>Textbox9</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -248,11 +248,11 @@
                       <rd:DefaultName>Textbox11</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -286,11 +286,11 @@
                       <rd:DefaultName>Textbox13</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -324,11 +324,11 @@
                       <rd:DefaultName>Textbox15</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
+                          <Color>Silver</Color>
                           <Style>Solid</Style>
                           <Width>3pt</Width>
                         </Border>
-                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -341,7 +341,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.68403in</Height>
+              <Height>0.51042in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -634,10 +634,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>2.01214in</Top>
-        <Left>0.44984in</Left>
-        <Height>1.52431in</Height>
-        <Width>11.25in</Width>
+        <Top>0.52083in</Top>
+        <Left>0.16in</Left>
+        <Height>1.17708in</Height>
+        <Width>7.56042in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -648,10 +648,16 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>15in</Height>
-    <Style />
+    <Height>6.5in</Height>
+    <Style>
+      <Border>
+        <Color>Silver</Color>
+        <Style>None</Style>
+        <Width>0.3pt</Width>
+      </Border>
+    </Style>
   </Body>
-  <Width>15.44984in</Width>
+  <Width>8.3in</Width>
   <Page>
     <PageHeader>
       <Height>1.6277in</Height>
@@ -673,13 +679,13 @@
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Right</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.24595in</Top>
-          <Left>10.02276in</Left>
+          <Top>0.11574in</Top>
+          <Left>6.15818in</Left>
           <Height>0.39583in</Height>
           <Width>1.67708in</Width>
           <Style>
@@ -713,7 +719,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
           <Top>0.98882in</Top>
-          <Left>5.39776in</Left>
+          <Left>2.64776in</Left>
           <Height>0.39583in</Height>
           <Width>2.34375in</Width>
           <ZIndex>1</ZIndex>
@@ -749,7 +755,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>5in</Height>
+      <Height>1.4in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -762,7 +768,7 @@
                 <TextRun>
                   <Value>رئيس الدائرة</Value>
                   <Style>
-                    <FontSize>20pt</FontSize>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -774,9 +780,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox6</rd:DefaultName>
           <Top>0.13483in</Top>
-          <Left>10.44811in</Left>
-          <Height>0.48872in</Height>
-          <Width>1.36892in</Width>
+          <Left>5.20853in</Left>
+          <Height>0.32205in</Height>
+          <Width>1.56684in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -796,7 +802,7 @@
                 <TextRun>
                   <Value>=First(Fields!manager.Value, "DataSet1")</Value>
                   <Style>
-                    <FontSize>16pt</FontSize>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -807,9 +813,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
-          <Top>0.77381in</Top>
-          <Left>10.02276in</Left>
-          <Height>0.46701in</Height>
+          <Top>0.52633in</Top>
+          <Left>5.09828in</Left>
+          <Height>0.28993in</Height>
           <Width>1.67708in</Width>
           <ZIndex>1</ZIndex>
           <Style>
@@ -831,7 +837,7 @@
                 <TextRun>
                   <Value>العميد</Value>
                   <Style>
-                    <FontSize>20pt</FontSize>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -843,9 +849,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
           <Top>0.13483in</Top>
-          <Left>1.98878in</Left>
-          <Height>0.44531in</Height>
-          <Width>1.21701in</Width>
+          <Left>1.8117in</Left>
+          <Height>0.32205in</Height>
+          <Width>1.39409in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -866,7 +872,7 @@
                 <TextRun>
                   <Value>=First(Fields!dean.Value, "DataSet1")</Value>
                   <Style>
-                    <FontSize>16pt</FontSize>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -877,9 +883,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox12</rd:DefaultName>
-          <Top>0.77381in</Top>
-          <Left>2.00994in</Left>
-          <Height>0.35851in</Height>
+          <Top>0.52633in</Top>
+          <Left>1.95338in</Left>
+          <Height>0.28993in</Height>
           <Width>1.25241in</Width>
           <ZIndex>3</ZIndex>
           <Style>
@@ -899,14 +905,14 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>15in</PageHeight>
-    <PageWidth>15in</PageWidth>
-    <InteractiveHeight>15in</InteractiveHeight>
-    <InteractiveWidth>15in</InteractiveWidth>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>11.7in</PageHeight>
+    <PageWidth>8.3in</PageWidth>
+    <InteractiveHeight>11.7in</InteractiveHeight>
+    <InteractiveWidth>8.3in</InteractiveWidth>
+    <LeftMargin>0.2in</LeftMargin>
+    <RightMargin>0.2in</RightMargin>
+    <TopMargin>0.2in</TopMargin>
+    <BottomMargin>0.2in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
