@@ -7,9 +7,9 @@
         xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         xmlns:nc="clr-namespace:Microsoft.Reporting.NETCore;assembly=Microsoft.ReportViewer.NETCore"
         mc:Ignorable="d"
-        Title="تقرير الطباعة" Height="500" Width="1000" Loaded="Window_Loaded">
-    <Grid Margin="0,-19,0,0">
-        <WindowsFormsHost HorizontalAlignment="Center" VerticalAlignment="Center" Width="1000" Height="500">
+        Title="تقرير الطباعة" Height="500" Width="1000" Loaded="Window_Loaded" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <WindowsFormsHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <rv:ReportViewer x:Name="repviewer"/>
 
 

@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExamWatches.Views"
-        xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" x:Class="ExamWatches.Views.ExamInit"
-        mc:Ignorable="d"
-        Height="auto" Width="auto" d:DesignHeight="800" d:DesignWidth="1200" FlowDirection="RightToLeft" Margin="10,10,19,10">
+        xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" 
+    x:Class="ExamWatches.Views.ExamInit"
+       xmlns:viewmodels="clr-namespace:ExamWatches.ViewModels"
+    mc:Ignorable="d"
+        Height="auto" Width="auto"  d:DesignHeight="800" d:DesignWidth="900" FlowDirection="RightToLeft" Margin="10,10,19,10">
+    <!--<UserControl.DataContext>
+        <viewmodels:ExamInitViewModel/>
+    </UserControl.DataContext>-->
     <Grid                                                                                                                                                                                                                                    >
         <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width=".2*"/>
@@ -56,8 +61,8 @@
 
 
                 <Label Content="رئيس الدائرة" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="manager_name" Grid.Row="3" Grid.Column="1"  IsEnabled="False" HorizontalAlignment="Stretch" TextChanged="manager_name_TextChanged" />
-                <Button x:Name="ManagerNameStartEdit" Grid.Row="3" Grid.Column="2" Content="تعديل" Click="ManagerNameStartEdit_Click"/>
+                <TextBox x:Name="manager_name" Grid.Row="3" Grid.Column="1"  IsEnabled="False" HorizontalAlignment="Stretch"  />
+                <Button x:Name="ManagerNameStartEdit" Grid.Row="3" Grid.Column="2" Content="تعديل" Click="ManagerNameStartEdit_Click" />
                 <Button x:Name="ManagerNameSaveChanges" Grid.Row="3" Grid.Column="2" Content="حفظ" Visibility="Hidden" Click="ManagerNameSaveChanges_Click"/>
                 <Button x:Name="ManagerNameCancel" Grid.Row="3" Grid.Column="3" Content="إلغاء" Visibility="Hidden" IsCancel="True" Click="ManagerNameCancel_Click"/>
 
@@ -78,31 +83,51 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Content="الفصل الدراسي" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <GroupBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="5" BorderThickness="0">
 
-                    <Grid>
+                <Label Content="الامتحان" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="SelectedExamComboBox" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" SelectionChanged="SelectedExamComboBox_SelectionChanged" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} ف {1}">
+                                        <Binding Path="AcademicYear"/>
+                                        
+                                        <Binding Path="Semester"/>
+                                        
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+
+                <Label Content="الفصل الدراسي" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
+                <GroupBox x:Name="SemesterValue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="0" IsEnabled="False">
+
+                    <Grid VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <RadioButton x:Name="first" Content="الأول"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Checked="first_Checked"/>
-                        <RadioButton x:Name="second" Content="الثاني"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="second_Checked" />
-                        <RadioButton x:Name="third" Content="الثالث"  Grid.Column="2" VerticalAlignment="Center" Checked="third_Checked"/>
+                        <RadioButton x:Name="first" Content="الأول"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <RadioButton x:Name="second" Content="الثاني"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                        <RadioButton x:Name="third" Content="الثالث"  Grid.Column="2" VerticalAlignment="Center" />
 
                     </Grid>
 
                 </GroupBox>
 
-                <Label Content="العام الدراسي" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="year" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" DropDownClosed="year_DropDownClosed">
+                <Label Content="العام الدراسي" Grid.Row="2" Grid.Column="3" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="year" Grid.Row="2" Grid.Column="4"  HorizontalAlignment="Stretch" IsEnabled="False">
                     <ComboBoxItem>2019-2020</ComboBoxItem>
                     <ComboBoxItem>2020-2021</ComboBoxItem>
                     <ComboBoxItem>2021-2022</ComboBoxItem>
@@ -116,29 +141,38 @@
                     <ComboBoxItem>2029-2030</ComboBoxItem>
 
                 </ComboBox>
-
-                <Label Content="من" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="3"/>
-                <DatePicker x:Name="startDate"  Grid.Row="3" Grid.Column="4"/>
-                <Label Content="إلى" Grid.Row="3" Grid.Column="5"/>
-                <DatePicker x:Name="endDate" Grid.Row="3" Grid.Column="6"/>
-
+                
+                
+                
                 <Label Content="عدد أيام الامتحان" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <Grid Grid.Row="3" Grid.Column="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBox x:Name="days" x:FieldModifier="private" Text="0" Grid.Column="0" Grid.RowSpan="2" TextChanged="txtNum_TextChanged" Margin="0,0,20,0" Grid.ColumnSpan="3"/>
-                    <Button x:Name="cmdUp" x:FieldModifier="private"  Content="🔺" Width="20"  Grid.Column="2" Grid.Row="0" Click="cmdUp_Click" FontSize="4" Padding="0" />
-                    <Button x:Name="cmdDown" x:FieldModifier="private"  Content="🔻" Width="20" Grid.Column="2" Click="cmdDown_Click" FontSize="4" Padding="0" Margin="0,12,0,0" Grid.RowSpan="2" />
-                </Grid>
+                <GroupBox x:Name="ExamDays" Grid.Row="3" Grid.Column="2" BorderThickness="0" Padding="0" Margin="0" VerticalAlignment="Stretch" IsEnabled="False" >
+                    <Grid VerticalAlignment="Stretch" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="days" x:FieldModifier="private" Text="0" Grid.Column="0" Grid.RowSpan="2" TextChanged="txtNum_TextChanged" Margin="0,0,20,0" Grid.ColumnSpan="3"/>
+                        <Button x:Name="cmdUp" x:FieldModifier="private"  Content="🔺" Width="20"  Grid.Column="2" Grid.Row="0" Click="cmdUp_Click" FontSize="4" Padding="0" />
+                        <Button x:Name="cmdDown" x:FieldModifier="private"  Content="🔻" Width="20" Grid.Column="2" Click="cmdDown_Click" FontSize="4" Padding="0" Margin="0,12,0,0" Grid.RowSpan="2" />
+                    </Grid>
+                </GroupBox>
+                
+                <Label Content="من" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="3"/>
+                <DatePicker x:Name="startDate" IsEnabled="False"  Grid.Row="3" Grid.Column="4"/>
+                <Label Content="إلى" Grid.Row="3" Grid.Column="5"/>
+                <DatePicker x:Name="endDate" IsEnabled="False" Grid.Row="3" Grid.Column="6"/>
 
-                <Button x:Name="SaveButton" Style="{StaticResource RoundButton}"  Grid.Row="4"  Grid.Column="6" Click="Button_Click" Content="حفظ"  VerticalAlignment="Top"/>
-                <Button x:Name="Update" Style="{StaticResource RoundButton}"  Grid.Row="4"  Grid.Column="4" Content="تعديل"  Click="UpdataButton_Click"   VerticalAlignment="Top" />
+
+                <StackPanel Grid.Row="1"  Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Button x:Name="UpdateExamButton" Grid.Row="1"  Grid.Column="4" Content="تعديل"  Click="UpdateExamButton_Click"   VerticalAlignment="Top" />
+                    <Button x:Name="AddExamButton"   Grid.Row="1"  Grid.Column="4" Content="إضافة"  VerticalAlignment="Top" Click="AddExamButton_Click" />
+                    <Button x:Name="SaveExamButton"   Grid.Row="1"  Grid.Column="6" Click="SaveExamButton_Click" Content="حفظ"  VerticalAlignment="Top" IsEnabled="False" Visibility="Collapsed"/>
+                    <Button x:Name="CancelExamButton"  VerticalAlignment="Top" Content="إلغاء" IsEnabled="False"  Visibility="Collapsed" Click="CancelExamButton_Click"/>
+                </StackPanel>
 
             </Grid>
         </GroupBox>
