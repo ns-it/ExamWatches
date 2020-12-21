@@ -55,24 +55,12 @@ namespace ExamWatches.Views
             BaseList = new ObservableCollection<Scheduling3ViewModel>();
 
 
-            periodList = new ObservableCollection<int>
-            {
-                1,
-                2,
-                3
-            };
-            periodDurationList = new ObservableCollection<decimal>
-            {
-                60,90,120,150,180,210,240
-            };
-
+            periodList = new ObservableCollection<int> {1, 2, 3};
+            periodDurationList = new ObservableCollection<decimal> { 60,90,120,150,180,210,240 };
 
             InitializeComponent();
-
             Periods.ItemsSource = FirstDataGramData;
-
             Periods2.ItemsSource = SecondDataGramData;
-
             db = new ExamWatchesDBContext();
 
             int userid = Int32.Parse(App.Current.Properties["user_id"].ToString());
@@ -81,6 +69,8 @@ namespace ExamWatches.Views
             WORK_LOCATION_ID = UserWorkLocation.Id;
             //ComboBox cb= Periods.Columns[1].GetCellContent(Periods.Items[0]) as ComboBox;
         }
+
+
 
 
 
@@ -100,7 +90,7 @@ namespace ExamWatches.Views
                 fillFirstDataGridmodel.dayDate = selelectedDate;
 
                 fillFirstDataGridmodel.DateNumList = periodList;
-                fillFirstDataGridmodel.SelectedNum = 1;
+                fillFirstDataGridmodel.SelectedNum = int.Parse(DefaultPeriodsNumber.Text);
                 FirstDataGramData.Add(fillFirstDataGridmodel);
             }
             else
@@ -111,37 +101,31 @@ namespace ExamWatches.Views
 
         private void ExamDays_SelectedDatesChanged_2(object sender, SelectionChangedEventArgs e)
         {
-
             selelectedDate = (DateTime)ExamDays.SelectedDate;
-
             ExamDay_selectionChange_Loop();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             foreach (fillFirstDataGridmodel fm in FirstDataGramData)
             {
                 exist = false;
                 for (short i = 1; i <= fm.SelectedNum; i++)
                 {
                     exist = false;
-
                     Scheduling3ViewModel SV = new Scheduling3ViewModel();
-
                     foreach (Scheduling3ViewModel second in SecondDataGramData)
                     {
                         if (second.day == fm.dayDate && second.periodID == i)
                         {
                             exist = true;
                         }
-
                     }
                     if (exist == false)
                     {
                         SV.day = fm.dayDate;
                         SV.periodID = i;
-                        MessageBox.Show("تم");
+                        MessageBox.Show(fm.SelectedNum.ToString());
                         SV.startTime = TimeSpan.Parse(DefaultStartTime.Text);
                         SV.PD = decimal.Parse(DefaultDuration.Text);
                         SV.periodDuration = periodDurationList;
@@ -151,7 +135,6 @@ namespace ExamWatches.Views
                     else
                     {
                         MessageBox.Show(" التاريخ   " + fm.dayDate.ToString("dd/MM/yyyy") + "   و الفترة   " + i + "تمت اضافتهم مسبقاَ");
-
                     }
 
                 }
@@ -165,17 +148,26 @@ namespace ExamWatches.Views
             MessageBox.Show(dg["اليوم"].ToString());
         }
 
-        List<Watch> Watches = new List<Watch>();
-        Watch w;
+       
 
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-         //   FirstDataGramData.Clear();
+            if (FirstDataGramData.Count() == 0)
+            {
+                MessageBox.Show("لم يتم تحديد أيام للتوزيع");
+                return;
+            }
+
+
+            List<Watch> Watches = new List<Watch>();
+            Watch watch;
             int NumberOfRooms = Scheduling1.SelectedRooms.Count();
             int NumberOfCheifs = Scheduling2.BossWatcherList.Count();
             int NumberOfSecretaries = Scheduling2.SecretaryWatchersList.Count();
             int NumberOfWatchers = Scheduling2.OrdinaryWatchersList.Count();
+
+            if(NumberOfRooms == 0) { MessageBox.Show("لم يتم اختيار أي قاعة للتوزيع"); return; }
 
             //if (NumberOfCheifs < NumberOfRooms) { MessageBox.Show("عدد رؤساء القاعات أقل من عدد القاعات"); return; }
             if (NumberOfSecretaries < NumberOfRooms) { MessageBox.Show("عدد أمناء السر أقل من عدد القاعات"); return; }
@@ -184,7 +176,7 @@ namespace ExamWatches.Views
 
             foreach (Scheduling3ViewModel s in BaseList)
             {
-                w = new Watch()
+                watch = new Watch()
                 {
                     Duration = s.PD,
                     ExamId = ExamInit.examID,
@@ -194,10 +186,9 @@ namespace ExamWatches.Views
                     WatchDate = s.day,
                     WatcherWatches = new List<WatcherWatch>()
                 };
-                Watches.Add(w);
+                Watches.Add(watch);
                 //}
             }
-
 
             foreach (Watch w in Watches)
             {
@@ -272,8 +263,14 @@ namespace ExamWatches.Views
 
             }
             db.SaveChanges();
-          // BaseList.Clear();
-            
+
+            MessageBox.Show("تم التوزيع بنجاح");
+
+            MessageBox.Show("تم توزيع: " + NumberOfSecretaries + "أمين سر، " + NumberOfWatchers + " مراقب، "+ NumberOfCheifs + " رئيس قاعة . على " + NumberOfRooms + " قاعة");
+
+            BaseList.Clear();
+            Watches.Clear();
+            FirstDataGramData.Clear();
 
         }
 
@@ -284,12 +281,10 @@ namespace ExamWatches.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
             SecondDataGramData.Clear();
-            
             List<Watch> wachList = new List<Watch>();
             wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
-           // MessageBox.Show(wachList.Count().ToString());
+            MessageBox.Show(wachList.Count().ToString());
             foreach (Watch w in wachList)
             {
                 Scheduling3ViewModel model = new Scheduling3ViewModel();

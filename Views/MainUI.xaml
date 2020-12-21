@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:ExamWatches.Views"
         xmlns:viewmodels="clr-namespace:ExamWatches.ViewModels"
-        mc:Ignorable="d"
-        Title="برنامج المراقبات الامتحانية - الواجهة الرئيسية" Height="450" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        mc:Ignorable="d" MinWidth="1005" MinHeight="650"
+        Title="برنامج المراقبات الامتحانية - الواجهة الرئيسية" Height="600" Width="900" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <!--<Window.Resources>
         <DataTemplate x:Name="Scheduling1ViewTemplate" DataType="{x:Type viewmodels:Scheduling1ViewModel}">
             <views:Scheduling1 DataContext="{Binding}"/>

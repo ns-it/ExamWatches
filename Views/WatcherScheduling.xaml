@@ -18,9 +18,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height=".5*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
             <Label Grid.Row="0" Grid.Column="0" Content="اسم المراقب" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -31,17 +31,18 @@
                         <Run Text=" مكان العمل: "/>
             <Run x:Name="worloc" Text="{Binding SelectedWatcher.WorkLocation.Name}"/>
             </TextBlock>
-            <DataGrid x:Name="WatcherSchedule" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding WatchesList}" AutoGenerateColumns="False" CanUserAddRows="False" FlowDirection="RightToLeft">
+            <DataGrid x:Name="WatcherSchedule" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding WatchesList}" AutoGenerateColumns="False" CanUserAddRows="False" FlowDirection="RightToLeft" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="التاريخ" Width="*"  Binding="{Binding Watch.WatchDate,StringFormat='dd/MM/yyyy'}"/>
                     <DataGridTextColumn Header="الفترة" Width="*" Binding="{Binding Watch.PeriodId}"/>
                     <DataGridTextColumn Header="القاعة" Width="*" Binding="{Binding WatchRoom.Name}"/>
                     <DataGridTextColumn Header="نوع المراقبة" Width="*" Binding="{Binding WatchType}"/>
                     <DataGridTextColumn Header="رئيس القاعة" Width="*" Binding="{Binding RoomChief}"/>
-                    <DataGridCheckBoxColumn Header="التوقيع" Width="*" Binding="{Binding Attendence}"/>
+                    <DataGridCheckBoxColumn Header="التوقيع" Width="*" Binding="{Binding Attendence}" IsReadOnly="False"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="Print"  VerticalAlignment="Center" FlowDirection="RightToLeft" Content="طباعة" Grid.Column="2" Grid.Row="2" Click="Print_Click"></Button>
+            
+            <Button x:Name="Print" Style="{StaticResource RoundButton}"  VerticalAlignment="Center" Content="طباعة" Grid.Column="2" Grid.Row="2" Click="Print_Click"></Button>
 
         </Grid>
     </Grid>
