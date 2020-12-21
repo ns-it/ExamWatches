@@ -345,7 +345,6 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <LayoutDirection>RTL</LayoutDirection>
         <DataSetName>DataSet1</DataSetName>
         <Top>0.91458in</Top>
         <Left>0.28821in</Left>
@@ -451,7 +450,7 @@
         <Top>0.16333in</Top>
         <Left>6.79167in</Left>
         <Height>0.25in</Height>
-        <Width>0.07292in</Width>
+        <Width>0.12847in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -484,7 +483,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox17</rd:DefaultName>
         <Top>0.205in</Top>
-        <Left>4.27431in</Left>
+        <Left>4.34723in</Left>
         <Height>0.25in</Height>
         <Width>0.4375in</Width>
         <ZIndex>4</ZIndex>
@@ -554,7 +553,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>0.205in</Top>
-        <Left>2.19208in</Left>
+        <Left>2.31338in</Left>
         <Height>0.25in</Height>
         <Width>0.48709in</Width>
         <ZIndex>6</ZIndex>
@@ -624,7 +623,7 @@
         <Top>0.205in</Top>
         <Left>4.13195in</Left>
         <Height>0.25in</Height>
-        <Width>0.07292in</Width>
+        <Width>0.14584in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -657,7 +656,7 @@
         <Top>0.205in</Top>
         <Left>2.04971in</Left>
         <Height>0.25in</Height>
-        <Width>0.07292in</Width>
+        <Width>0.15029in</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>

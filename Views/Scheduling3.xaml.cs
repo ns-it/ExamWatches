@@ -289,7 +289,7 @@ namespace ExamWatches.Views
             
             List<Watch> wachList = new List<Watch>();
             wachList = db.Watches.Where(x => x.ExamId == ExamInit.examID).ToList<Watch>();
-            MessageBox.Show(wachList.Count().ToString());
+           // MessageBox.Show(wachList.Count().ToString());
             foreach (Watch w in wachList)
             {
                 Scheduling3ViewModel model = new Scheduling3ViewModel();
